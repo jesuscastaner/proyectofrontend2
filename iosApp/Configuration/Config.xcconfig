@@ -1,0 +1,7 @@
+TEAM_ID=
+
+PRODUCT_NAME=ProyectoFrontend2
+PRODUCT_BUNDLE_IDENTIFIER=net.unir.proyectofrontend2.ProyectoFrontend2$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
