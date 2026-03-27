@@ -1,22 +1,28 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.kmpNativeCoroutines)
+    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinxSerialization)
-    alias(libs.plugins.ksp)
 }
 
 kotlin {
-    androidTarget {
+    androidLibrary {
+        namespace = "net.unir.proyectofrontend2.shared"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget = JvmTarget.JVM_11
+        }
+
+        androidResources {
+            enable = true
         }
     }
 
     listOf(
-        // iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -38,10 +44,10 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(libs.koin.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.koin.core)
             api(libs.kmp.observable.viewmodel)
         }
         commonTest.dependencies {
@@ -59,17 +65,5 @@ kotlin {
             languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
             languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
         }
-    }
-}
-
-android {
-    namespace = "net.unir.proyectofrontend2.shared"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }
