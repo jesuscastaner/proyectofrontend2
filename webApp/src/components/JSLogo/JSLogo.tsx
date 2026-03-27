@@ -1,7 +1,5 @@
-import './JSLogo.css';
+import "./JSLogo.css";
 
 export function JSLogo() {
-  return (
-    <div className="js-logo"></div>
-  );
+    return <div className="js-logo"></div>;
 }
