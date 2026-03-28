@@ -24,7 +24,7 @@ class UserRepository(
         userStorage.saveUsers(userApi.getUsers())
     }
 
-    fun getPosts(): Flow<List<User>> = userStorage.getUsers()
+    fun getUsers(): Flow<List<User>> = userStorage.getUsers()
 
-    fun getPostById(id: Long): Flow<User?> = userStorage.getUserById(id)
+    fun getUserById(id: Long): Flow<User?> = userStorage.getUserById(id)
 }

@@ -19,7 +19,7 @@ class UserDetailsViewModel(userRepository: UserRepository) : ViewModel() {
     @NativeCoroutinesState
     val user: StateFlow<User?> = id.flatMapLatest {
         val id = it ?: return@flatMapLatest flowOf(null)
-        userRepository.getPostById(id)
+        userRepository.getUserById(id)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
