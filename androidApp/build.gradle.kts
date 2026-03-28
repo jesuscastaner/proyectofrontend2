@@ -14,6 +14,7 @@ kotlin {
 
 dependencies {
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.animation)
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewmodelCompose)
     implementation(libs.androidx.navigation.compose)

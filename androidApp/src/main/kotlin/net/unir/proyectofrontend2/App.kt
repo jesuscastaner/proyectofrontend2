@@ -1,41 +1,48 @@
 package net.unir.proyectofrontend2
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.material3.Surface
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import kotlinx.serialization.Serializable
+import net.unir.proyectofrontend2.ui.screens.PostDetailScreen
+import net.unir.proyectofrontend2.ui.screens.PostListScreen
+
+
+@Serializable
+object PostListDestination
+
+@Serializable
+data class PostDetailDestination(val id: Long)
 
 @Composable
-@Preview
 fun App() {
-    MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Text("Compose: $greeting")
+    MaterialTheme(
+        colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
+    ) {
+        Surface {
+            val navController = rememberNavController()
+
+            NavHost(
+                navController = navController,
+                startDestination = PostListDestination
+            ) {
+                composable<PostListDestination> {
+                    PostListScreen(navigateToDetails = { id ->
+                        navController.navigate(PostDetailDestination(id))
+                    })
+                }
+                composable<PostDetailDestination> { backStackEntry ->
+                    PostDetailScreen(
+                        id = backStackEntry.toRoute<PostDetailDestination>().id,
+                        navigateBack = { navController.popBackStack() }
+                    )
                 }
             }
         }

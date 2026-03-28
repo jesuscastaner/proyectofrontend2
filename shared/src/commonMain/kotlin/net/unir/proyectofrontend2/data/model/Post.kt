@@ -12,5 +12,6 @@ data class Post(
     val isQuote: Boolean,
     val isVisible: Boolean,
     val createdAt: String,
-    val updatedAt: String
+    val updatedAt: String,
+    val image: String,
 )

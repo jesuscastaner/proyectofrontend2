@@ -4,6 +4,7 @@ android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "36"
 androidx-activity = "1.13.0"
+androidx-animation = "1.10.6"
 androidx-appcompat = "1.7.1"
 androidx-core = "1.18.0"
 androidx-espresso = "3.7.0"
@@ -24,6 +25,7 @@ ktor = "3.4.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "androidx-animation" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso" }
