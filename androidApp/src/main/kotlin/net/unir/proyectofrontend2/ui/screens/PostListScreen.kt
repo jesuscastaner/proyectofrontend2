@@ -10,9 +10,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +33,7 @@ fun PostListScreen(navigateToPostDetails: (id: Long) -> Unit) {
 
     AnimatedContent(posts) { posts ->
         if (posts.isNotEmpty()) {
-            PostsGrid(
+            PostsFeed(
                 posts = posts,
                 onPostClick = navigateToPostDetails,
             )
@@ -42,13 +44,12 @@ fun PostListScreen(navigateToPostDetails: (id: Long) -> Unit) {
 }
 
 @Composable
-private fun PostsGrid(
+private fun PostsFeed(
     posts: List<Post>,
     onPostClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(180.dp),
+    LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
     ) {
