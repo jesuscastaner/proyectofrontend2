@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import net.unir.proyectofrontend2.data.local.PostStorage
 import net.unir.proyectofrontend2.data.model.Post
-import net.unir.proyectofrontend2.data.remote.ApiResult
 import net.unir.proyectofrontend2.data.remote.PostApi
 
 class PostRepository(
@@ -22,15 +21,7 @@ class PostRepository(
     }
 
     suspend fun refresh() {
-        when (val result = postApi.getPosts()) {
-            is ApiResult.Success -> {
-                postStorage.savePosts(result.data)
-            }
-
-            is ApiResult.Error -> {
-                result.exception.printStackTrace()
-            }
-        }
+        postStorage.savePosts(postApi.getPosts())
     }
 
     fun getPosts(): Flow<List<Post>> = postStorage.getPosts()

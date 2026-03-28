@@ -4,6 +4,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import net.unir.proyectofrontend2.data.model.Post
+import kotlin.coroutines.cancellation.CancellationException
 
 class KtorPostApi(private val client: HttpClient) : PostApi {
     companion object {
@@ -11,19 +12,13 @@ class KtorPostApi(private val client: HttpClient) : PostApi {
             "https://raw.githubusercontent.com/jesuscastaner/proyectofrontend2/main/posts.json"
     }
 
-    override suspend fun getPosts(): ApiResult<List<Post>> {
+    override suspend fun getPosts(): List<Post> {
         return try {
-            ApiResult.Success(client.get(API_URL).body())
+            client.get(API_URL).body()
         } catch (e: Exception) {
-            ApiResult.Error(e)
-        }
-    }
-
-    override suspend fun getPost(id: Long): ApiResult<Post> {
-        return try {
-            ApiResult.Success(client.get("$API_URL/$id").body())
-        } catch (e: Exception) {
-            ApiResult.Error(e)
+            if (e is CancellationException) throw e
+            e.printStackTrace()
+            emptyList()
         }
     }
 }
