@@ -36,6 +36,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.unir.proyectofrontend2.R
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
+import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

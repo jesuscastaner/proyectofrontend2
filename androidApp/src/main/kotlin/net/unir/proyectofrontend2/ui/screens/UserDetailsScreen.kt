@@ -39,6 +39,7 @@ import coil3.compose.AsyncImage
 import net.unir.proyectofrontend2.R
 import net.unir.proyectofrontend2.data.model.User
 import net.unir.proyectofrontend2.presentation.viewmodel.UserDetailsViewModel
+import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
