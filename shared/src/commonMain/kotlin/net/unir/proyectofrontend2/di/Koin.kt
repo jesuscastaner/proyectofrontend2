@@ -19,7 +19,7 @@ val dataModule = module {
         val json = Json { ignoreUnknownKeys = true }
         HttpClient {
             install(ContentNegotiation) {
-                json(json) // json(json, contentType = ContentType.Any)
+                json(json, contentType = ContentType.Any)
             }
         }
     }
