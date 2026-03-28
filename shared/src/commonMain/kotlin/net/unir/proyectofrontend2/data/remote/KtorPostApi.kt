@@ -9,7 +9,7 @@ import kotlin.coroutines.cancellation.CancellationException
 class KtorPostApi(private val client: HttpClient) : PostApi {
     companion object {
         private const val API_URL =
-            "https://raw.githubusercontent.com/jesuscastaner/proyectofrontend2/main/posts.json"
+            "https://raw.githubusercontent.com/jesuscastaner/proyectofrontend2/main/testapi/posts.json"
     }
 
     override suspend fun getPosts(): List<Post> {
