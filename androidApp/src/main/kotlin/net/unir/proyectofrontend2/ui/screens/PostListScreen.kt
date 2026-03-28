@@ -37,7 +37,7 @@ fun PostListScreen(navigateToDetails: (id: Long) -> Unit) {
 
     AnimatedContent(posts.isNotEmpty()) { postsAvailable ->
         if (postsAvailable) {
-            ObjectGrid(
+            PostsGrid(
                 posts = posts,
                 onPostClick = navigateToDetails,
             )
@@ -48,7 +48,7 @@ fun PostListScreen(navigateToDetails: (id: Long) -> Unit) {
 }
 
 @Composable
-private fun ObjectGrid(
+private fun PostsGrid(
     posts: List<Post>,
     onPostClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
@@ -59,7 +59,7 @@ private fun ObjectGrid(
         contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
     ) {
         items(posts, key = { it.id }) { post ->
-            ObjectFrame(
+            PostFrame(
                 post = post,
                 onClick = { onPostClick(post.id) },
             )
@@ -68,7 +68,7 @@ private fun ObjectGrid(
 }
 
 @Composable
-private fun ObjectFrame(
+private fun PostFrame(
     post: Post,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
