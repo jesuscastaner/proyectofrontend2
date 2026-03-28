@@ -11,15 +11,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
-import net.unir.proyectofrontend2.ui.screens.PostDetailScreen
+import net.unir.proyectofrontend2.ui.screens.PostDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.PostListScreen
-
 
 @Serializable
 object PostListDestination
 
 @Serializable
-data class PostDetailDestination(val id: Long)
+data class PostDetailsDestination(val id: Long)
 
 @Composable
 fun App() {
@@ -34,13 +33,15 @@ fun App() {
                 startDestination = PostListDestination
             ) {
                 composable<PostListDestination> {
-                    PostListScreen(navigateToDetails = { id ->
-                        navController.navigate(PostDetailDestination(id))
-                    })
+                    PostListScreen(
+                        navigateToPostDetails = { id ->
+                            navController.navigate(PostDetailsDestination(id))
+                        }
+                    )
                 }
-                composable<PostDetailDestination> { backStackEntry ->
-                    PostDetailScreen(
-                        id = backStackEntry.toRoute<PostDetailDestination>().id,
+                composable<PostDetailsDestination> { backStackEntry ->
+                    PostDetailsScreen(
+                        id = backStackEntry.toRoute<PostDetailsDestination>().id,
                         navigateBack = { navController.popBackStack() }
                     )
                 }

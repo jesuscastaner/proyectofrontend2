@@ -31,15 +31,15 @@ import net.unir.proyectofrontend2.presentation.viewmodel.PostListViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun PostListScreen(navigateToDetails: (id: Long) -> Unit) {
+fun PostListScreen(navigateToPostDetails: (id: Long) -> Unit) {
     val viewModel: PostListViewModel = koinViewModel()
     val posts by viewModel.posts.collectAsStateWithLifecycle()
 
-    AnimatedContent(posts.isNotEmpty()) { postsAvailable ->
-        if (postsAvailable) {
+    AnimatedContent(posts) { posts ->
+        if (posts.isNotEmpty()) {
             PostsGrid(
                 posts = posts,
-                onPostClick = navigateToDetails,
+                onPostClick = navigateToPostDetails,
             )
         } else {
             EmptyScreenContent(Modifier.fillMaxSize())

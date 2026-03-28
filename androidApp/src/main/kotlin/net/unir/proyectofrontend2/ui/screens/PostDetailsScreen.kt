@@ -43,7 +43,7 @@ import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun PostDetailScreen(
+fun PostDetailsScreen(
     id: Long,
     navigateBack: () -> Unit,
 ) {
