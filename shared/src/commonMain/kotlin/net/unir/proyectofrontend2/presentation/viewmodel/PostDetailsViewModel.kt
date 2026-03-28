@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flowOf
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.data.repository.PostRepository
 
-class PostDetailViewModel(postRepository: PostRepository) : ViewModel() {
+class PostDetailsViewModel(postRepository: PostRepository) : ViewModel() {
     private val id = MutableStateFlow<Long?>(null)
 
     @OptIn(ExperimentalCoroutinesApi::class)

@@ -2,7 +2,7 @@ package net.unir.proyectofrontend2
 
 import android.app.Application
 import net.unir.proyectofrontend2.di.initKoin
-import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.PostListViewModel
 import org.koin.dsl.module
 
@@ -13,7 +13,7 @@ class PostApp : Application() {
             listOf(
                 module {
                     factory { PostListViewModel(get()) }
-                    factory { PostDetailViewModel(get()) }
+                    factory { PostDetailsViewModel(get()) }
                 }
             )
         )

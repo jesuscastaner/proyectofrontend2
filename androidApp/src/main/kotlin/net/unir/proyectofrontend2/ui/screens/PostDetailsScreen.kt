@@ -39,7 +39,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import net.unir.proyectofrontend2.R
 import net.unir.proyectofrontend2.data.model.Post
-import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -47,7 +47,7 @@ fun PostDetailsScreen(
     id: Long,
     navigateBack: () -> Unit,
 ) {
-    val viewModel: PostDetailViewModel = koinViewModel()
+    val viewModel: PostDetailsViewModel = koinViewModel()
     val post by viewModel.post.collectAsStateWithLifecycle()
 
     LaunchedEffect(id) {
@@ -118,10 +118,6 @@ private fun PostDetails(
                     LabeledInfo(
                         stringResource(R.string.label_is_quote),
                         post.isQuote.toString(),
-                    )
-                    LabeledInfo(
-                        stringResource(R.string.label_is_quote),
-                        post.isVisible.toString(),
                     )
                     LabeledInfo(
                         stringResource(R.string.label_created_at),
