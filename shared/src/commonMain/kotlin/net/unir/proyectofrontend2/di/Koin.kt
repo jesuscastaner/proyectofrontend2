@@ -6,10 +6,15 @@ import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import net.unir.proyectofrontend2.data.local.InMemoryPostStorage
+import net.unir.proyectofrontend2.data.local.InMemoryUserStorage
 import net.unir.proyectofrontend2.data.local.PostStorage
+import net.unir.proyectofrontend2.data.local.UserStorage
 import net.unir.proyectofrontend2.data.remote.KtorPostApi
+import net.unir.proyectofrontend2.data.remote.KtorUserApi
 import net.unir.proyectofrontend2.data.remote.PostApi
+import net.unir.proyectofrontend2.data.remote.UserApi
 import net.unir.proyectofrontend2.data.repository.PostRepository
+import net.unir.proyectofrontend2.data.repository.UserRepository
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -28,6 +33,13 @@ val dataModule = module {
     single<PostStorage> { InMemoryPostStorage() }
     single {
         PostRepository(get(), get()).apply {
+            initialize()
+        }
+    }
+    single<UserApi> { KtorUserApi(get()) }
+    single<UserStorage> { InMemoryUserStorage() }
+    single {
+        UserRepository(get(), get()).apply {
             initialize()
         }
     }

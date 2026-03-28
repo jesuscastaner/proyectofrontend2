@@ -1,23 +1,23 @@
 package net.unir.proyectofrontend2.ui.screens
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,32 +30,33 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil3.compose.AsyncImage
 import net.unir.proyectofrontend2.R
-import net.unir.proyectofrontend2.data.model.Post
-import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
+import net.unir.proyectofrontend2.data.model.User
+import net.unir.proyectofrontend2.presentation.viewmodel.UserDetailsViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun PostDetailsScreen(
+fun UserDetailsScreen(
     id: Long,
-    navigateToUserDetails: (id: Long) -> Unit,
     navigateBack: () -> Unit,
 ) {
-    val viewModel: PostDetailsViewModel = koinViewModel()
-    val post by viewModel.post.collectAsStateWithLifecycle()
+    val viewModel: UserDetailsViewModel = koinViewModel()
+    val user by viewModel.user.collectAsStateWithLifecycle()
 
     LaunchedEffect(id) {
         viewModel.setId(id)
     }
 
-    AnimatedContent(post != null) { postAvailable ->
-        if (postAvailable) {
-            PostDetails(
-                post = post!!,
-                onUserClick = navigateToUserDetails,
+    AnimatedContent(user != null) { userAvailable ->
+        if (userAvailable) {
+            UserDetails(
+                user = user!!,
                 onBackClick = navigateBack
             )
         } else {
@@ -66,10 +67,9 @@ fun PostDetailsScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun PostDetails(
-    post: Post,
+private fun UserDetails(
+    user: User,
     onBackClick: () -> Unit,
-    onUserClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -93,31 +93,46 @@ private fun PostDetails(
                 .verticalScroll(rememberScrollState())
                 .padding(paddingValues)
         ) {
+            AsyncImage(
+                model = user.profilePic,
+                contentDescription = user.username,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.LightGray)
+            )
             SelectionContainer {
                 Column(Modifier.padding(12.dp)) {
-                    Row(
-                        modifier = Modifier.clickable { onUserClick(post.userId) },
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            Icons.Default.Person,
-                            contentDescription = null
-                        )
-                        Spacer(Modifier.width(4.dp))
-                        Text(
-                            "User #${post.userId}",
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
-                    }
+                    Text(
+                        user.displayName,
+                        style = MaterialTheme.typography.headlineMedium,
+                    )
                     Spacer(Modifier.height(6.dp))
                     Text(
-                        post.content,
+                        user.displayName,
                         style = MaterialTheme.typography.bodyMedium,
                     )
                     Text(
-                        post.createdAt,
+                        user.username,
                         style = MaterialTheme.typography.bodySmall,
                     )
+                    Text(
+                        user.website,
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                    Text(
+                        user.bio,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                    if (user.verified) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = Icons.Default.Check,
+                                contentDescription = "Verificado",
+                                tint = Color.Green
+                            )
+                        }
+                    }
                 }
             }
         }

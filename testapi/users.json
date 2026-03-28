@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "username": "jdoe",
+        "displayName": "John Doe",
+        "profilePic": "https://example.com/profiles/101.jpg",
+        "bio": "Software developer and tech enthusiast.",
+        "website": "https://johndoe.dev",
+        "verified": true,
+        "suspended": false,
+        "createdAt": "2024-01-10T10:00:00Z",
+        "updatedAt": "2025-02-15T12:00:00Z"
+    },
+    {
+        "id": 2,
+        "username": "asmith",
+        "displayName": "Alice Smith",
+        "profilePic": "https://example.com/profiles/102.jpg",
+        "bio": "Designer focused on UX/UI.",
+        "website": "https://alicesmith.design",
+        "verified": false,
+        "suspended": false,
+        "createdAt": "2024-02-12T09:30:00Z",
+        "updatedAt": "2025-01-20T11:15:00Z"
+    },
+    {
+        "id": 3,
+        "username": "bwayne",
+        "displayName": "Bruce Wayne",
+        "profilePic": "https://example.com/profiles/103.jpg",
+        "bio": "Entrepreneur by day.",
+        "website": "https://wayneenterprises.com",
+        "verified": true,
+        "suspended": false,
+        "createdAt": "2023-11-01T08:00:00Z",
+        "updatedAt": "2025-03-01T10:00:00Z"
+    },
+    {
+        "id": 4,
+        "username": "ckent",
+        "displayName": "Clark Kent",
+        "profilePic": "https://example.com/profiles/104.jpg",
+        "bio": "Journalist at Daily Planet.",
+        "website": "https://dailyplanet.com",
+        "verified": true,
+        "suspended": false,
+        "createdAt": "2024-03-05T14:20:00Z",
+        "updatedAt": "2025-02-10T16:45:00Z"
+    },
+    {
+        "id": 5,
+        "username": "dprince",
+        "displayName": "Diana Prince",
+        "profilePic": "https://example.com/profiles/105.jpg",
+        "bio": "Historian and diplomat.",
+        "website": "https://themyscira.org",
+        "verified": true,
+        "suspended": false,
+        "createdAt": "2023-12-20T07:15:00Z",
+        "updatedAt": "2025-01-05T09:00:00Z"
+    },
+    {
+        "id": 6,
+        "username": "pparker",
+        "displayName": "Peter Parker",
+        "profilePic": "https://example.com/profiles/106.jpg",
+        "bio": "Photographer and student.",
+        "website": "https://parkerphotos.net",
+        "verified": false,
+        "suspended": false,
+        "createdAt": "2024-04-01T10:10:00Z",
+        "updatedAt": "2025-03-10T12:30:00Z"
+    },
+    {
+        "id": 7,
+        "username": "tstark",
+        "displayName": "Tony Stark",
+        "profilePic": "https://example.com/profiles/107.jpg",
+        "bio": "Engineer, inventor, billionaire.",
+        "website": "https://starkindustries.com",
+        "verified": true,
+        "suspended": false,
+        "createdAt": "2023-10-15T06:00:00Z",
+        "updatedAt": "2025-02-25T08:45:00Z"
+    },
+    {
+        "id": 8,
+        "username": "nsromanoff",
+        "displayName": "Natasha Romanoff",
+        "profilePic": "https://example.com/profiles/108.jpg",
+        "bio": "Security specialist.",
+        "website": "https://shield.gov",
+        "verified": false,
+        "suspended": false,
+        "createdAt": "2024-01-25T13:00:00Z",
+        "updatedAt": "2025-01-30T14:00:00Z"
+    },
+    {
+        "id": 9,
+        "username": "srogers",
+        "displayName": "Steve Rogers",
+        "profilePic": "https://example.com/profiles/109.jpg",
+        "bio": "Leader and strategist.",
+        "website": "https://avengers.com",
+        "verified": true,
+        "suspended": false,
+        "createdAt": "2023-09-10T05:30:00Z",
+        "updatedAt": "2025-02-18T07:20:00Z"
+    },
+    {
+        "id": 10,
+        "username": "bwilliams",
+        "displayName": "Brian Williams",
+        "profilePic": "https://example.com/profiles/110.jpg",
+        "bio": "Content creator and blogger.",
+        "website": "https://brianwrites.blog",
+        "verified": false,
+        "suspended": true,
+        "createdAt": "2024-05-01T11:45:00Z",
+        "updatedAt": "2025-03-15T13:10:00Z"
+    }
+]

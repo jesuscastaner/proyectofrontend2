@@ -1,15 +1,6 @@
 <resources>
     <string name="app_name">Proyecto Frontend 2</string>
 
-    <string name="label_user">User</string>
-    <string name="label_content">Content</string>
-    <string name="label_reply_to">Reply to</string>
-    <string name="label_repost_of">Repost of</string>
-    <string name="label_is_quote">Is quote</string>
-    <string name="label_is_visible">Is visible</string>
-    <string name="label_created_at">Created at</string>
-    <string name="label_updated_at">Updated at</string>
-
     <string name="back">Back</string>
 
     <string name="no_data_available">No data available</string>

@@ -13,5 +13,4 @@ data class Post(
     val isVisible: Boolean,
     val createdAt: String,
     val updatedAt: String,
-    val image: String,
 )
