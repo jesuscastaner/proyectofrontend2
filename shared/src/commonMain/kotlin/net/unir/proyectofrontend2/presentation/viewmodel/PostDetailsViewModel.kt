@@ -12,14 +12,16 @@ import kotlinx.coroutines.flow.flowOf
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.data.repository.PostRepository
 
-class PostDetailsViewModel(postRepository: PostRepository) : ViewModel() {
+class PostDetailsViewModel(
+    private val postRepository: PostRepository
+) : ViewModel() {
     private val id = MutableStateFlow<Long?>(null)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
     val post: StateFlow<Post?> = id.flatMapLatest {
-        val id = it ?: return@flatMapLatest flowOf(null)
-        postRepository.getPostById(id)
+        it ?: return@flatMapLatest flowOf(null)
+        postRepository.getPostById(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),

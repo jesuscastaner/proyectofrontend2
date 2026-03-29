@@ -1,22 +1,22 @@
 package net.unir.proyectofrontend2.ui.screens
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.selection.SelectionContainer
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
@@ -32,28 +32,25 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil3.compose.AsyncImage
 import net.unir.proyectofrontend2.R
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.data.model.User
-import net.unir.proyectofrontend2.presentation.viewmodel.UserDetailsViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.UserProfileViewModel
 import net.unir.proyectofrontend2.ui.components.CircleImage
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
-import net.unir.proyectofrontend2.ui.components.PostsFeed
+import net.unir.proyectofrontend2.ui.components.PostFrame
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun UserDetailsScreen(
+fun UserProfileScreen(
     id: Long,
     navigateToPostDetails: (id: Long) -> Unit,
     navigateBack: () -> Unit,
 ) {
-    val viewModel: UserDetailsViewModel = koinViewModel()
+    val viewModel: UserProfileViewModel = koinViewModel()
     val user by viewModel.user.collectAsStateWithLifecycle()
     val posts by viewModel.posts.collectAsStateWithLifecycle()
 
@@ -63,21 +60,21 @@ fun UserDetailsScreen(
 
     AnimatedContent(user != null) { userAvailable ->
         if (userAvailable) {
-            UserDetails(
+            UserProfile(
                 user = user!!,
                 posts = posts,
                 onPostClick = navigateToPostDetails,
                 onBackClick = navigateBack,
             )
         } else {
-            EmptyScreenContent(Modifier.fillMaxSize())
+            EmptyScreenContent(modifier = Modifier.fillMaxSize())
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun UserDetails(
+private fun UserProfile(
     user: User,
     posts: List<Post>,
     onPostClick: (id: Long) -> Unit,
@@ -100,25 +97,35 @@ private fun UserDetails(
         },
         modifier = modifier.windowInsetsPadding(WindowInsets.systemBars),
     ) { paddingValues ->
-        Column(
-            Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(paddingValues)
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+            contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
         ) {
-            UserDetailsHeader(
-                user = user,
-            )
+            item {
+                UserProfileHeader(user = user)
+                Spacer(Modifier.height(16.dp))
+            }
+            if (posts.isNotEmpty()) {
+                items(posts, key = { it.id }) { post ->
+                    PostFrame(
+                        post = post,
+                        onClick = { onPostClick(post.id) },
+                        onUserClick = {}
+                    )
+                }
+            } else {
+                item {
+                    EmptyScreenContent(modifier = Modifier.fillMaxWidth())
+                }
+            }
         }
-        Spacer(Modifier.height(16.dp))
-//            PostsFeed(
-//                posts = posts,
-//                onPostClick = onPostClick,
-//            )
     }
 }
 
 @Composable
-fun UserDetailsHeader(
+private fun UserProfileHeader(
     user: User,
     modifier: Modifier = Modifier
 ) {
@@ -163,3 +170,4 @@ fun UserDetailsHeader(
         )
     }
 }
+

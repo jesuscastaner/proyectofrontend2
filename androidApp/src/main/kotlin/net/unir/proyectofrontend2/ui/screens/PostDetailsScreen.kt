@@ -37,7 +37,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun PostDetailsScreen(
     id: Long,
-    navigateToUserDetails: (id: Long) -> Unit,
+    navigateToUserProfile: (id: Long) -> Unit,
     navigateBack: () -> Unit,
 ) {
     val viewModel: PostDetailsViewModel = koinViewModel()
@@ -51,11 +51,11 @@ fun PostDetailsScreen(
         if (postAvailable) {
             PostDetails(
                 post = post!!,
-                onUserClick = navigateToUserDetails,
+                onUserClick = navigateToUserProfile,
                 onBackClick = navigateBack
             )
         } else {
-            EmptyScreenContent(Modifier.fillMaxSize())
+            EmptyScreenContent(modifier = Modifier.fillMaxSize())
         }
     }
 }

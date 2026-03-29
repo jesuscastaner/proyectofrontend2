@@ -14,17 +14,17 @@ import net.unir.proyectofrontend2.data.model.User
 import net.unir.proyectofrontend2.data.repository.PostRepository
 import net.unir.proyectofrontend2.data.repository.UserRepository
 
-class UserDetailsViewModel(
-    userRepository: UserRepository,
-    postRepository: PostRepository,
+class UserProfileViewModel(
+    private val userRepository: UserRepository,
+    private val postRepository: PostRepository,
 ) : ViewModel() {
     private val id = MutableStateFlow<Long?>(null)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
     val user: StateFlow<User?> = id.flatMapLatest {
-        val id = it ?: return@flatMapLatest flowOf(null)
-        userRepository.getUserById(id)
+        it ?: return@flatMapLatest flowOf(null)
+        userRepository.getUserById(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
@@ -34,7 +34,8 @@ class UserDetailsViewModel(
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
     val posts: StateFlow<List<Post>> = id.flatMapLatest { userId ->
-        userId?.let { postRepository.getPostsByUserId(it) } ?: flowOf(emptyList())
+        userId ?: return@flatMapLatest flowOf(emptyList())
+        postRepository.getPostsByUserId(userId)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),

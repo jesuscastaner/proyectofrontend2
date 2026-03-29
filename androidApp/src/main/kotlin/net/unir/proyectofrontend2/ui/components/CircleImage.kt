@@ -14,7 +14,7 @@ import coil3.compose.AsyncImage
 fun CircleImage(
     imageUrl: String?,
     onClick: () -> Unit,
-    modifier: Modifier
+    modifier: Modifier = Modifier,
 ) {
     AsyncImage(
         model = imageUrl,

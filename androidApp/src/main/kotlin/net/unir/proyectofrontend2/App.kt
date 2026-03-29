@@ -13,7 +13,7 @@ import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
 import net.unir.proyectofrontend2.ui.screens.PostDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.PostListScreen
-import net.unir.proyectofrontend2.ui.screens.UserDetailsScreen
+import net.unir.proyectofrontend2.ui.screens.UserProfileScreen
 
 @Serializable
 object PostListDestination
@@ -22,7 +22,7 @@ object PostListDestination
 data class PostDetailsDestination(val id: Long)
 
 @Serializable
-data class UserDetailsDestination(val id: Long)
+data class UserProfileDestination(val id: Long)
 
 @Composable
 fun App() {
@@ -42,7 +42,7 @@ fun App() {
                             navController.navigate(PostDetailsDestination(id))
                         },
                         navigateToUserDetails = { id ->
-                            navController.navigate(UserDetailsDestination(id))
+                            navController.navigate(UserProfileDestination(id))
                         },
                     )
                 }
@@ -52,17 +52,17 @@ fun App() {
 
                     PostDetailsScreen(
                         id = args.id,
-                        navigateToUserDetails = { userId ->
-                            navController.navigate(UserDetailsDestination(userId))
+                        navigateToUserProfile = { userId ->
+                            navController.navigate(UserProfileDestination(userId))
                         },
                         navigateBack = { navController.popBackStack() }
                     )
                 }
 
-                composable<UserDetailsDestination> { backStackEntry ->
-                    val args = backStackEntry.toRoute<UserDetailsDestination>()
+                composable<UserProfileDestination> { backStackEntry ->
+                    val args = backStackEntry.toRoute<UserProfileDestination>()
 
-                    UserDetailsScreen(
+                    UserProfileScreen(
                         id = args.id,
                         navigateToPostDetails = { postId ->
                             navController.navigate(PostDetailsDestination(postId))

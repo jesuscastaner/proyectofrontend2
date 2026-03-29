@@ -3,8 +3,8 @@ package net.unir.proyectofrontend2
 import android.app.Application
 import net.unir.proyectofrontend2.di.initKoin
 import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
-import net.unir.proyectofrontend2.presentation.viewmodel.PostListViewModel
-import net.unir.proyectofrontend2.presentation.viewmodel.UserDetailsViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.PostsFeedViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.UserProfileViewModel
 import org.koin.dsl.module
 
 class PostApp : Application() {
@@ -14,7 +14,7 @@ class PostApp : Application() {
             listOf(
                 module {
                     factory {
-                        PostListViewModel(
+                        PostsFeedViewModel(
                             postRepository = get()
                         )
                     }
@@ -24,7 +24,7 @@ class PostApp : Application() {
                         )
                     }
                     factory {
-                        UserDetailsViewModel(
+                        UserProfileViewModel(
                             userRepository = get(),
                             postRepository = get(),
                         )

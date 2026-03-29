@@ -8,7 +8,9 @@ import kotlinx.coroutines.flow.StateFlow
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.data.repository.PostRepository
 
-class PostListViewModel(postRepository: PostRepository) : ViewModel() {
+class PostsFeedViewModel(
+    private val postRepository: PostRepository
+) : ViewModel() {
     @NativeCoroutinesState
     val posts: StateFlow<List<Post>> = postRepository.getPosts()
         .stateIn(
