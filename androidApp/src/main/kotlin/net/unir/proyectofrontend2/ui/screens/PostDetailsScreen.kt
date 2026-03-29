@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
@@ -69,14 +68,14 @@ fun PostDetailsScreen(
 @Composable
 private fun PostDetails(
     post: Post,
+    onUserClick: (id: Long) -> Unit,
     onBackClick: () -> Unit,
-    onUserClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {},
+                title = { Text("Post #${post.id}") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -110,7 +109,6 @@ private fun PostDetails(
                             style = MaterialTheme.typography.bodyMedium,
                         )
                     }
-                    Spacer(Modifier.height(6.dp))
                     Text(
                         post.content,
                         style = MaterialTheme.typography.bodyMedium,

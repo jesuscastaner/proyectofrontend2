@@ -40,7 +40,7 @@ fun App() {
                     PostListScreen(
                         navigateToPostDetails = { id ->
                             navController.navigate(PostDetailsDestination(id))
-                        }
+                        },
                     )
                 }
 
@@ -61,6 +61,9 @@ fun App() {
 
                     UserDetailsScreen(
                         id = args.id,
+                        navigateToPostDetails = { postId ->
+                            navController.navigate(PostDetailsDestination(postId))
+                        },
                         navigateBack = { navController.popBackStack() }
                     )
                 }

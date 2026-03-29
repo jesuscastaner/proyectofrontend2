@@ -37,18 +37,22 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import net.unir.proyectofrontend2.R
+import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.data.model.User
 import net.unir.proyectofrontend2.presentation.viewmodel.UserDetailsViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
+import net.unir.proyectofrontend2.ui.components.PostsFeed
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun UserDetailsScreen(
     id: Long,
+    navigateToPostDetails: (id: Long) -> Unit,
     navigateBack: () -> Unit,
 ) {
     val viewModel: UserDetailsViewModel = koinViewModel()
     val user by viewModel.user.collectAsStateWithLifecycle()
+    val posts by viewModel.posts.collectAsStateWithLifecycle()
 
     LaunchedEffect(id) {
         viewModel.setId(id)
@@ -58,7 +62,9 @@ fun UserDetailsScreen(
         if (userAvailable) {
             UserDetails(
                 user = user!!,
-                onBackClick = navigateBack
+                posts = posts,
+                onPostClick = navigateToPostDetails,
+                onBackClick = navigateBack,
             )
         } else {
             EmptyScreenContent(Modifier.fillMaxSize())
@@ -70,13 +76,15 @@ fun UserDetailsScreen(
 @Composable
 private fun UserDetails(
     user: User,
+    posts: List<Post>,
+    onPostClick: (id: Long) -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {},
+                title = { Text(user.username) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -130,12 +138,16 @@ private fun UserDetails(
                             Icon(
                                 imageVector = Icons.Default.Check,
                                 contentDescription = "Verificado",
-                                tint = Color.Green
                             )
                         }
                     }
                 }
             }
+            Spacer(Modifier.height(16.dp))
+            PostsFeed(
+                posts = posts,
+                onPostClick = onPostClick,
+            )
         }
     }
 }

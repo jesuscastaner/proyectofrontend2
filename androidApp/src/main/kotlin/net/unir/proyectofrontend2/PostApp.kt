@@ -13,9 +13,22 @@ class PostApp : Application() {
         initKoin(
             listOf(
                 module {
-                    factory { PostListViewModel(get()) }
-                    factory { PostDetailsViewModel(get()) }
-                    factory { UserDetailsViewModel(get()) }
+                    factory {
+                        PostListViewModel(
+                            postRepository = get()
+                        )
+                    }
+                    factory {
+                        PostDetailsViewModel(
+                            postRepository = get()
+                        )
+                    }
+                    factory {
+                        UserDetailsViewModel(
+                            userRepository = get(),
+                            postRepository = get(),
+                        )
+                    }
                 }
             )
         )

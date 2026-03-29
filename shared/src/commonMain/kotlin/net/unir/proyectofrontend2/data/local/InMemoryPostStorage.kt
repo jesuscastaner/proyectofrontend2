@@ -17,4 +17,8 @@ class InMemoryPostStorage : PostStorage {
     override fun getPostById(id: Long): Flow<Post?> = storedPosts.map { posts ->
         posts.find { it.id == id }
     }
+
+    override fun getPostsByUserId(userId: Long): Flow<List<Post>> = storedPosts.map { posts ->
+        posts.filter { it.userId == userId }
+    }
 }

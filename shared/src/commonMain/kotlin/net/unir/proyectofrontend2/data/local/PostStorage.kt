@@ -7,4 +7,5 @@ interface PostStorage {
     suspend fun savePosts(newPosts: List<Post>)
     fun getPosts(): Flow<List<Post>>
     fun getPostById(id: Long): Flow<Post?>
+    fun getPostsByUserId(userId: Long): Flow<List<Post>>
 }

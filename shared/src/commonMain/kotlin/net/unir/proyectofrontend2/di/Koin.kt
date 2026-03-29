@@ -29,17 +29,23 @@ val dataModule = module {
         }
     }
 
-    single<PostApi> { KtorPostApi(get()) }
+    single<PostApi> { KtorPostApi(client = get()) }
     single<PostStorage> { InMemoryPostStorage() }
     single {
-        PostRepository(get(), get()).apply {
+        PostRepository(
+            postApi = get(),
+            postStorage = get(),
+        ).apply {
             initialize()
         }
     }
-    single<UserApi> { KtorUserApi(get()) }
+    single<UserApi> { KtorUserApi(client = get()) }
     single<UserStorage> { InMemoryUserStorage() }
     single {
-        UserRepository(get(), get()).apply {
+        UserRepository(
+            userApi = get(),
+            userStorage = get(),
+        ).apply {
             initialize()
         }
     }
