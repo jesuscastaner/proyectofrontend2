@@ -1,3 +1,33 @@
+# Frontend 2
+
+## Screenshots
+
+Feed principal de publicaciones:
+
+![posts_feed.png](.img/posts_feed.png)
+
+Fallback del feed principal de publicaciones:
+
+![posts_feed_fallback.png](.img/posts_feed_fallback.png)
+
+Detalles de una publicación:
+
+![post_details.png](.img/post_details.png)
+
+Si la publicación tiene respuestas, se muestran debajo:
+
+![post_details_has_replies.png](.img/post_details_has_replies.png)
+
+Si la publicación es una republicación, se muestra como tal:
+
+![post_details_is_repost.png](.img/post_details_is_repost.png)
+
+Perfil de usuario, con su información en la cabecera y un feed debajo con sus posts:
+
+![user_profile.png](.img/user_profile.png)
+
+## (Original README)
+
 This is a Kotlin Multiplatform project targeting Android, iOS, Web.
 
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
