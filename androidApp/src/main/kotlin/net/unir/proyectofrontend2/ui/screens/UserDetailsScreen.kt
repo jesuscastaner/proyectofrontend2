@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -40,6 +42,7 @@ import net.unir.proyectofrontend2.R
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.data.model.User
 import net.unir.proyectofrontend2.presentation.viewmodel.UserDetailsViewModel
+import net.unir.proyectofrontend2.ui.components.CircleImage
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import net.unir.proyectofrontend2.ui.components.PostsFeed
 import org.koin.compose.viewmodel.koinViewModel
@@ -84,7 +87,7 @@ private fun UserDetails(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(user.username) },
+                title = { Text("@${user.username}") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -102,52 +105,61 @@ private fun UserDetails(
                 .verticalScroll(rememberScrollState())
                 .padding(paddingValues)
         ) {
-            AsyncImage(
-                model = user.profilePic,
-                contentDescription = user.username,
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.LightGray)
-            )
-            SelectionContainer {
-                Column(Modifier.padding(12.dp)) {
-                    Text(
-                        user.displayName,
-                        style = MaterialTheme.typography.headlineMedium,
-                    )
-                    Spacer(Modifier.height(6.dp))
-                    Text(
-                        user.displayName,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                    Text(
-                        user.username,
-                        style = MaterialTheme.typography.bodySmall,
-                    )
-                    Text(
-                        user.website,
-                        style = MaterialTheme.typography.bodySmall,
-                    )
-                    Text(
-                        user.bio,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                    if (user.verified) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(
-                                imageVector = Icons.Default.Check,
-                                contentDescription = "Verificado",
-                            )
-                        }
-                    }
-                }
-            }
-            Spacer(Modifier.height(16.dp))
-            PostsFeed(
-                posts = posts,
-                onPostClick = onPostClick,
+            UserDetailsHeader(
+                user = user,
             )
         }
+        Spacer(Modifier.height(16.dp))
+//            PostsFeed(
+//                posts = posts,
+//                onPostClick = onPostClick,
+//            )
+    }
+}
+
+@Composable
+fun UserDetailsHeader(
+    user: User,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircleImage(
+            modifier = modifier.size(90.dp),
+            imageUrl = user.profilePic,
+            onClick = {}
+        )
+        Spacer(modifier = modifier.height(12.dp))
+        Text(
+            user.displayName,
+            style = MaterialTheme.typography.headlineMedium,
+        )
+        Spacer(Modifier.height(8.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                "@${user.username}",
+                style = MaterialTheme.typography.bodySmall,
+            )
+            if (user.verified) {
+                Spacer(modifier = Modifier.width(4.dp))
+                Icon(
+                    Icons.Default.Check,
+                    contentDescription = null,
+                )
+            }
+        }
+        Text(
+            user.website,
+            style = MaterialTheme.typography.bodySmall,
+        )
+        Spacer(Modifier.height(12.dp))
+        Text(
+            user.bio,
+            style = MaterialTheme.typography.bodyMedium,
+        )
     }
 }

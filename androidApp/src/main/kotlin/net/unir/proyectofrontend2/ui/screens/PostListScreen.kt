@@ -11,6 +11,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun PostListScreen(
     navigateToPostDetails: (id: Long) -> Unit,
+    navigateToUserDetails: (id: Long) -> Unit,
 ) {
     val viewModel: PostListViewModel = koinViewModel()
     val posts by viewModel.posts.collectAsStateWithLifecycle()
@@ -19,6 +20,7 @@ fun PostListScreen(
         PostsFeed(
             posts = posts,
             onPostClick = navigateToPostDetails,
+            onUserClick = navigateToUserDetails,
         )
     }
 }

@@ -41,6 +41,9 @@ fun App() {
                         navigateToPostDetails = { id ->
                             navController.navigate(PostDetailsDestination(id))
                         },
+                        navigateToUserDetails = { id ->
+                            navController.navigate(UserDetailsDestination(id))
+                        },
                     )
                 }
 
