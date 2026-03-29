@@ -30,9 +30,20 @@ class PostDetailsViewModel(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
-    val replies: StateFlow<List<Post>> = id.flatMapLatest { postId ->
-        postId?: return@flatMapLatest flowOf(emptyList())
-        postRepository.getPostRepliesById(postId)
+    val repost: StateFlow<Post?> = post.flatMapLatest {
+        it?.repostOfId ?: return@flatMapLatest flowOf(null)
+        postRepository.getPostById(it.repostOfId)
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        null
+    )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @NativeCoroutinesState
+    val replies: StateFlow<List<Post>> = id.flatMapLatest {
+        it ?: return@flatMapLatest flowOf(emptyList())
+        postRepository.getPostRepliesById(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),

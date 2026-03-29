@@ -4,11 +4,12 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -28,15 +29,15 @@ fun PostsFeedScreen(
     val viewModel: PostsFeedViewModel = koinViewModel()
     val posts by viewModel.posts.collectAsStateWithLifecycle()
 
-    AnimatedContent(posts) { posts ->
-        if (posts.isNotEmpty()) {
+    AnimatedContent(posts.isNotEmpty()) { postsAvailable ->
+        if (postsAvailable) {
             PostsFeed(
                 posts = posts,
                 onPostClick = navigateToPostDetails,
                 onUserClick = navigateToUserProfile,
             )
         } else {
-            EmptyScreenContent(modifier = Modifier.fillMaxWidth())
+            EmptyScreenContent(modifier = Modifier.fillMaxSize())
         }
     }
 }
@@ -59,6 +60,11 @@ private fun PostsFeed(
                 post = post,
                 onClick = onPostClick,
                 onUserClick = onUserClick
+            )
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 24.dp),
+                thickness = 0.5.dp,
+                color = MaterialTheme.colorScheme.outline
             )
         }
     }

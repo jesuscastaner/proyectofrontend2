@@ -1,17 +1,24 @@
 package net.unir.proyectofrontend2.ui.screens
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -23,8 +30,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -45,6 +53,7 @@ fun PostDetailsScreen(
 ) {
     val viewModel: PostDetailsViewModel = koinViewModel()
     val post by viewModel.post.collectAsStateWithLifecycle()
+    val repost by viewModel.repost.collectAsStateWithLifecycle()
     val replies by viewModel.replies.collectAsStateWithLifecycle()
 
     LaunchedEffect(id) {
@@ -55,6 +64,7 @@ fun PostDetailsScreen(
         if (postAvailable) {
             PostDetails(
                 post = post!!,
+                repost = repost,
                 replies = replies,
                 onUserClick = navigateToUserProfile,
                 onReplyClick = navigateToPostDetails,
@@ -70,6 +80,7 @@ fun PostDetailsScreen(
 @Composable
 private fun PostDetails(
     post: Post,
+    repost: Post?,
     replies: List<Post>,
     onUserClick: (id: Long) -> Unit,
     onReplyClick: (id: Long) -> Unit,
@@ -108,23 +119,63 @@ private fun PostDetails(
                     post.content,
                     style = MaterialTheme.typography.bodyLarge,
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+                if (repost != null) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 16.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .border(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.outline,
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .padding(16.dp)
+                    ) {
+                        PostFrame(
+                            post = repost,
+                            onClick = { onReplyClick(repost.id) },
+                            onUserClick = { onUserClick(repost.userId) }
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     post.createdAt,
                     style = MaterialTheme.typography.bodySmall,
                 )
-                Spacer(modifier = Modifier.height(32.dp))
+                if (replies.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(24.dp))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Default.Chat,
+                            contentDescription = "Replies",
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = replies.size.toString(),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+                }
                 HorizontalDivider(
+                    modifier = Modifier.padding(vertical = 32.dp),
                     thickness = 0.5.dp,
-                    color = Color.Gray
+                    color = MaterialTheme.colorScheme.outline
                 )
             }
             items(replies, key = { it.id }) { reply ->
-                Spacer(modifier = Modifier.height(12.dp))
                 PostFrame(
                     post = reply,
                     onClick = { onReplyClick(reply.id) },
                     onUserClick = { onUserClick(reply.userId) }
+                )
+                HorizontalDivider(
+                    modifier = Modifier.padding(vertical = 24.dp),
+                    thickness = 0.5.dp,
+                    color = MaterialTheme.colorScheme.outline
                 )
             }
         }

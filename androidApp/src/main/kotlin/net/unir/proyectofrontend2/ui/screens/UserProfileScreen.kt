@@ -31,7 +31,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -114,10 +113,15 @@ private fun UserProfile(
                         onClick = { onPostClick(post.id) },
                         onUserClick = {}
                     )
+                    HorizontalDivider(
+                        modifier = Modifier.padding(vertical = 24.dp),
+                        thickness = 0.5.dp,
+                        color = MaterialTheme.colorScheme.outline
+                    )
                 }
             } else {
                 item {
-                    EmptyScreenContent(modifier = Modifier.fillMaxWidth())
+                    EmptyScreenContent(modifier = Modifier.fillMaxSize())
                 }
             }
         }
@@ -167,10 +171,10 @@ private fun UserProfileHeader(
             user.bio,
             style = MaterialTheme.typography.bodyMedium,
         )
-        Spacer(modifier = Modifier.height(32.dp))
         HorizontalDivider(
+            modifier = Modifier.padding(vertical = 24.dp),
             thickness = 0.5.dp,
-            color = Color.Gray
+            color = MaterialTheme.colorScheme.outline
         )
     }
 }
