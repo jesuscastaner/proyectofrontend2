@@ -100,7 +100,7 @@ private fun PostDetails(
         ) {
             item {
                 PostHeader(
-                    userId = post.id.toString(),
+                    userId = post.userId.toString(),
                     onClick = { onUserClick(post.userId) },
                 )
                 Spacer(modifier = Modifier.height(12.dp))
