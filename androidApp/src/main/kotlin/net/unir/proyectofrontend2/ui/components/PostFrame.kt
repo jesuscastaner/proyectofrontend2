@@ -25,7 +25,7 @@ fun PostFrame(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp)
+            .padding(vertical = 12.dp)
             .clickable { onClick(post.id) }
     ) {
         PostHeader(
@@ -35,9 +35,9 @@ fun PostFrame(
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             post.content,
-            style = MaterialTheme.typography.bodyLarge
+            style = MaterialTheme.typography.bodyMedium
         )
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(24.dp))
         HorizontalDivider(
             thickness = 0.5.dp,
             color = Color.Gray

@@ -52,6 +52,9 @@ fun App() {
 
                     PostDetailsScreen(
                         id = args.id,
+                        navigateToPostDetails = { id ->
+                            navController.navigate(PostDetailsDestination(id))
+                        },
                         navigateToUserProfile = { userId ->
                             navController.navigate(UserProfileDestination(userId))
                         },

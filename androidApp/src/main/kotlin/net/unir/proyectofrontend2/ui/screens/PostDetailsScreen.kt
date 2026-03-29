@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -31,6 +32,7 @@ import net.unir.proyectofrontend2.R
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
+import net.unir.proyectofrontend2.ui.components.PostFrame
 import net.unir.proyectofrontend2.ui.components.PostHeader
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -38,10 +40,12 @@ import org.koin.compose.viewmodel.koinViewModel
 fun PostDetailsScreen(
     id: Long,
     navigateToUserProfile: (id: Long) -> Unit,
+    navigateToPostDetails: (id: Long) -> Unit,
     navigateBack: () -> Unit,
 ) {
     val viewModel: PostDetailsViewModel = koinViewModel()
     val post by viewModel.post.collectAsStateWithLifecycle()
+    val replies by viewModel.replies.collectAsStateWithLifecycle()
 
     LaunchedEffect(id) {
         viewModel.setId(id)
@@ -51,7 +55,9 @@ fun PostDetailsScreen(
         if (postAvailable) {
             PostDetails(
                 post = post!!,
+                replies = replies,
                 onUserClick = navigateToUserProfile,
+                onReplyClick = navigateToPostDetails,
                 onBackClick = navigateBack
             )
         } else {
@@ -64,7 +70,9 @@ fun PostDetailsScreen(
 @Composable
 private fun PostDetails(
     post: Post,
+    replies: List<Post>,
     onUserClick: (id: Long) -> Unit,
+    onReplyClick: (id: Long) -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -111,6 +119,15 @@ private fun PostDetails(
                     color = Color.Gray
                 )
             }
+            items(replies, key = { it.id }) { reply ->
+                Spacer(modifier = Modifier.height(12.dp))
+                PostFrame(
+                    post = reply,
+                    onClick = { onReplyClick(reply.id) },
+                    onUserClick = { onUserClick(reply.userId) }
+                )
+            }
         }
     }
 }
+

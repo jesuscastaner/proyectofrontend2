@@ -34,7 +34,7 @@ fun PostHeader(
         Spacer(modifier = Modifier.width(6.dp))
         Text(
             "@user#${userId}",
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodySmall,
         )
     }
 }

@@ -28,6 +28,17 @@ class PostDetailsViewModel(
         null
     )
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @NativeCoroutinesState
+    val replies: StateFlow<List<Post>> = id.flatMapLatest { postId ->
+        postId?: return@flatMapLatest flowOf(emptyList())
+        postRepository.getPostRepliesById(postId)
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        emptyList()
+    )
+
     fun setId(id: Long) {
         this.id.value = id
     }
