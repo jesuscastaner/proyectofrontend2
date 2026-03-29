@@ -29,7 +29,7 @@ fun PostFrame(
             .clickable { onClick(post.id) }
     ) {
         PostHeader(
-            userId = post.id.toString(),
+            userId = post.userId.toString(),
             onClick = { onUserClick(post.userId) },
         )
         Spacer(modifier = Modifier.height(8.dp))

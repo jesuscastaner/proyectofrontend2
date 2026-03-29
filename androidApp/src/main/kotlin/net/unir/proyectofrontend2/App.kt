@@ -12,11 +12,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
 import net.unir.proyectofrontend2.ui.screens.PostDetailsScreen
-import net.unir.proyectofrontend2.ui.screens.PostListScreen
+import net.unir.proyectofrontend2.ui.screens.PostsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.UserProfileScreen
 
 @Serializable
-object PostListDestination
+object PostsFeedDestination
 
 @Serializable
 data class PostDetailsDestination(val id: Long)
@@ -34,14 +34,14 @@ fun App() {
 
             NavHost(
                 navController = navController,
-                startDestination = PostListDestination
+                startDestination = PostsFeedDestination
             ) {
-                composable<PostListDestination> {
-                    PostListScreen(
+                composable<PostsFeedDestination> {
+                    PostsFeedScreen(
                         navigateToPostDetails = { id ->
                             navController.navigate(PostDetailsDestination(id))
                         },
-                        navigateToUserDetails = { id ->
+                        navigateToUserProfile = { id ->
                             navController.navigate(UserProfileDestination(id))
                         },
                     )

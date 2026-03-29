@@ -21,9 +21,9 @@ import net.unir.proyectofrontend2.ui.components.PostFrame
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun PostListScreen(
+fun PostsFeedScreen(
     navigateToPostDetails: (id: Long) -> Unit,
-    navigateToUserDetails: (id: Long) -> Unit,
+    navigateToUserProfile: (id: Long) -> Unit,
 ) {
     val viewModel: PostsFeedViewModel = koinViewModel()
     val posts by viewModel.posts.collectAsStateWithLifecycle()
@@ -33,7 +33,7 @@ fun PostListScreen(
             PostsFeed(
                 posts = posts,
                 onPostClick = navigateToPostDetails,
-                onUserClick = navigateToUserDetails,
+                onUserClick = navigateToUserProfile,
             )
         } else {
             EmptyScreenContent(modifier = Modifier.fillMaxWidth())
