@@ -13,12 +13,13 @@ import coil3.compose.AsyncImage
 @Composable
 fun CircleImage(
     imageUrl: String?,
-    onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    contentDescription: String? = null,
+    onClick: () -> Unit,
 ) {
     AsyncImage(
         model = imageUrl,
-        contentDescription = null,
+        contentDescription = contentDescription,
         placeholder = ColorPainter(Color.DarkGray),
         contentScale = ContentScale.Crop,
         modifier = modifier

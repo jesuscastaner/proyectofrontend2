@@ -25,7 +25,7 @@ fun PostFrame(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(vertical = 16.dp)
             .clickable { onClick(post.id) }
     ) {
         PostHeader(

@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -32,6 +33,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -88,8 +90,8 @@ private fun UserProfile(
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
-                            Icons.AutoMirrored.Filled.ArrowBack,
-                            stringResource(R.string.back)
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 }
@@ -100,12 +102,12 @@ private fun UserProfile(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
-            contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
+                .padding(paddingValues)
+                .padding(16.dp),
         ) {
             item {
                 UserProfileHeader(user = user)
-                Spacer(Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
             }
             if (posts.isNotEmpty()) {
                 items(posts, key = { it.id }) { post ->
@@ -130,14 +132,13 @@ private fun UserProfileHeader(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CircleImage(
-            modifier = modifier.size(90.dp),
             imageUrl = user.profilePic,
+            modifier = Modifier.size(90.dp),
+            contentDescription = "Profile picture",
             onClick = {}
         )
         Spacer(modifier = modifier.height(12.dp))
@@ -145,16 +146,16 @@ private fun UserProfileHeader(
             user.displayName,
             style = MaterialTheme.typography.headlineMedium,
         )
-        Spacer(Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 "@${user.username}",
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
             )
             if (user.verified) {
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
-                    Icons.Default.Check,
+                    imageVector = Icons.Default.Check,
                     contentDescription = null,
                 )
             }
@@ -163,10 +164,15 @@ private fun UserProfileHeader(
             user.website,
             style = MaterialTheme.typography.bodySmall,
         )
-        Spacer(Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(12.dp))
         Text(
             user.bio,
             style = MaterialTheme.typography.bodyMedium,
+        )
+        Spacer(modifier = Modifier.height(32.dp))
+        HorizontalDivider(
+            thickness = 0.5.dp,
+            color = Color.Gray
         )
     }
 }

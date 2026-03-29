@@ -28,10 +28,10 @@ fun PostHeader(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            Icons.Default.Person,
+            imageVector = Icons.Default.Person,
             contentDescription = null
         )
-        Spacer(Modifier.width(6.dp))
+        Spacer(modifier = Modifier.width(6.dp))
         Text(
             "@user#${userId}",
             style = MaterialTheme.typography.bodyMedium,
