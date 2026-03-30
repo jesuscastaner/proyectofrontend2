@@ -8,12 +8,12 @@ import kotlin.coroutines.cancellation.CancellationException
 
 class KtorPostApi(private val client: HttpClient) : PostApi {
     companion object {
-        private const val API_URL =
+        private const val BASE_URL =
             "https://raw.githubusercontent.com/jesuscastaner/proyectofrontend2/main/testapi/posts.json"
     }
 
     override suspend fun getPosts(): List<Post> = try {
-        client.get(API_URL).body()
+        client.get(BASE_URL).body()
     } catch (e: Exception) {
         if (e is CancellationException) throw e
         e.printStackTrace()
