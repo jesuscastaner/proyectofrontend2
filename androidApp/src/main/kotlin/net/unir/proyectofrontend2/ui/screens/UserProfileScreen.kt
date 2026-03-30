@@ -17,10 +17,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.FactCheck
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Verified
-import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -45,6 +41,7 @@ import net.unir.proyectofrontend2.presentation.viewmodel.UserProfileViewModel
 import net.unir.proyectofrontend2.ui.components.CircleImage
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import net.unir.proyectofrontend2.ui.components.PostFrame
+import net.unir.proyectofrontend2.ui.components.VerifiedUserIcon
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -116,11 +113,19 @@ private fun UserProfile(
                 UserProfileHeader(user = user)
             }
             if (posts.isNotEmpty()) {
+                item {
+                    Text(
+                        "Posts",
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Spacer(modifier = Modifier.height(24.dp))
+                }
                 items(posts, key = { it.id }) { post ->
                     PostFrame(
                         post = post,
                         repost = repostsMap[post.id],
-                        replyCount = repliesCountMap[post.id] ?: 0,
+                        repliesCount = repliesCountMap[post.id] ?: 0,
                         onClick = { onPostClick(post.id) },
                         onUserClick = {},
                         onReplyToClick = onPostClick,
@@ -166,13 +171,8 @@ private fun UserProfileHeader(
                 fontWeight = FontWeight.Bold,
             )
             if (user.isVerified) {
-                Spacer(modifier = Modifier.width(4.dp))
-                Icon(
-                    imageVector = Icons.Default.Verified,
-                    contentDescription = "Verified user",
-                    modifier = Modifier.size(24.dp),
-                    tint = MaterialTheme.colorScheme.primary
-                )
+                Spacer(modifier = Modifier.width(6.dp))
+                VerifiedUserIcon(modifier = Modifier.size(24.dp))
             }
         }
         Text(
@@ -189,8 +189,8 @@ private fun UserProfileHeader(
             style = MaterialTheme.typography.bodyMedium,
         )
         HorizontalDivider(
-            modifier = Modifier.padding(vertical = 32.dp),
-            thickness = 1.dp,
+            modifier = Modifier.padding(vertical = 24.dp),
+            thickness = 2.dp,
             color = MaterialTheme.colorScheme.outline
         )
     }

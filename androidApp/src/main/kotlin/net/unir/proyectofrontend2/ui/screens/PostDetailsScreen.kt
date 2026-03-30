@@ -3,7 +3,6 @@ package net.unir.proyectofrontend2.ui.screens
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,14 +11,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -31,10 +28,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.unir.proyectofrontend2.R
@@ -43,6 +40,7 @@ import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import net.unir.proyectofrontend2.ui.components.PostFrame
 import net.unir.proyectofrontend2.ui.components.PostHeader
+import net.unir.proyectofrontend2.ui.components.PostRepliesIcon
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -147,40 +145,38 @@ private fun PostDetails(
                     post.createdAt,
                     style = MaterialTheme.typography.bodySmall,
                 )
-                if (replies.isNotEmpty()) {
-                    Spacer(modifier = Modifier.height(24.dp))
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Default.Chat,
-                            modifier = Modifier.size(24.dp),
-                            contentDescription = "Replies",
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = replies.size.toString(),
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
-                    }
-                }
+                Spacer(modifier = Modifier.height(24.dp))
+                PostRepliesIcon(
+                    repliesCount = replies.size,
+                    modifier = Modifier.size(24.dp),
+                )
                 HorizontalDivider(
                     modifier = Modifier.padding(vertical = 32.dp),
                     thickness = 1.dp,
                     color = MaterialTheme.colorScheme.outline
                 )
             }
-            items(replies, key = { it.id }) { reply ->
-                PostFrame(
-                    post = reply,
-                    onClick = { onReplyClick(reply.id) },
-                    onUserClick = { onUserClick(reply.userId) }
-                )
-                HorizontalDivider(
-                    modifier = Modifier.padding(vertical = 24.dp),
-                    thickness = 0.5.dp,
-                    color = MaterialTheme.colorScheme.outlineVariant
-                )
+            if (replies.isNotEmpty()) {
+                item {
+                    Text(
+                        "Replies",
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Spacer(modifier = Modifier.height(24.dp))
+                }
+                items(replies, key = { it.id }) { reply ->
+                    PostFrame(
+                        post = reply,
+                        onClick = { onReplyClick(reply.id) },
+                        onUserClick = { onUserClick(reply.userId) }
+                    )
+                    HorizontalDivider(
+                        modifier = Modifier.padding(vertical = 24.dp),
+                        thickness = 0.5.dp,
+                        color = MaterialTheme.colorScheme.outlineVariant
+                    )
+                }
             }
         }
     }

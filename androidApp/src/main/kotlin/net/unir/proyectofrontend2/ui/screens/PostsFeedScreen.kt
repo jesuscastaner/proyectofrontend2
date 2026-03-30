@@ -65,7 +65,7 @@ private fun PostsFeed(
             PostFrame(
                 post = post,
                 repost = repostsMap[post.id],
-                replyCount = repliesCountMap[post.id] ?: 0,
+                repliesCount = repliesCountMap[post.id] ?: 0,
                 onClick = onPostClick,
                 onUserClick = onUserClick,
                 onReplyToClick = onPostClick,

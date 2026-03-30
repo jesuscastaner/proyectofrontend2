@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.automirrored.filled.Reply
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -29,7 +28,7 @@ fun PostFrame(
     post: Post,
     modifier: Modifier = Modifier,
     repost: Post? = null,
-    replyCount: Int = 0,
+    repliesCount: Int = 0,
     onClick: (id: Long) -> Unit,
     onUserClick: (id: Long) -> Unit,
     onReplyToClick: ((id: Long) -> Unit)? = null,
@@ -93,20 +92,20 @@ fun PostFrame(
                 )
             }
         }
-        if (replyCount > 0) {
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            post.createdAt,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.outlineVariant,
+        )
+        if (repliesCount > 0) {
             Spacer(modifier = Modifier.height(8.dp))
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Default.Chat,
+                PostRepliesIcon(
+                    repliesCount = repliesCount,
                     modifier = Modifier.size(16.dp),
-                    contentDescription = "Replies",
-                )
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(
-                    text = replyCount.toString(),
-                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
         }
