@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -141,7 +142,7 @@ private fun PostDetails(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     post.createdAt,
                     style = MaterialTheme.typography.bodySmall,
@@ -153,6 +154,7 @@ private fun PostDetails(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Default.Chat,
+                            modifier = Modifier.size(24.dp),
                             contentDescription = "Replies",
                         )
                         Spacer(modifier = Modifier.width(4.dp))
@@ -164,7 +166,7 @@ private fun PostDetails(
                 }
                 HorizontalDivider(
                     modifier = Modifier.padding(vertical = 32.dp),
-                    thickness = 0.5.dp,
+                    thickness = 1.dp,
                     color = MaterialTheme.colorScheme.outline
                 )
             }
@@ -177,7 +179,7 @@ private fun PostDetails(
                 HorizontalDivider(
                     modifier = Modifier.padding(vertical = 24.dp),
                     thickness = 0.5.dp,
-                    color = MaterialTheme.colorScheme.outline
+                    color = MaterialTheme.colorScheme.outlineVariant
                 )
             }
         }

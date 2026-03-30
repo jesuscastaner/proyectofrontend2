@@ -13,11 +13,37 @@ class PostsFeedViewModel(
     private val postRepository: PostRepository
 ) : ViewModel() {
     @NativeCoroutinesState
-    val posts: StateFlow<List<Post>> = postRepository.getPosts()
-        .map { list -> list.filter { it.replyToId == null } }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000),
-            emptyList()
-        )
+    val posts: StateFlow<List<Post>> = postRepository.getPosts().map {
+        it.filter { post ->
+            post.isVisible
+        }
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        emptyList()
+    )
+
+    @NativeCoroutinesState
+    val repostsMap: StateFlow<Map<Long, Post?>> = posts.map {
+        it.associate { post ->
+            post.id to it.find { repost ->
+                repost.id == post.repostOfId
+            }
+        }
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        emptyMap()
+    )
+
+    @NativeCoroutinesState
+    val repliesCountMap: StateFlow<Map<Long, Int>> = postRepository.getPosts().map {
+        it.groupingBy { post ->
+            post.replyToId ?: -1L
+        }.eachCount()
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        emptyMap()
+    )
 }

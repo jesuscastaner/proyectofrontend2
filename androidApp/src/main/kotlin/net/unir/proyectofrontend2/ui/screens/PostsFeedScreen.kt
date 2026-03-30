@@ -28,11 +28,15 @@ fun PostsFeedScreen(
 ) {
     val viewModel: PostsFeedViewModel = koinViewModel()
     val posts by viewModel.posts.collectAsStateWithLifecycle()
+    val repostsMap by viewModel.repostsMap.collectAsStateWithLifecycle()
+    val repliesCountMap by viewModel.repliesCountMap.collectAsStateWithLifecycle()
 
     AnimatedContent(posts.isNotEmpty()) { postsAvailable ->
         if (postsAvailable) {
             PostsFeed(
                 posts = posts,
+                repostsMap = repostsMap,
+                repliesCountMap = repliesCountMap,
                 onPostClick = navigateToPostDetails,
                 onUserClick = navigateToUserProfile,
             )
@@ -45,9 +49,11 @@ fun PostsFeedScreen(
 @Composable
 private fun PostsFeed(
     posts: List<Post>,
+    modifier: Modifier = Modifier,
+    repostsMap: Map<Long, Post?> = emptyMap(),
+    repliesCountMap: Map<Long, Int> = emptyMap(),
     onPostClick: (id: Long) -> Unit,
     onUserClick: (id: Long) -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier
@@ -58,13 +64,16 @@ private fun PostsFeed(
         items(posts, key = { it.id }) { post ->
             PostFrame(
                 post = post,
+                repost = repostsMap[post.id],
+                replyCount = repliesCountMap[post.id] ?: 0,
                 onClick = onPostClick,
-                onUserClick = onUserClick
+                onUserClick = onUserClick,
+                onReplyToClick = onPostClick,
             )
             HorizontalDivider(
                 modifier = Modifier.padding(vertical = 24.dp),
                 thickness = 0.5.dp,
-                color = MaterialTheme.colorScheme.outline
+                color = MaterialTheme.colorScheme.outlineVariant
             )
         }
     }

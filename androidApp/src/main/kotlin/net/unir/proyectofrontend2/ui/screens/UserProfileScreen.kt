@@ -17,7 +17,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.FactCheck
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Verified
+import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -32,6 +35,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.unir.proyectofrontend2.R
@@ -52,6 +56,8 @@ fun UserProfileScreen(
     val viewModel: UserProfileViewModel = koinViewModel()
     val user by viewModel.user.collectAsStateWithLifecycle()
     val posts by viewModel.posts.collectAsStateWithLifecycle()
+    val repostsMap by viewModel.repostsMap.collectAsStateWithLifecycle()
+    val repliesCountMap by viewModel.repliesCountMap.collectAsStateWithLifecycle()
 
     LaunchedEffect(id) {
         viewModel.setId(id)
@@ -62,6 +68,8 @@ fun UserProfileScreen(
             UserProfile(
                 user = user!!,
                 posts = posts,
+                repostsMap = repostsMap,
+                repliesCountMap = repliesCountMap,
                 onPostClick = navigateToPostDetails,
                 onBackClick = navigateBack,
             )
@@ -76,14 +84,16 @@ fun UserProfileScreen(
 private fun UserProfile(
     user: User,
     posts: List<Post>,
+    repostsMap: Map<Long, Post?>,
+    repliesCountMap: Map<Long, Int>,
+    modifier: Modifier = Modifier,
     onPostClick: (id: Long) -> Unit,
     onBackClick: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("@${user.displayName} (${user.username})") },
+                title = { Text("${user.displayName} (@${user.username})") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -104,19 +114,21 @@ private fun UserProfile(
         ) {
             item {
                 UserProfileHeader(user = user)
-                Spacer(modifier = Modifier.height(16.dp))
             }
             if (posts.isNotEmpty()) {
                 items(posts, key = { it.id }) { post ->
                     PostFrame(
                         post = post,
+                        repost = repostsMap[post.id],
+                        replyCount = repliesCountMap[post.id] ?: 0,
                         onClick = { onPostClick(post.id) },
-                        onUserClick = {}
+                        onUserClick = {},
+                        onReplyToClick = onPostClick,
                     )
                     HorizontalDivider(
                         modifier = Modifier.padding(vertical = 24.dp),
                         thickness = 0.5.dp,
-                        color = MaterialTheme.colorScheme.outline
+                        color = MaterialTheme.colorScheme.outlineVariant
                     )
                 }
             } else {
@@ -143,25 +155,30 @@ private fun UserProfileHeader(
             contentDescription = "Profile picture",
             onClick = {}
         )
-        Spacer(modifier = modifier.height(12.dp))
-        Text(
-            user.displayName,
-            style = MaterialTheme.typography.headlineMedium,
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Spacer(modifier = modifier.height(8.dp))
+        Row(
+            modifier = modifier.padding(vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(
-                "@${user.username}",
-                style = MaterialTheme.typography.bodyMedium,
+                user.displayName,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold,
             )
             if (user.isVerified) {
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
-                    imageVector = Icons.Default.Check,
-                    contentDescription = null,
+                    imageVector = Icons.Default.Verified,
+                    contentDescription = "Verified user",
+                    modifier = Modifier.size(24.dp),
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }
+        Text(
+            "@${user.username}",
+            style = MaterialTheme.typography.bodyMedium,
+        )
         Text(
             user.website,
             style = MaterialTheme.typography.bodySmall,
@@ -172,8 +189,8 @@ private fun UserProfileHeader(
             style = MaterialTheme.typography.bodyMedium,
         )
         HorizontalDivider(
-            modifier = Modifier.padding(vertical = 24.dp),
-            thickness = 0.5.dp,
+            modifier = Modifier.padding(vertical = 32.dp),
+            thickness = 1.dp,
             color = MaterialTheme.colorScheme.outline
         )
     }

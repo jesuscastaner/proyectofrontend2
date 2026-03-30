@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.data.model.User
 import net.unir.proyectofrontend2.data.repository.PostRepository
@@ -40,6 +41,30 @@ class UserProfileViewModel(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
         emptyList()
+    )
+
+    @NativeCoroutinesState
+    val repostsMap: StateFlow<Map<Long, Post?>> = posts.map {
+        it.associate { post ->
+            post.id to it.find { repost ->
+                repost.id == post.repostOfId
+            }
+        }
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        emptyMap()
+    )
+
+    @NativeCoroutinesState
+    val repliesCountMap: StateFlow<Map<Long, Int>> = postRepository.getPosts().map {
+        it.groupingBy { post ->
+            post.replyToId ?: -1L
+        }.eachCount()
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        emptyMap()
     )
 
     fun setId(id: Long) {
