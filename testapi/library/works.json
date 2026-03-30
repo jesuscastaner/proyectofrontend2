@@ -1,0 +1,167 @@
+[
+    {
+        "id": 1,
+        "title": "Don Quijote de la Mancha",
+        "publicationYear": 1605,
+        "agents": [
+            {
+                "name": "Miguel de Cervantes",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "La metamorfosis",
+        "publicationYear": 1915,
+        "agents": [
+            {
+                "name": "Franz Kafka",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "1984",
+        "publicationYear": 1949,
+        "agents": [
+            {
+                "name": "George Orwell",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Orgullo y prejuicio",
+        "publicationYear": 1813,
+        "agents": [
+            {
+                "name": "Jane Austen",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Moby-Dick",
+        "publicationYear": 1851,
+        "agents": [
+            {
+                "name": "Herman Melville",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Crimen y castigo",
+        "publicationYear": 1866,
+        "agents": [
+            {
+                "name": "Fiódor Dostoyevski",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Madame Bovary",
+        "publicationYear": 1857,
+        "agents": [
+            {
+                "name": "Gustave Flaubert",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "title": "La Odisea",
+        "publicationYear": -800,
+        "agents": [
+            {
+                "name": "Homero",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "title": "La Ilíada",
+        "publicationYear": -750,
+        "agents": [
+            {
+                "name": "Homero",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Hamlet",
+        "publicationYear": 1603,
+        "agents": [
+            {
+                "name": "William Shakespeare",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "El gran Gatsby",
+        "publicationYear": 1925,
+        "agents": [
+            {
+                "name": "F. Scott Fitzgerald",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "En busca del tiempo perdido",
+        "publicationYear": 1913,
+        "agents": [
+            {
+                "name": "Marcel Proust",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Ulises",
+        "publicationYear": 1922,
+        "agents": [
+            {
+                "name": "James Joyce",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "La divina comedia",
+        "publicationYear": 1320,
+        "agents": [
+            {
+                "name": "Dante Alighieri",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Los hermanos Karamázov",
+        "publicationYear": 1880,
+        "agents": [
+            {
+                "name": "Fiódor Dostoyevski",
+                "role": "author"
+            }
+        ]
+    }
+]

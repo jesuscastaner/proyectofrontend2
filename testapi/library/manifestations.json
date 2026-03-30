@@ -1,0 +1,663 @@
+[
+    {
+        "id": 1,
+        "expressionId": 1,
+        "title": "Don Quijote de la Mancha",
+        "publicationYear": 2011,
+        "isbn": "978-84-376-0494-7",
+        "agents": [
+            {
+                "name": "Cátedra",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "expressionId": 2,
+        "title": "Don Quixote",
+        "publicationYear": 2005,
+        "isbn": "978-0-14-243723-0",
+        "agents": [
+            {
+                "name": "Penguin Books",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "expressionId": 4,
+        "title": "The Metamorphosis",
+        "publicationYear": 1996,
+        "isbn": "978-0-679-76402-0",
+        "agents": [
+            {
+                "name": "Vintage",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "expressionId": 6,
+        "title": "1984",
+        "publicationYear": 2013,
+        "isbn": "978-84-9032-241-5",
+        "agents": [
+            {
+                "name": "Debolsillo",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "expressionId": 7,
+        "title": "Pride and Prejudice",
+        "publicationYear": 2008,
+        "isbn": "978-0-19-953556-9",
+        "agents": [
+            {
+                "name": "Oxford University Press",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "expressionId": 8,
+        "title": "Orgullo y prejuicio",
+        "publicationYear": 2010,
+        "isbn": "978-84-206-7412-3",
+        "agents": [
+            {
+                "name": "Alianza Editorial",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "expressionId": 9,
+        "title": "Moby-Dick (Illustrated Edition)",
+        "publicationYear": 2015,
+        "isbn": "978-1-59308-018-1",
+        "agents": [
+            {
+                "name": "Rockwell Kent",
+                "role": "illustrator"
+            },
+            {
+                "name": "Sterling Publishing",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "expressionId": 11,
+        "title": "Crime and Punishment",
+        "publicationYear": 2002,
+        "isbn": "978-0-14-044913-6",
+        "agents": [
+            {
+                "name": "Penguin Books",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "expressionId": 12,
+        "title": "Madame Bovary",
+        "publicationYear": 2001,
+        "isbn": "978-2-07-036822-8",
+        "agents": [
+            {
+                "name": "Gallimard",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "expressionId": 14,
+        "title": "The Odyssey",
+        "publicationYear": 2003,
+        "isbn": "978-0-14-026886-7",
+        "agents": [
+            {
+                "name": "Penguin Books",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "expressionId": 16,
+        "title": "Hamlet (The Arden Shakespeare Edition)",
+        "publicationYear": 2006,
+        "isbn": "978-1-903436-61-3",
+        "agents": [
+            {
+                "name": "Bloomsbury",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "expressionId": 17,
+        "title": "The Great Gatsby",
+        "publicationYear": 2004,
+        "isbn": "978-0-7432-7356-5",
+        "agents": [
+            {
+                "name": "Scribner",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "expressionId": 21,
+        "title": "La divina comedia (Edición ilustrada)",
+        "publicationYear": 2018,
+        "isbn": "978-84-9105-145-1",
+        "agents": [
+            {
+                "name": "Gustave Doré",
+                "role": "illustrator"
+            },
+            {
+                "name": "Alma Editorial",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "expressionId": 22,
+        "title": "Ulises",
+        "publicationYear": 2012,
+        "isbn": "978-84-376-3034-2",
+        "agents": [
+            {
+                "name": "Cátedra",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "expressionId": 23,
+        "title": "En busca del tiempo perdido",
+        "publicationYear": 2016,
+        "isbn": "978-84-9104-121-6",
+        "agents": [
+            {
+                "name": "Alianza Editorial",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "expressionId": 15,
+        "title": "La Ilíada",
+        "publicationYear": 2005,
+        "isbn": "978-84-206-5784-5",
+        "agents": [
+            {
+                "name": "Alianza Editorial",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "expressionId": 27,
+        "title": "La metamorfosis",
+        "publicationYear": 2010,
+        "isbn": "978-84-204-1245-1",
+        "agents": [
+            {
+                "name": "Seix Barral",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "expressionId": 25,
+        "title": "Hamlet",
+        "publicationYear": 1998,
+        "isbn": "978-84-376-1585-4",
+        "agents": [
+            {
+                "name": "Cátedra",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "expressionId": 24,
+        "title": "El gran Gatsby",
+        "publicationYear": 2015,
+        "isbn": "978-84-03-56544-3",
+        "agents": [
+            {
+                "name": "Espasa-Calpe",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "expressionId": 21,
+        "title": "La divina comedia (Edición ilustrada Doré)",
+        "publicationYear": 2001,
+        "isbn": "978-84-206-7862-0",
+        "agents": [
+            {
+                "name": "Gustave Doré",
+                "role": "illustrator"
+            },
+            {
+                "name": "Alma Editorial",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "expressionId": 22,
+        "title": "Ulises",
+        "publicationYear": 1990,
+        "isbn": "978-84-03-57491-4",
+        "agents": [
+            {
+                "name": "Espasa-Calpe",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "expressionId": 23,
+        "title": "En busca del tiempo perdido",
+        "publicationYear": 2003,
+        "isbn": "978-84-376-1546-5",
+        "agents": [
+            {
+                "name": "Cátedra",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "expressionId": 3,
+        "title": "Die Verwandlung",
+        "publicationYear": 1987,
+        "isbn": "978-3-15-000001-5",
+        "agents": [
+            {
+                "name": "Reclam Verlag",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "expressionId": 6,
+        "title": "1984",
+        "publicationYear": 2008,
+        "isbn": "978-84-08-06841-8",
+        "agents": [
+            {
+                "name": "Planeta",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "expressionId": 8,
+        "title": "Orgullo y prejuicio",
+        "publicationYear": 2012,
+        "isbn": "978-84-272-1430-1",
+        "agents": [
+            {
+                "name": "Molino",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "expressionId": 12,
+        "title": "Madame Bovary",
+        "publicationYear": 2005,
+        "isbn": "978-84-264-1235-0",
+        "agents": [
+            {
+                "name": "Lumen",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "expressionId": 14,
+        "title": "The Odyssey (Edición Penguin Deluxe)",
+        "publicationYear": 2010,
+        "isbn": "978-0-14-026886-7",
+        "agents": [
+            {
+                "name": "Penguin Books",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "expressionId": 17,
+        "title": "The Great Gatsby",
+        "publicationYear": 2001,
+        "isbn": "978-0-679-73224-6",
+        "agents": [
+            {
+                "name": "Vintage",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "expressionId": 20,
+        "title": "La Divina Commedia",
+        "publicationYear": 1990,
+        "isbn": "978-88-04-25014-7",
+        "agents": [
+            {
+                "name": "Mondadori",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "expressionId": 26,
+        "title": "La Ilíada",
+        "publicationYear": 2012,
+        "isbn": "978-0-19-953636-8",
+        "agents": [
+            {
+                "name": "Oxford University Press",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "expressionId": 1,
+        "title": "Don Quijote de la Mancha",
+        "publicationYear": 2006,
+        "isbn": "978-84-376-0345-7",
+        "agents": [
+            {
+                "name": "Cátedra",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "expressionId": 2,
+        "title": "Don Quixote",
+        "publicationYear": 2015,
+        "isbn": "978-0-14-243723-0",
+        "agents": [
+            {
+                "name": "Penguin Books",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "expressionId": 4,
+        "title": "The Metamorphosis",
+        "publicationYear": 1996,
+        "isbn": "978-0-486-29250-6",
+        "agents": [
+            {
+                "name": "Dover Publications",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "expressionId": 5,
+        "title": "1984",
+        "publicationYear": 1949,
+        "isbn": "978-0-436-53956-6",
+        "agents": [
+            {
+                "name": "Secker & Warburg",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "expressionId": 7,
+        "title": "Pride and Prejudice",
+        "publicationYear": 2008,
+        "isbn": "978-0-19-953556-9",
+        "agents": [
+            {
+                "name": "Oxford University Press",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "expressionId": 9,
+        "title": "Moby-Dick",
+        "publicationYear": 1992,
+        "isbn": "978-0-486-29249-0",
+        "agents": [
+            {
+                "name": "Dover Publications",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "expressionId": 10,
+        "title": "Преступление и наказание",
+        "publicationYear": 2002,
+        "isbn": "978-5-17-024985-8",
+        "agents": [
+            {
+                "name": "AST",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "expressionId": 11,
+        "title": "Crime and Punishment",
+        "publicationYear": 1993,
+        "isbn": "978-0-679-72345-9",
+        "agents": [
+            {
+                "name": "Vintage",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "expressionId": 13,
+        "title": "Odysseia",
+        "publicationYear": -750,
+        "isbn": "978-960-04-1234-5",
+        "agents": []
+    },
+    {
+        "id": 40,
+        "expressionId": 16,
+        "title": "Hamlet",
+        "publicationYear": 2003,
+        "isbn": "978-0-14-101586-6",
+        "agents": [
+            {
+                "name": "Penguin Books",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "expressionId": 18,
+        "title": "À la recherche du temps perdu",
+        "publicationYear": 2001,
+        "isbn": "978-2-07-041311-3",
+        "agents": [
+            {
+                "name": "Gallimard",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "expressionId": 19,
+        "title": "Ulysses",
+        "publicationYear": 1986,
+        "isbn": "978-0-679-60022-6",
+        "agents": [
+            {
+                "name": "Vintage",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "expressionId": 20,
+        "title": "La Divina Commedia (Edizione illustrata)",
+        "publicationYear": 2000,
+        "isbn": "978-3-8228-2017-7",
+        "agents": [
+            {
+                "name": "Taschen",
+                "role": "editor"
+            },
+            {
+                "name": "Gustave Doré",
+                "role": "illustrator"
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "expressionId": 26,
+        "title": "La Ilíada",
+        "publicationYear": 2008,
+        "isbn": "978-84-460-2221-2",
+        "agents": [
+            {
+                "name": "Akal",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "expressionId": 27,
+        "title": "La metamorfosis",
+        "publicationYear": 2015,
+        "isbn": "978-84-204-2345-2",
+        "agents": [
+            {
+                "name": "Alfaguara",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "expressionId": 21,
+        "title": "La divina comedia",
+        "publicationYear": 2005,
+        "isbn": "978-84-03-56548-1",
+        "agents": [
+            {
+                "name": "Austral",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "expressionId": 23,
+        "title": "En busca del tiempo perdido",
+        "publicationYear": 2010,
+        "isbn": "978-84-339-7546-0",
+        "agents": [
+            {
+                "name": "Anagrama",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "expressionId": 24,
+        "title": "El gran Gatsby",
+        "publicationYear": 2007,
+        "isbn": "978-84-450-0142-3",
+        "agents": [
+            {
+                "name": "Minotauro",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "expressionId": 22,
+        "title": "Ulises",
+        "publicationYear": 1995,
+        "isbn": "978-84-376-1535-9",
+        "agents": [
+            {
+                "name": "Cátedra",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "expressionId": 12,
+        "title": "Madame Bovary",
+        "publicationYear": 2012,
+        "isbn": "978-84-08-12345-6",
+        "agents": [
+            {
+                "name": "Biblioteca Oro",
+                "role": "editor"
+            }
+        ]
+    }
+]

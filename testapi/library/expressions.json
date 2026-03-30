@@ -1,0 +1,275 @@
+[
+    {
+        "id": 1,
+        "workId": 1,
+        "title": "Don Quijote de la Mancha",
+        "publicationYear": 1605,
+        "language": "SPA"
+    },
+    {
+        "id": 2,
+        "workId": 1,
+        "title": "Don Quixote",
+        "publicationYear": 2003,
+        "language": "ENG",
+        "agents": [
+            {
+                "name": "Edith Grossman",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "workId": 2,
+        "title": "Die Verwandlung",
+        "publicationYear": 1915,
+        "language": "DEU"
+    },
+    {
+        "id": 4,
+        "workId": 2,
+        "title": "The Metamorphosis",
+        "publicationYear": 1937,
+        "language": "ENG",
+        "agents": [
+            {
+                "name": "Willa Muir",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "workId": 3,
+        "title": "1984",
+        "publicationYear": 1949,
+        "language": "ENG"
+    },
+    {
+        "id": 6,
+        "workId": 3,
+        "title": "1984",
+        "publicationYear": 1952,
+        "language": "SPA",
+        "agents": [
+            {
+                "name": "Rafael Vázquez Zamora",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "workId": 4,
+        "title": "Pride and Prejudice",
+        "publicationYear": 1813,
+        "language": "ENG"
+    },
+    {
+        "id": 8,
+        "workId": 4,
+        "title": "Orgullo y prejuicio",
+        "publicationYear": 1945,
+        "language": "SPA",
+        "agents": [
+            {
+                "name": "José Luis López Muñoz",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "workId": 5,
+        "title": "Moby-Dick",
+        "publicationYear": 1851,
+        "language": "ENG"
+    },
+    {
+        "id": 10,
+        "workId": 6,
+        "title": "Преступление и наказание",
+        "publicationYear": 1866,
+        "language": "RUS"
+    },
+    {
+        "id": 11,
+        "workId": 6,
+        "title": "Crime and Punishment",
+        "publicationYear": 1914,
+        "language": "ENG",
+        "agents": [
+            {
+                "name": "Constance Garnett",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "workId": 7,
+        "title": "Madame Bovary",
+        "publicationYear": 1857,
+        "language": "FRA"
+    },
+    {
+        "id": 13,
+        "workId": 8,
+        "title": "Odysseia",
+        "publicationYear": -800,
+        "language": "GRC"
+    },
+    {
+        "id": 14,
+        "workId": 8,
+        "title": "The Odyssey",
+        "publicationYear": 1996,
+        "language": "ENG",
+        "agents": [
+            {
+                "name": "Robert Fagles",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "workId": 9,
+        "title": "The Iliad",
+        "publicationYear": 1990,
+        "language": "ENG",
+        "agents": [
+            {
+                "name": "Robert Fagles",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "workId": 10,
+        "title": "Hamlet",
+        "publicationYear": 1603,
+        "language": "ENG"
+    },
+    {
+        "id": 17,
+        "workId": 11,
+        "title": "The Great Gatsby",
+        "publicationYear": 1925,
+        "language": "ENG"
+    },
+    {
+        "id": 18,
+        "workId": 12,
+        "title": "À la recherche du temps perdu",
+        "publicationYear": 1913,
+        "language": "FRA"
+    },
+    {
+        "id": 19,
+        "workId": 13,
+        "title": "Ulysses",
+        "publicationYear": 1922,
+        "language": "ENG"
+    },
+    {
+        "id": 20,
+        "workId": 14,
+        "title": "La Divina Commedia",
+        "publicationYear": 1320,
+        "language": "ITA"
+    },
+    {
+        "id": 21,
+        "workId": 14,
+        "title": "La divina comedia",
+        "publicationYear": 1995,
+        "language": "SPA",
+        "agents": [
+            {
+                "name": "Ángel Crespo",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "workId": 13,
+        "title": "Ulises",
+        "publicationYear": 1976,
+        "language": "SPA",
+        "agents": [
+            {
+                "name": "José María Valverde",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "workId": 12,
+        "title": "En busca del tiempo perdido",
+        "publicationYear": 2000,
+        "language": "SPA",
+        "agents": [
+            {
+                "name": "Carlos Manzano",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "workId": 11,
+        "title": "El gran Gatsby",
+        "publicationYear": 2011,
+        "language": "SPA",
+        "agents": [
+            {
+                "name": "Justo Navarro",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "workId": 10,
+        "title": "Hamlet",
+        "publicationYear": 1981,
+        "language": "SPA",
+        "agents": [
+            {
+                "name": "Luis Astrana Marín",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "workId": 9,
+        "title": "La Ilíada",
+        "publicationYear": 2000,
+        "language": "SPA",
+        "agents": [
+            {
+                "name": "Emilio Crespo",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "workId": 2,
+        "title": "La metamorfosis",
+        "publicationYear": 2005,
+        "language": "SPA",
+        "agents": [
+            {
+                "name": "Jorge Luis Borges",
+                "role": "translator"
+            }
+        ]
+    }
+]
