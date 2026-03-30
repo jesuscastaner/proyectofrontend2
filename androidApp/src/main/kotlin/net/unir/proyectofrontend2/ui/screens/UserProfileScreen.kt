@@ -83,7 +83,7 @@ private fun UserProfile(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("@${user.username}") },
+                title = { Text("@${user.displayName} (${user.username})") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -178,4 +178,3 @@ private fun UserProfileHeader(
         )
     }
 }
-

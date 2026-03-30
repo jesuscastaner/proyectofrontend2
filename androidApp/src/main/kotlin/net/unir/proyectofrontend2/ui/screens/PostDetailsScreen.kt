@@ -90,7 +90,7 @@ private fun PostDetails(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Post #${post.id}") },
+                title = { Text("${post.userDisplayName}'s post #${post.id}") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -183,4 +183,3 @@ private fun PostDetails(
         }
     }
 }
-
