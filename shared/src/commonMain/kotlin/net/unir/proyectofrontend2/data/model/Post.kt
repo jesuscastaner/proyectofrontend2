@@ -6,10 +6,12 @@ import kotlinx.serialization.Serializable
 data class Post(
     val id: Long,
     val userId: Long,
+    val displayName: String,
+    val username: String,
+    val userProfilePic: String? = null,
     val content: String,
     val replyToId: Long? = null,
     val repostOfId: Long? = null,
-    val isQuote: Boolean,
     val isVisible: Boolean,
     val createdAt: String,
     val updatedAt: String,

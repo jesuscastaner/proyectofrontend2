@@ -154,7 +154,7 @@ private fun UserProfileHeader(
                 "@${user.username}",
                 style = MaterialTheme.typography.bodyMedium,
             )
-            if (user.verified) {
+            if (user.isVerified) {
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
                     imageVector = Icons.Default.Check,

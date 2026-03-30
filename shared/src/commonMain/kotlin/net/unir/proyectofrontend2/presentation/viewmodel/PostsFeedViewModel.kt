@@ -17,7 +17,7 @@ class PostsFeedViewModel(
         .map { list -> list.filter { it.replyToId == null } }
         .stateIn(
             viewModelScope,
-            SharingStarted.WhileSubscribed(5000),
+            SharingStarted.WhileSubscribed(10000),
             emptyList()
         )
 }
