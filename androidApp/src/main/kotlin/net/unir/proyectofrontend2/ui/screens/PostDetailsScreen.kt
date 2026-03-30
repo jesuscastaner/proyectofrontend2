@@ -129,7 +129,7 @@ private fun PostDetails(
                             .clip(RoundedCornerShape(12.dp))
                             .border(
                                 width = 1.dp,
-                                color = MaterialTheme.colorScheme.outline,
+                                color = MaterialTheme.colorScheme.outlineVariant,
                                 shape = RoundedCornerShape(12.dp)
                             )
                             .padding(16.dp)

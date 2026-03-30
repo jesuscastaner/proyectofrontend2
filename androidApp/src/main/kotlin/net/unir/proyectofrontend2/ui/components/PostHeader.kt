@@ -31,9 +31,9 @@ fun PostHeader(
     ) {
         CircleImage(
             imageUrl = userProfilePic,
-            modifier = Modifier.size(40.dp),
+            modifier = Modifier.size(20.dp),
             contentDescription = "Profile picture",
-            onClick = {}
+            onClick = onClick
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
