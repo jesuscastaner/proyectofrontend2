@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
 data class Post(
     val id: Long,
     val userId: Long,
-    val displayName: String,
-    val username: String,
+    val userDisplayName: String,
+    val userUsername: String,
     val userProfilePic: String? = null,
     val content: String,
     val replyToId: Long? = null,

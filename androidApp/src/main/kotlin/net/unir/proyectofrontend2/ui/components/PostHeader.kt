@@ -1,13 +1,12 @@
 package net.unir.proyectofrontend2.ui.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +16,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun PostHeader(
-    userId: String,
+    userDisplayName: String,
+    userUsername: String,
+    userProfilePic: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -25,16 +26,25 @@ fun PostHeader(
         modifier = modifier
             .fillMaxWidth()
             .clickable { onClick() },
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Start,
     ) {
-        Icon(
-            imageVector = Icons.Default.Person,
-            contentDescription = null
+        CircleImage(
+            imageUrl = userProfilePic,
+            modifier = Modifier.size(40.dp),
+            contentDescription = "Profile picture",
+            onClick = {}
         )
-        Spacer(modifier = Modifier.width(6.dp))
+        Spacer(modifier = Modifier.width(8.dp))
         Text(
-            "@user#${userId}",
+            text = userDisplayName,
+            style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(modifier = Modifier.width(4.dp))
+        Text(
+            text = "@$userUsername",
             style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.outlineVariant
         )
     }
 }

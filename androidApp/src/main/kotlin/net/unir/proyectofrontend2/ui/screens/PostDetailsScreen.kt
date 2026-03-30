@@ -111,7 +111,9 @@ private fun PostDetails(
         ) {
             item {
                 PostHeader(
-                    userId = post.userId.toString(),
+                    userDisplayName = post.userDisplayName,
+                    userUsername = post.userUsername,
+                    userProfilePic = post.userProfilePic,
                     onClick = { onUserClick(post.userId) },
                 )
                 Spacer(modifier = Modifier.height(12.dp))
