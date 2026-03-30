@@ -14,9 +14,9 @@ class InMemoryAgentStorage : AgentStorage {
 
     override fun getAgents(): Flow<List<Agent>> = storedAgents
 
-    override fun getAgentById(id: Long): Flow<Agent?> = storedAgents.map {
-        it.find { agent ->
-            agent.id == id
-        }
-    }
+//    override fun getAgentById(id: Long): Flow<Agent?> = storedAgents.map {
+//        it.find { agent ->
+//            agent.id == id
+//        }
+//    }
 }

@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Agent(
-    val id: Long,
     val name: String,
     val role: String? = null
 )

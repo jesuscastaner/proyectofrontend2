@@ -2,6 +2,8 @@ package net.unir.proyectofrontend2
 
 import android.app.Application
 import net.unir.proyectofrontend2.di.initKoin
+import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationDetailsViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationsFeedViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.PostsFeedViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.UserProfileViewModel
@@ -27,6 +29,16 @@ class PostApp : Application() {
                         UserProfileViewModel(
                             userRepository = get(),
                             postRepository = get(),
+                        )
+                    }
+                    factory {
+                        ManifestationsFeedViewModel(
+                            manifestationRepository = get()
+                        )
+                    }
+                    factory {
+                        ManifestationDetailsViewModel(
+                            manifestationRepository = get()
                         )
                     }
                 }

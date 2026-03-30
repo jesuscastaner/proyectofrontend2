@@ -11,18 +11,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
+import net.unir.proyectofrontend2.ui.screens.ManifestationDetailsScreen
+import net.unir.proyectofrontend2.ui.screens.ManifestationsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.PostDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.PostsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.UserProfileScreen
-
-@Serializable
-object PostsFeedDestination
-
-@Serializable
-data class PostDetailsDestination(val id: Long)
-
-@Serializable
-data class UserProfileDestination(val id: Long)
 
 @Composable
 fun App() {
@@ -38,6 +31,9 @@ fun App() {
             ) {
                 composable<PostsFeedDestination> {
                     PostsFeedScreen(
+                        navigateToManifestationsFeed = {
+                            navController.navigate(ManifestationsFeedDestination)
+                        },
                         navigateToPostDetails = { id ->
                             navController.navigate(PostDetailsDestination(id))
                         },
@@ -46,7 +42,6 @@ fun App() {
                         },
                     )
                 }
-
                 composable<PostDetailsDestination> { backStackEntry ->
                     val args = backStackEntry.toRoute<PostDetailsDestination>()
 
@@ -61,7 +56,6 @@ fun App() {
                         navigateBack = { navController.popBackStack() }
                     )
                 }
-
                 composable<UserProfileDestination> { backStackEntry ->
                     val args = backStackEntry.toRoute<UserProfileDestination>()
 
@@ -73,7 +67,40 @@ fun App() {
                         navigateBack = { navController.popBackStack() }
                     )
                 }
+                composable<ManifestationsFeedDestination> {
+                    ManifestationsFeedScreen(
+                        navigateToPostsFeed = {
+                            navController.navigate(PostsFeedDestination)
+                        },
+                        navigateToManifestationDetails = { id ->
+                            navController.navigate(ManifestationDetailsDestination(id))
+                        },
+                    )
+                }
+                composable<ManifestationDetailsDestination> { backStackEntry ->
+                    val args = backStackEntry.toRoute<ManifestationDetailsDestination>()
+
+                    ManifestationDetailsScreen(
+                        id = args.id,
+                        navigateBack = { navController.popBackStack() }
+                    )
+                }
             }
         }
     }
 }
+
+@Serializable
+object PostsFeedDestination
+
+@Serializable
+data class PostDetailsDestination(val id: Long)
+
+@Serializable
+data class UserProfileDestination(val id: Long)
+
+@Serializable
+object ManifestationsFeedDestination
+
+@Serializable
+data class ManifestationDetailsDestination(val id: Long)

@@ -26,5 +26,5 @@ class AgentRepository(
 
     fun getAgents(): Flow<List<Agent>> = agentStorage.getAgents()
 
-    fun getAgentById(id: Long): Flow<Agent?> = agentStorage.getAgentById(id)
+//    fun getAgentById(id: Long): Flow<Agent?> = agentStorage.getAgentById(id)
 }

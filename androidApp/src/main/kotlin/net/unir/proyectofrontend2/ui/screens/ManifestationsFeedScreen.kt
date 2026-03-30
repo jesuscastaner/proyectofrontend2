@@ -1,8 +1,6 @@
 package net.unir.proyectofrontend2.ui.screens
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,47 +8,40 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import net.unir.proyectofrontend2.data.model.Post
-import net.unir.proyectofrontend2.presentation.viewmodel.PostsFeedViewModel
+import net.unir.proyectofrontend2.data.model.Manifestation
+import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationsFeedViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
-import net.unir.proyectofrontend2.ui.components.PostFrame
+import net.unir.proyectofrontend2.ui.components.ManifestationCard
 import net.unir.proyectofrontend2.ui.components.TabItem
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun PostsFeedScreen(
-    navigateToManifestationsFeed: () -> Unit,
-    navigateToPostDetails: (id: Long) -> Unit,
-    navigateToUserProfile: (id: Long) -> Unit,
+fun ManifestationsFeedScreen(
+    navigateToPostsFeed: () -> Unit,
+    navigateToManifestationDetails: (id: Long) -> Unit,
 ) {
-    val viewModel: PostsFeedViewModel = koinViewModel()
-    val posts by viewModel.posts.collectAsStateWithLifecycle()
-    val repostsMap by viewModel.repostsMap.collectAsStateWithLifecycle()
-    val repliesCountMap by viewModel.repliesCountMap.collectAsStateWithLifecycle()
+    val viewModel: ManifestationsFeedViewModel = koinViewModel()
+    val manifestations by viewModel.manifestations.collectAsStateWithLifecycle()
 
-    AnimatedContent(posts.isNotEmpty()) { postsAvailable ->
-        if (postsAvailable) {
-            PostsFeed(
-                posts = posts,
-                repostsMap = repostsMap,
-                repliesCountMap = repliesCountMap,
-                onManifestationsTabClick = navigateToManifestationsFeed,
-                onPostClick = navigateToPostDetails,
-                onUserClick = navigateToUserProfile,
+    AnimatedContent(manifestations.isNotEmpty()) { manifestationsAvailable ->
+        if (manifestationsAvailable) {
+            ManifestationsFeed(
+                manifestations = manifestations,
+                onPostsTabClick = navigateToPostsFeed,
+                onManifestationClick = navigateToManifestationDetails,
             )
         } else {
             EmptyScreenContent(modifier = Modifier.fillMaxSize())
@@ -59,16 +50,14 @@ fun PostsFeedScreen(
 }
 
 @Composable
-private fun PostsFeed(
-    posts: List<Post>,
+private fun ManifestationsFeed(
+    manifestations: List<Manifestation>,
     modifier: Modifier = Modifier,
-    repostsMap: Map<Long, Post?> = emptyMap(),
-    repliesCountMap: Map<Long, Int> = emptyMap(),
-    onManifestationsTabClick: () -> Unit,
-    onPostClick: (id: Long) -> Unit,
-    onUserClick: (id: Long) -> Unit,
+    onPostsTabClick: () -> Unit,
+    onManifestationClick: (id: Long) -> Unit,
 ) {
-    LazyColumn(
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(180.dp),
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp),
@@ -81,23 +70,19 @@ private fun PostsFeed(
             ) {
                 TabItem(
                     text = "Posts",
-                    selected = true,
-                    onClick = {}
+                    onClick = onPostsTabClick
                 )
                 TabItem(
                     text = "Manifestations",
-                    onClick = onManifestationsTabClick,
+                    selected = true,
+                    onClick = {},
                 )
             }
         }
-        items(posts, key = { it.id }) { post ->
-            PostFrame(
-                post = post,
-                repost = repostsMap[post.id],
-                repliesCount = repliesCountMap[post.id] ?: 0,
-                onClick = onPostClick,
-                onUserClick = onUserClick,
-                onReplyToClick = onPostClick,
+            items(manifestations, key = { it.id }) { manifestation ->
+            ManifestationCard(
+                manifestation = manifestation,
+                onClick = onManifestationClick,
             )
             HorizontalDivider(
                 modifier = Modifier.padding(vertical = 24.dp),
