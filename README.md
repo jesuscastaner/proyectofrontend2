@@ -2,7 +2,26 @@
 
 ## Screenshots
 
-Feed principal de publicaciones:
+### Feed principal de publicaciones
+
+La colección de publicaciones recomendadas al usuario activo se muestra mediante una columna scrolleable en la que cada publicación se enmarca en un PostFrame.
+
+Dentro de cada PostFrame, si la publicación es una respuesta a otra publicación, sobre la cabecera se muestra un icono de respuesta junto con un mensaje informativo.
+Si clicamos en el icono o en el mensaje, nos dirige a la vista de detalle de la publicación a la que ésta responde.
+
+Debajo del icono de respuesta, se muestra la cabecera de cada publicación con el nombre visible, el username y la foto de perfil de su autor.
+Si clicamos en ella, nos dirige al perfil de ese usuario.
+
+Debajo de la cabecera, se muestra el contenido de la publicación.
+Si clicamos en él, nos dirige a los detalles de esa publicación.
+
+Si es una cita de otra publicación, esta última se muestra embebida dentro, enmarcada.
+De la publicación original sólo se muestra la cabecera con los datos de usuario de su autor.
+Si clicamos en la publicación embebida, nos dirige a ella, y si clicamos en su cabecera, al perfil de usuario de su autor.
+
+Debajo del contenido, se muestra un icono con el número de respuestas a esa publicación sólo si tiene alguna respuesta.
+
+Debajo del contenido y el icono del número de respuestas, se muestra la fecha de creación de la publicación.
 
 ![posts_feed.png](.img/posts_feed.png)
 
@@ -10,19 +29,28 @@ Fallback del feed principal de publicaciones:
 
 ![posts_feed_fallback.png](.img/posts_feed_fallback.png)
 
-Detalles de una publicación:
+### Detalles de una publicación
 
-![post_details.png](.img/post_details.png)
+La vista de detalle de publicación es similar en muchos aspectos a la de los PostFrame del feed de publicaciones.
+El contenido de la publicación se muestra en una fuente más grande, y se muestran aquí algunos detalles adicionales que no aparecen en el feed.
 
-Si la publicación tiene respuestas, se muestran debajo:
+El icono de respuestas aparecerá aunque las respuestas sean 0.
+En tal caso, el icono se verá sombreado.
 
-![post_details_has_replies.png](.img/post_details_has_replies.png)
+Debajo de la publicación detallada, se muestra una columna de PostFrames con todas las respuestas a esa publicación, en caso de que ésta las tenga.
 
-Si la publicación es una republicación, se muestra como tal:
+![post_details_replies.png](.img/post_details_replies.png)
 
-![post_details_is_repost.png](.img/post_details_is_repost.png)
+Si la publicación es una cita, se muestra embebida como tal, igual que en el feed:
 
-Perfil de usuario, con su información en la cabecera y un feed debajo con sus posts:
+![post_details_quote.png](.img/post_details_quote.png)
+
+### Perfil de usuario
+
+Se muestra una cabecera con su foto de perfil, su nombre visible, su username, su página web y su bio.
+Si el usuario está verificado, se muestra un check de verificación junto a su nombre visible.
+
+Debajo de la cabecera, se muestra una columna de PostFrames igual que la del feed, sólo que aquí sólo se muestran las publicaciones y republicaciones realizadas por este usuario.
 
 ![user_profile.png](.img/user_profile.png)
 
