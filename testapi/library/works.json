@@ -5,6 +5,7 @@
         "publicationYear": 1605,
         "agents": [
             {
+                "id": 1,
                 "name": "Miguel de Cervantes",
                 "role": "author"
             }
@@ -16,6 +17,7 @@
         "publicationYear": 1915,
         "agents": [
             {
+                "id": 2,
                 "name": "Franz Kafka",
                 "role": "author"
             }
@@ -27,6 +29,7 @@
         "publicationYear": 1949,
         "agents": [
             {
+                "id": 3,
                 "name": "George Orwell",
                 "role": "author"
             }
@@ -38,6 +41,7 @@
         "publicationYear": 1813,
         "agents": [
             {
+                "id": 4,
                 "name": "Jane Austen",
                 "role": "author"
             }
@@ -49,6 +53,7 @@
         "publicationYear": 1851,
         "agents": [
             {
+                "id": 5,
                 "name": "Herman Melville",
                 "role": "author"
             }
@@ -60,6 +65,7 @@
         "publicationYear": 1866,
         "agents": [
             {
+                "id": 6,
                 "name": "Fiódor Dostoyevski",
                 "role": "author"
             }
@@ -71,6 +77,7 @@
         "publicationYear": 1857,
         "agents": [
             {
+                "id": 7,
                 "name": "Gustave Flaubert",
                 "role": "author"
             }
@@ -82,6 +89,7 @@
         "publicationYear": -800,
         "agents": [
             {
+                "id": 8,
                 "name": "Homero",
                 "role": "author"
             }
@@ -93,6 +101,7 @@
         "publicationYear": -750,
         "agents": [
             {
+                "id": 8,
                 "name": "Homero",
                 "role": "author"
             }
@@ -104,6 +113,7 @@
         "publicationYear": 1603,
         "agents": [
             {
+                "id": 9,
                 "name": "William Shakespeare",
                 "role": "author"
             }
@@ -115,6 +125,7 @@
         "publicationYear": 1925,
         "agents": [
             {
+                "id": 10,
                 "name": "F. Scott Fitzgerald",
                 "role": "author"
             }
@@ -126,6 +137,7 @@
         "publicationYear": 1913,
         "agents": [
             {
+                "id": 11,
                 "name": "Marcel Proust",
                 "role": "author"
             }
@@ -137,6 +149,7 @@
         "publicationYear": 1922,
         "agents": [
             {
+                "id": 12,
                 "name": "James Joyce",
                 "role": "author"
             }
@@ -148,6 +161,7 @@
         "publicationYear": 1320,
         "agents": [
             {
+                "id": 13,
                 "name": "Dante Alighieri",
                 "role": "author"
             }
@@ -159,7 +173,44 @@
         "publicationYear": 1880,
         "agents": [
             {
+                "id": 6,
                 "name": "Fiódor Dostoyevski",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Do Androids Dream of Electric Sheep?",
+        "publicationYear": 1968,
+        "agents": [
+            {
+                "id": 56,
+                "name": "Philip K. Dick",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "title": "Ubik",
+        "publicationYear": 1969,
+        "agents": [
+            {
+                "id": 56,
+                "name": "Philip K. Dick",
+                "role": "author"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "title": "A Scanner Darkly",
+        "publicationYear": 1977,
+        "agents": [
+            {
+                "id": 56,
+                "name": "Philip K. Dick",
                 "role": "author"
             }
         ]

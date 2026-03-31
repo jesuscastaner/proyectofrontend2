@@ -14,6 +14,7 @@
         "language": "ENG",
         "agents": [
             {
+                "id": 14,
                 "name": "Edith Grossman",
                 "role": "translator"
             }
@@ -34,6 +35,7 @@
         "language": "ENG",
         "agents": [
             {
+                "id": 15,
                 "name": "Willa Muir",
                 "role": "translator"
             }
@@ -54,6 +56,7 @@
         "language": "SPA",
         "agents": [
             {
+                "id": 16,
                 "name": "Rafael Vázquez Zamora",
                 "role": "translator"
             }
@@ -74,6 +77,7 @@
         "language": "SPA",
         "agents": [
             {
+                "id": 17,
                 "name": "José Luis López Muñoz",
                 "role": "translator"
             }
@@ -101,6 +105,7 @@
         "language": "ENG",
         "agents": [
             {
+                "id": 18,
                 "name": "Constance Garnett",
                 "role": "translator"
             }
@@ -189,6 +194,7 @@
         "language": "SPA",
         "agents": [
             {
+                "id": 20,
                 "name": "Ángel Crespo",
                 "role": "translator"
             }
@@ -202,6 +208,7 @@
         "language": "SPA",
         "agents": [
             {
+                "id": 21,
                 "name": "José María Valverde",
                 "role": "translator"
             }
@@ -215,6 +222,7 @@
         "language": "SPA",
         "agents": [
             {
+                "id": 22,
                 "name": "Carlos Manzano",
                 "role": "translator"
             }
@@ -228,6 +236,7 @@
         "language": "SPA",
         "agents": [
             {
+                "id": 23,
                 "name": "Justo Navarro",
                 "role": "translator"
             }
@@ -241,6 +250,7 @@
         "language": "SPA",
         "agents": [
             {
+                "id": 24,
                 "name": "Luis Astrana Marín",
                 "role": "translator"
             }
@@ -254,6 +264,7 @@
         "language": "SPA",
         "agents": [
             {
+                "id": 25,
                 "name": "Emilio Crespo",
                 "role": "translator"
             }
@@ -267,7 +278,71 @@
         "language": "SPA",
         "agents": [
             {
+                "id": 26,
                 "name": "Jorge Luis Borges",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "workId": 16,
+        "title": "Do Androids Dream of Electric Sheep?",
+        "publicationYear": 1968,
+        "language": "ENG"
+    },
+    {
+        "id": 29,
+        "workId": 16,
+        "title": "¿Sueñan los androides con ovejas eléctricas?",
+        "publicationYear": 1970,
+        "language": "SPA",
+        "agents": [
+            {
+                "id": 22,
+                "name": "Carlos Manzano",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "workId": 17,
+        "title": "Ubik",
+        "publicationYear": 1969,
+        "language": "ENG"
+    },
+    {
+        "id": 31,
+        "workId": 17,
+        "title": "Ubik",
+        "publicationYear": 1971,
+        "language": "SPA",
+        "agents": [
+            {
+                "id": 23,
+                "name": "Justo Navarro",
+                "role": "translator"
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "workId": 18,
+        "title": "A Scanner Darkly",
+        "publicationYear": 1977,
+        "language": "ENG"
+    },
+    {
+        "id": 33,
+        "workId": 18,
+        "title": "Un oscuro visor",
+        "publicationYear": 1980,
+        "language": "SPA",
+        "agents": [
+            {
+                "id": 22,
+                "name": "Carlos Manzano",
                 "role": "translator"
             }
         ]

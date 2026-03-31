@@ -5,8 +5,10 @@
         "title": "Don Quijote de la Mancha",
         "publicationYear": 2011,
         "isbn": "978-84-376-0494-7",
+        "coverImage": "https://picsum.photos/200/300?random=100",
         "agents": [
             {
+                "id": 27,
                 "name": "Cátedra",
                 "role": "editor"
             }
@@ -18,8 +20,10 @@
         "title": "Don Quixote",
         "publicationYear": 2005,
         "isbn": "978-0-14-243723-0",
+        "coverImage": "https://picsum.photos/200/300?random=101",
         "agents": [
             {
+                "id": 28,
                 "name": "Penguin Books",
                 "role": "editor"
             }
@@ -31,8 +35,10 @@
         "title": "The Metamorphosis",
         "publicationYear": 1996,
         "isbn": "978-0-679-76402-0",
+        "coverImage": "https://picsum.photos/200/300?random=102",
         "agents": [
             {
+                "id": 29,
                 "name": "Vintage",
                 "role": "editor"
             }
@@ -44,8 +50,10 @@
         "title": "1984",
         "publicationYear": 2013,
         "isbn": "978-84-9032-241-5",
+        "coverImage": "https://picsum.photos/200/300?random=103",
         "agents": [
             {
+                "id": 30,
                 "name": "Debolsillo",
                 "role": "editor"
             }
@@ -57,8 +65,10 @@
         "title": "Pride and Prejudice",
         "publicationYear": 2008,
         "isbn": "978-0-19-953556-9",
+        "coverImage": "https://picsum.photos/200/300?random=104",
         "agents": [
             {
+                "id": 31,
                 "name": "Oxford University Press",
                 "role": "editor"
             }
@@ -70,8 +80,10 @@
         "title": "Orgullo y prejuicio",
         "publicationYear": 2010,
         "isbn": "978-84-206-7412-3",
+        "coverImage": "https://picsum.photos/200/300?random=105",
         "agents": [
             {
+                "id": 32,
                 "name": "Alianza Editorial",
                 "role": "editor"
             }
@@ -83,12 +95,15 @@
         "title": "Moby-Dick (Illustrated Edition)",
         "publicationYear": 2015,
         "isbn": "978-1-59308-018-1",
+        "coverImage": "https://picsum.photos/200/300?random=106",
         "agents": [
             {
+                "id": 33,
                 "name": "Rockwell Kent",
                 "role": "illustrator"
             },
             {
+                "id": 34,
                 "name": "Sterling Publishing",
                 "role": "editor"
             }
@@ -100,8 +115,10 @@
         "title": "Crime and Punishment",
         "publicationYear": 2002,
         "isbn": "978-0-14-044913-6",
+        "coverImage": "https://picsum.photos/200/300?random=107",
         "agents": [
             {
+                "id": 28,
                 "name": "Penguin Books",
                 "role": "editor"
             }
@@ -113,8 +130,10 @@
         "title": "Madame Bovary",
         "publicationYear": 2001,
         "isbn": "978-2-07-036822-8",
+        "coverImage": "https://picsum.photos/200/300?random=108",
         "agents": [
             {
+                "id": 35,
                 "name": "Gallimard",
                 "role": "editor"
             }
@@ -126,8 +145,10 @@
         "title": "The Odyssey",
         "publicationYear": 2003,
         "isbn": "978-0-14-026886-7",
+        "coverImage": "https://picsum.photos/200/300?random=109",
         "agents": [
             {
+                "id": 28,
                 "name": "Penguin Books",
                 "role": "editor"
             }
@@ -139,8 +160,10 @@
         "title": "Hamlet (The Arden Shakespeare Edition)",
         "publicationYear": 2006,
         "isbn": "978-1-903436-61-3",
+        "coverImage": "https://picsum.photos/200/300?random=110",
         "agents": [
             {
+                "id": 36,
                 "name": "Bloomsbury",
                 "role": "editor"
             }
@@ -152,8 +175,10 @@
         "title": "The Great Gatsby",
         "publicationYear": 2004,
         "isbn": "978-0-7432-7356-5",
+        "coverImage": "https://picsum.photos/200/300?random=111",
         "agents": [
             {
+                "id": 37,
                 "name": "Scribner",
                 "role": "editor"
             }
@@ -165,13 +190,16 @@
         "title": "La divina comedia (Edición ilustrada)",
         "publicationYear": 2018,
         "isbn": "978-84-9105-145-1",
+        "coverImage": "https://picsum.photos/200/300?random=112",
         "agents": [
             {
+                "id": 38,
                 "name": "Gustave Doré",
                 "role": "illustrator"
             },
             {
-                "name": "Alma Editorial",
+                "id": 32,
+                "name": "Alianza Editorial",
                 "role": "editor"
             }
         ]
@@ -182,8 +210,10 @@
         "title": "Ulises",
         "publicationYear": 2012,
         "isbn": "978-84-376-3034-2",
+        "coverImage": "https://picsum.photos/200/300?random=113",
         "agents": [
             {
+                "id": 27,
                 "name": "Cátedra",
                 "role": "editor"
             }
@@ -195,8 +225,10 @@
         "title": "En busca del tiempo perdido",
         "publicationYear": 2016,
         "isbn": "978-84-9104-121-6",
+        "coverImage": "https://picsum.photos/200/300?random=114",
         "agents": [
             {
+                "id": 32,
                 "name": "Alianza Editorial",
                 "role": "editor"
             }
@@ -208,8 +240,10 @@
         "title": "La Ilíada",
         "publicationYear": 2005,
         "isbn": "978-84-206-5784-5",
+        "coverImage": "https://picsum.photos/200/300?random=115",
         "agents": [
             {
+                "id": 32,
                 "name": "Alianza Editorial",
                 "role": "editor"
             }
@@ -221,8 +255,10 @@
         "title": "La metamorfosis",
         "publicationYear": 2010,
         "isbn": "978-84-204-1245-1",
+        "coverImage": "https://picsum.photos/200/300?random=116",
         "agents": [
             {
+                "id": 41,
                 "name": "Seix Barral",
                 "role": "editor"
             }
@@ -234,8 +270,10 @@
         "title": "Hamlet",
         "publicationYear": 1998,
         "isbn": "978-84-376-1585-4",
+        "coverImage": "https://picsum.photos/200/300?random=117",
         "agents": [
             {
+                "id": 27,
                 "name": "Cátedra",
                 "role": "editor"
             }
@@ -247,8 +285,10 @@
         "title": "El gran Gatsby",
         "publicationYear": 2015,
         "isbn": "978-84-03-56544-3",
+        "coverImage": "https://picsum.photos/200/300?random=118",
         "agents": [
             {
+                "id": 40,
                 "name": "Espasa-Calpe",
                 "role": "editor"
             }
@@ -257,15 +297,18 @@
     {
         "id": 20,
         "expressionId": 21,
-        "title": "La divina comedia (Edición ilustrada Doré)",
+        "title": "La divina comedia (Edición ilustrada)",
         "publicationYear": 2001,
         "isbn": "978-84-206-7862-0",
+        "coverImage": "https://picsum.photos/200/300?random=119",
         "agents": [
             {
+                "id": 38,
                 "name": "Gustave Doré",
                 "role": "illustrator"
             },
             {
+                "id": 39,
                 "name": "Alma Editorial",
                 "role": "editor"
             }
@@ -277,8 +320,10 @@
         "title": "Ulises",
         "publicationYear": 1990,
         "isbn": "978-84-03-57491-4",
+        "coverImage": "https://picsum.photos/200/300?random=120",
         "agents": [
             {
+                "id": 40,
                 "name": "Espasa-Calpe",
                 "role": "editor"
             }
@@ -290,8 +335,10 @@
         "title": "En busca del tiempo perdido",
         "publicationYear": 2003,
         "isbn": "978-84-376-1546-5",
+        "coverImage": "https://picsum.photos/200/300?random=121",
         "agents": [
             {
+                "id": 27,
                 "name": "Cátedra",
                 "role": "editor"
             }
@@ -303,8 +350,10 @@
         "title": "Die Verwandlung",
         "publicationYear": 1987,
         "isbn": "978-3-15-000001-5",
+        "coverImage": "https://picsum.photos/200/300?random=122",
         "agents": [
             {
+                "id": 42,
                 "name": "Reclam Verlag",
                 "role": "editor"
             }
@@ -316,8 +365,10 @@
         "title": "1984",
         "publicationYear": 2008,
         "isbn": "978-84-08-06841-8",
+        "coverImage": "https://picsum.photos/200/300?random=123",
         "agents": [
             {
+                "id": 43,
                 "name": "Planeta",
                 "role": "editor"
             }
@@ -329,8 +380,10 @@
         "title": "Orgullo y prejuicio",
         "publicationYear": 2012,
         "isbn": "978-84-272-1430-1",
+        "coverImage": "https://picsum.photos/200/300?random=124",
         "agents": [
             {
+                "id": 44,
                 "name": "Molino",
                 "role": "editor"
             }
@@ -342,8 +395,10 @@
         "title": "Madame Bovary",
         "publicationYear": 2005,
         "isbn": "978-84-264-1235-0",
+        "coverImage": "https://picsum.photos/200/300?random=125",
         "agents": [
             {
+                "id": 45,
                 "name": "Lumen",
                 "role": "editor"
             }
@@ -355,8 +410,10 @@
         "title": "The Odyssey (Edición Penguin Deluxe)",
         "publicationYear": 2010,
         "isbn": "978-0-14-026886-7",
+        "coverImage": "https://picsum.photos/200/300?random=126",
         "agents": [
             {
+                "id": 28,
                 "name": "Penguin Books",
                 "role": "editor"
             }
@@ -368,8 +425,10 @@
         "title": "The Great Gatsby",
         "publicationYear": 2001,
         "isbn": "978-0-679-73224-6",
+        "coverImage": "https://picsum.photos/200/300?random=127",
         "agents": [
             {
+                "id": 29,
                 "name": "Vintage",
                 "role": "editor"
             }
@@ -381,8 +440,10 @@
         "title": "La Divina Commedia",
         "publicationYear": 1990,
         "isbn": "978-88-04-25014-7",
+        "coverImage": "https://picsum.photos/200/300?random=128",
         "agents": [
             {
+                "id": 47,
                 "name": "Mondadori",
                 "role": "editor"
             }
@@ -394,8 +455,10 @@
         "title": "La Ilíada",
         "publicationYear": 2012,
         "isbn": "978-0-19-953636-8",
+        "coverImage": "https://picsum.photos/200/300?random=129",
         "agents": [
             {
+                "id": 31,
                 "name": "Oxford University Press",
                 "role": "editor"
             }
@@ -407,8 +470,10 @@
         "title": "Don Quijote de la Mancha",
         "publicationYear": 2006,
         "isbn": "978-84-376-0345-7",
+        "coverImage": "https://picsum.photos/200/300?random=130",
         "agents": [
             {
+                "id": 27,
                 "name": "Cátedra",
                 "role": "editor"
             }
@@ -420,8 +485,10 @@
         "title": "Don Quixote",
         "publicationYear": 2015,
         "isbn": "978-0-14-243723-0",
+        "coverImage": "https://picsum.photos/200/300?random=131",
         "agents": [
             {
+                "id": 28,
                 "name": "Penguin Books",
                 "role": "editor"
             }
@@ -433,8 +500,10 @@
         "title": "The Metamorphosis",
         "publicationYear": 1996,
         "isbn": "978-0-486-29250-6",
+        "coverImage": "https://picsum.photos/200/300?random=132",
         "agents": [
             {
+                "id": 46,
                 "name": "Dover Publications",
                 "role": "editor"
             }
@@ -446,9 +515,11 @@
         "title": "1984",
         "publicationYear": 1949,
         "isbn": "978-0-436-53956-6",
+        "coverImage": "https://picsum.photos/200/300?random=133",
         "agents": [
             {
-                "name": "Secker & Warburg",
+                "id": 42,
+                "name": "Reclam Verlag",
                 "role": "editor"
             }
         ]
@@ -459,8 +530,10 @@
         "title": "Pride and Prejudice",
         "publicationYear": 2008,
         "isbn": "978-0-19-953556-9",
+        "coverImage": "https://picsum.photos/200/300?random=134",
         "agents": [
             {
+                "id": 31,
                 "name": "Oxford University Press",
                 "role": "editor"
             }
@@ -472,8 +545,10 @@
         "title": "Moby-Dick",
         "publicationYear": 1992,
         "isbn": "978-0-486-29249-0",
+        "coverImage": "https://picsum.photos/200/300?random=135",
         "agents": [
             {
+                "id": 46,
                 "name": "Dover Publications",
                 "role": "editor"
             }
@@ -485,8 +560,10 @@
         "title": "Преступление и наказание",
         "publicationYear": 2002,
         "isbn": "978-5-17-024985-8",
+        "coverImage": "https://picsum.photos/200/300?random=136",
         "agents": [
             {
+                "id": 48,
                 "name": "AST",
                 "role": "editor"
             }
@@ -498,8 +575,10 @@
         "title": "Crime and Punishment",
         "publicationYear": 1993,
         "isbn": "978-0-679-72345-9",
+        "coverImage": "https://picsum.photos/200/300?random=137",
         "agents": [
             {
+                "id": 29,
                 "name": "Vintage",
                 "role": "editor"
             }
@@ -511,6 +590,7 @@
         "title": "Odysseia",
         "publicationYear": -750,
         "isbn": "978-960-04-1234-5",
+        "coverImage": "https://picsum.photos/200/300?random=138",
         "agents": []
     },
     {
@@ -519,8 +599,10 @@
         "title": "Hamlet",
         "publicationYear": 2003,
         "isbn": "978-0-14-101586-6",
+        "coverImage": "https://picsum.photos/200/300?random=139",
         "agents": [
             {
+                "id": 28,
                 "name": "Penguin Books",
                 "role": "editor"
             }
@@ -532,8 +614,10 @@
         "title": "À la recherche du temps perdu",
         "publicationYear": 2001,
         "isbn": "978-2-07-041311-3",
+        "coverImage": "https://picsum.photos/200/300?random=140",
         "agents": [
             {
+                "id": 35,
                 "name": "Gallimard",
                 "role": "editor"
             }
@@ -545,8 +629,10 @@
         "title": "Ulysses",
         "publicationYear": 1986,
         "isbn": "978-0-679-60022-6",
+        "coverImage": "https://picsum.photos/200/300?random=141",
         "agents": [
             {
+                "id": 29,
                 "name": "Vintage",
                 "role": "editor"
             }
@@ -558,12 +644,15 @@
         "title": "La Divina Commedia (Edizione illustrata)",
         "publicationYear": 2000,
         "isbn": "978-3-8228-2017-7",
+        "coverImage": "https://picsum.photos/200/300?random=142",
         "agents": [
             {
+                "id": 49,
                 "name": "Taschen",
                 "role": "editor"
             },
             {
+                "id": 38,
                 "name": "Gustave Doré",
                 "role": "illustrator"
             }
@@ -575,8 +664,10 @@
         "title": "La Ilíada",
         "publicationYear": 2008,
         "isbn": "978-84-460-2221-2",
+        "coverImage": "https://picsum.photos/200/300?random=143",
         "agents": [
             {
+                "id": 50,
                 "name": "Akal",
                 "role": "editor"
             }
@@ -588,8 +679,10 @@
         "title": "La metamorfosis",
         "publicationYear": 2015,
         "isbn": "978-84-204-2345-2",
+        "coverImage": "https://picsum.photos/200/300?random=144",
         "agents": [
             {
+                "id": 51,
                 "name": "Alfaguara",
                 "role": "editor"
             }
@@ -601,8 +694,10 @@
         "title": "La divina comedia",
         "publicationYear": 2005,
         "isbn": "978-84-03-56548-1",
+        "coverImage": "https://picsum.photos/200/300?random=145",
         "agents": [
             {
+                "id": 52,
                 "name": "Austral",
                 "role": "editor"
             }
@@ -614,8 +709,10 @@
         "title": "En busca del tiempo perdido",
         "publicationYear": 2010,
         "isbn": "978-84-339-7546-0",
+        "coverImage": "https://picsum.photos/200/300?random=146",
         "agents": [
             {
+                "id": 53,
                 "name": "Anagrama",
                 "role": "editor"
             }
@@ -627,8 +724,10 @@
         "title": "El gran Gatsby",
         "publicationYear": 2007,
         "isbn": "978-84-450-0142-3",
+        "coverImage": "https://picsum.photos/200/300?random=147",
         "agents": [
             {
+                "id": 54,
                 "name": "Minotauro",
                 "role": "editor"
             }
@@ -640,8 +739,10 @@
         "title": "Ulises",
         "publicationYear": 1995,
         "isbn": "978-84-376-1535-9",
+        "coverImage": "https://picsum.photos/200/300?random=148",
         "agents": [
             {
+                "id": 27,
                 "name": "Cátedra",
                 "role": "editor"
             }
@@ -653,9 +754,101 @@
         "title": "Madame Bovary",
         "publicationYear": 2012,
         "isbn": "978-84-08-12345-6",
+        "coverImage": "https://picsum.photos/200/300?random=149",
         "agents": [
             {
+                "id": 55,
                 "name": "Biblioteca Oro",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 51,
+        "expressionId": 28,
+        "title": "Do Androids Dream of Electric Sheep?",
+        "publicationYear": 1996,
+        "isbn": "978-0-425-15917-1",
+        "coverImage": "https://picsum.photos/200/300?random=150",
+        "agents": [
+            {
+                "id": 28,
+                "name": "Penguin Books",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "expressionId": 29,
+        "title": "¿Sueñan los androides con ovejas eléctricas?",
+        "publicationYear": 2005,
+        "isbn": "978-84-450-0345-7",
+        "coverImage": "https://picsum.photos/200/300?random=151",
+        "agents": [
+            {
+                "id": 54,
+                "name": "Minotauro",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "expressionId": 30,
+        "title": "Ubik",
+        "publicationYear": 1985,
+        "isbn": "978-0-575-03106-6",
+        "coverImage": "https://picsum.photos/200/300?random=152",
+        "agents": [
+            {
+                "id": 28,
+                "name": "Penguin Books",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 54,
+        "expressionId": 31,
+        "title": "Ubik",
+        "publicationYear": 2002,
+        "isbn": "978-84-450-0512-3",
+        "coverImage": "https://picsum.photos/200/300?random=153",
+        "agents": [
+            {
+                "id": 54,
+                "name": "Minotauro",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 55,
+        "expressionId": 32,
+        "title": "A Scanner Darkly",
+        "publicationYear": 1980,
+        "isbn": "978-0-385-17537-1",
+        "coverImage": "https://picsum.photos/200/300?random=154",
+        "agents": [
+            {
+                "id": 28,
+                "name": "Penguin Books",
+                "role": "editor"
+            }
+        ]
+    },
+    {
+        "id": 56,
+        "expressionId": 33,
+        "title": "Un oscuro visor",
+        "publicationYear": 2004,
+        "isbn": "978-84-450-0652-6",
+        "coverImage": "https://picsum.photos/200/300?random=155",
+        "agents": [
+            {
+                "id": 54,
+                "name": "Minotauro",
                 "role": "editor"
             }
         ]
