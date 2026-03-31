@@ -141,6 +141,7 @@
         "language": "ENG",
         "agents": [
             {
+                "id": 19,
                 "name": "Robert Fagles",
                 "role": "translator"
             }
@@ -154,6 +155,7 @@
         "language": "ENG",
         "agents": [
             {
+                "id": 19,
                 "name": "Robert Fagles",
                 "role": "translator"
             }
