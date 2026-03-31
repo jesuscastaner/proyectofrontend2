@@ -18,10 +18,10 @@ import net.unir.proyectofrontend2.data.repository.ExpressionRepository
 import net.unir.proyectofrontend2.data.repository.ManifestationRepository
 import net.unir.proyectofrontend2.data.repository.WorkRepository
 
-class ManifestationDetailsViewModel(
-    private val manifestationRepository: ManifestationRepository,
+class ExpressionDetailsViewModel(
     private val expressionRepository: ExpressionRepository,
     private val workRepository: WorkRepository,
+    private val manifestationRepository: ManifestationRepository,
 ) : ViewModel() {
     private val id = MutableStateFlow<Long?>(null)
 
@@ -31,20 +31,9 @@ class ManifestationDetailsViewModel(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
-    val manifestation: StateFlow<Manifestation?> = id.flatMapLatest {
+    val expression: StateFlow<Expression?> = id.flatMapLatest {
         it ?: return@flatMapLatest flowOf(null)
-        manifestationRepository.getManifestationById(it)
-    }.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(5000),
-        null
-    )
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @NativeCoroutinesState
-    val expression: StateFlow<Expression?> = manifestation.flatMapLatest {
-        it?.expressionId ?: return@flatMapLatest flowOf(null)
-        expressionRepository.getExpressionById(it.expressionId)
+        expressionRepository.getExpressionById(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
@@ -65,18 +54,26 @@ class ManifestationDetailsViewModel(
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
     val agents: StateFlow<List<PaticipantAgent>> = combine(
-        manifestation,
         expression,
         work
-    ) { manifestation, expression, work ->
-        val manifestationAgents = manifestation?.agents ?: emptyList()
+    ) { expression, work ->
         val expressionAgents = expression?.agents ?: emptyList()
         val workAgents = work?.agents ?: emptyList()
-        manifestationAgents + expressionAgents + workAgents
+        expressionAgents + workAgents
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        emptyList()
+    )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @NativeCoroutinesState
+    val manifestations: StateFlow<List<Manifestation>> = id.flatMapLatest {
+        it ?: return@flatMapLatest flowOf(emptyList())
+        manifestationRepository.getManifestationsByExpressionId(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
         emptyList()
     )
 }
-

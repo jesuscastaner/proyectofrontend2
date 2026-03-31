@@ -9,11 +9,14 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
-import net.unir.proyectofrontend2.data.model.Post
-import net.unir.proyectofrontend2.data.repository.PostRepository
+import net.unir.proyectofrontend2.data.model.Expression
+import net.unir.proyectofrontend2.data.model.Work
+import net.unir.proyectofrontend2.data.repository.ExpressionRepository
+import net.unir.proyectofrontend2.data.repository.WorkRepository
 
-class PostDetailsViewModel(
-    private val postRepository: PostRepository
+class WorkDetailsViewModel(
+    private val workRepository: WorkRepository,
+    private val expressionRepository: ExpressionRepository,
 ) : ViewModel() {
     private val id = MutableStateFlow<Long?>(null)
 
@@ -23,9 +26,9 @@ class PostDetailsViewModel(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
-    val post: StateFlow<Post?> = id.flatMapLatest {
+    val work: StateFlow<Work?> = id.flatMapLatest {
         it ?: return@flatMapLatest flowOf(null)
-        postRepository.getPostById(it)
+        workRepository.getWorkById(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
@@ -34,20 +37,9 @@ class PostDetailsViewModel(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
-    val repost: StateFlow<Post?> = post.flatMapLatest {
-        it?.repostOfId ?: return@flatMapLatest flowOf(null)
-        postRepository.getPostById(it.repostOfId)
-    }.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(5000),
-        null
-    )
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @NativeCoroutinesState
-    val replies: StateFlow<List<Post>> = id.flatMapLatest {
+    val expressions: StateFlow<List<Expression>> = id.flatMapLatest {
         it ?: return@flatMapLatest flowOf(emptyList())
-        postRepository.getPostRepliesById(it)
+        expressionRepository.getExpressionsByWorkId(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),

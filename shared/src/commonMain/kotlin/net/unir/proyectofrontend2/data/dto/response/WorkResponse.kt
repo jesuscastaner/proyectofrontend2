@@ -1,11 +1,11 @@
-package net.unir.proyectofrontend2.data.model
+package net.unir.proyectofrontend2.data.dto.response
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Work(
+data class WorkResponse(
     val id: Long,
     val title: String,
     val publicationYear: Short?,
-    val agents: List<PaticipantAgent> = emptyList()
+    val agents: List<PaticipantAgentResponse> = emptyList()
 )

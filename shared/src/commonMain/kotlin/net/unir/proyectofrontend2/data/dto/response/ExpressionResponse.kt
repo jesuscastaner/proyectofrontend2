@@ -1,13 +1,13 @@
-package net.unir.proyectofrontend2.data.model
+package net.unir.proyectofrontend2.data.dto.response
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Expression(
+data class ExpressionResponse(
     val id: Long,
     val workId: Long,
     val title: String,
     val publicationYear: Short?,
     val language: String?,
-    val agents: List<PaticipantAgent> = emptyList()
+    val agents: List<PaticipantAgentResponse> = emptyList()
 )

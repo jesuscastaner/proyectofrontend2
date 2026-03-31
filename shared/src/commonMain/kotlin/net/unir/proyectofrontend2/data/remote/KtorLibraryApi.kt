@@ -3,6 +3,7 @@ package net.unir.proyectofrontend2.data.remote
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import net.unir.proyectofrontend2.data.dto.response.ManifestationResponse
 import net.unir.proyectofrontend2.data.model.Agent
 import net.unir.proyectofrontend2.data.model.Expression
 import net.unir.proyectofrontend2.data.model.Manifestation
@@ -34,6 +35,7 @@ class KtorLibraryApi(
         emptyList()
     }
 
+        // ManifestationResponse
     override suspend fun getManifestations(): List<Manifestation> = try {
         client.get("$BASE_URL/manifestations.json").body()
     } catch (e: Exception) {

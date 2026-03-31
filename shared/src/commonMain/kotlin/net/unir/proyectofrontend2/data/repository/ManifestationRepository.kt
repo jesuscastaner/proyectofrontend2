@@ -3,6 +3,7 @@ package net.unir.proyectofrontend2.data.repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import net.unir.proyectofrontend2.data.local.ManifestationStorage
 import net.unir.proyectofrontend2.data.model.Manifestation
@@ -28,4 +29,18 @@ class ManifestationRepository(
 
     fun getManifestationById(id: Long): Flow<Manifestation?> =
         manifestationStorage.getManifestationById(id)
+
+    fun getManifestationsByExpressionId(expressionId: Long): Flow<List<Manifestation>> =
+        manifestationStorage.getManifestations().map {
+            it.filter { manifestation ->
+                manifestation.expressionId == expressionId
+            }
+        }
+
+//    fun getManifestationsByWorkId(workId: Long): Flow<List<Manifestation>> =
+//        manifestationStorage.getManifestations().map {
+//            it.filter { manifestation ->
+//                manifestation.workId == workId
+//            }
+//        }
 }

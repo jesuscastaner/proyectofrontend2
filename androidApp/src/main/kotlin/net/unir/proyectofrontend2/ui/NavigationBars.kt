@@ -153,6 +153,7 @@ fun NavigationBars(
                     navigateToManifestationDetails = { id ->
                         navController.navigate(ManifestationDetailsDestination(id))
                     },
+                    navigateToAgentDetails = {},
                 )
             }
 
@@ -161,6 +162,11 @@ fun NavigationBars(
 
                 ManifestationDetailsScreen(
                     id = args.id,
+                    navigateToAgentDetails = { id ->
+                        navController.navigate(AgentDetailsDestination(id))
+                    },
+                    navigateToExpressionDetails = {},
+                    navigateToWorkDetails = {},
                 )
             }
 
@@ -185,3 +191,13 @@ object ManifestationsFeedDestination : Destination
 
 @Serializable
 data class ManifestationDetailsDestination(val id: Long) : Destination
+
+
+@Serializable
+data class ExpressionDetailsDestination(val id: Long) : Destination
+
+@Serializable
+data class WorkDetailsDestination(val id: Long) : Destination
+
+@Serializable
+data class AgentDetailsDestination(val id: Long) : Destination

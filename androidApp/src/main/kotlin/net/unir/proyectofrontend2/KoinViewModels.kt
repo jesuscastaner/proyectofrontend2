@@ -2,14 +2,16 @@ package net.unir.proyectofrontend2
 
 import android.app.Application
 import net.unir.proyectofrontend2.di.initKoin
+import net.unir.proyectofrontend2.presentation.viewmodel.ExpressionDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationsFeedViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.PostsFeedViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.UserProfileViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.WorkDetailsViewModel
 import org.koin.dsl.module
 
-class PostApp : Application() {
+class KoinViewModels : Application() {
     override fun onCreate() {
         super.onCreate()
         initKoin(
@@ -38,7 +40,22 @@ class PostApp : Application() {
                     }
                     factory {
                         ManifestationDetailsViewModel(
-                            manifestationRepository = get()
+                            manifestationRepository = get(),
+                            expressionRepository = get(),
+                            workRepository = get(),
+                        )
+                    }
+                    factory {
+                        ExpressionDetailsViewModel(
+                            expressionRepository = get(),
+                            workRepository = get(),
+                            manifestationRepository = get(),
+                        )
+                    }
+                    factory {
+                        WorkDetailsViewModel(
+                            expressionRepository = get(),
+                            workRepository = get(),
                         )
                     }
                 }

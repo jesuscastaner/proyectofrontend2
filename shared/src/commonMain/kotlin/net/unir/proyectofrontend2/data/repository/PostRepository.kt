@@ -29,11 +29,15 @@ class PostRepository(
 
     fun getPostById(id: Long): Flow<Post?> = postStorage.getPostById(id)
 
-    fun getPostsByUserId(userId: Long): Flow<List<Post>> = postStorage.getPosts().map { posts ->
-        posts.filter { it.userId == userId }
+    fun getPostsByUserId(userId: Long): Flow<List<Post>> = postStorage.getPosts().map {
+        it.filter { post ->
+            post.userId == userId
+        }
     }
 
-    fun getPostRepliesById(id: Long): Flow<List<Post>> = postStorage.getPosts().map { posts ->
-        posts.filter { it.replyToId == id }
+    fun getPostRepliesById(replyToId: Long): Flow<List<Post>> = postStorage.getPosts().map {
+        it.filter { post ->
+            post.replyToId == replyToId
+        }
     }
 }

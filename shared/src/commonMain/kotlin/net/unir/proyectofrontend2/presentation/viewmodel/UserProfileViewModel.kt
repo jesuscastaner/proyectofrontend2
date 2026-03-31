@@ -21,6 +21,10 @@ class UserProfileViewModel(
 ) : ViewModel() {
     private val id = MutableStateFlow<Long?>(null)
 
+    fun setId(id: Long) {
+        this.id.value = id
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
     val user: StateFlow<User?> = id.flatMapLatest {
@@ -34,9 +38,9 @@ class UserProfileViewModel(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
-    val posts: StateFlow<List<Post>> = id.flatMapLatest { userId ->
-        userId ?: return@flatMapLatest flowOf(emptyList())
-        postRepository.getPostsByUserId(userId)
+    val posts: StateFlow<List<Post>> = id.flatMapLatest {
+        it ?: return@flatMapLatest flowOf(emptyList())
+        postRepository.getPostsByUserId(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
@@ -66,8 +70,4 @@ class UserProfileViewModel(
         SharingStarted.WhileSubscribed(5000),
         emptyMap()
     )
-
-    fun setId(id: Long) {
-        this.id.value = id
-    }
 }

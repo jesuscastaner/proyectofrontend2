@@ -5,7 +5,9 @@ import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.stateIn
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import net.unir.proyectofrontend2.data.model.Manifestation
+import net.unir.proyectofrontend2.data.model.PaticipantAgent
 import net.unir.proyectofrontend2.data.repository.ManifestationRepository
 
 class ManifestationsFeedViewModel(
@@ -19,4 +21,15 @@ class ManifestationsFeedViewModel(
                 SharingStarted.WhileSubscribed(5000),
                 emptyList()
             )
+
+    @NativeCoroutinesState
+    val agentsMap: StateFlow<Map<Long, List<PaticipantAgent>>> = manifestations.map {
+        it.associate { manifestation ->
+            manifestation.id to manifestation.agents
+        }
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        emptyMap()
+    )
 }
