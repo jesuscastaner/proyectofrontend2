@@ -973,5 +973,18 @@
         "isVisible": true,
         "createdAt": "2026-03-28T10:40:00Z",
         "updatedAt": "2026-03-28T10:40:00Z"
+    },
+    {
+        "id": 76,
+        "userId": 11,
+        "userDisplayName": "Emilio Quechen",
+        "userUsername": "equechen",
+        "userProfilePic": "https://picsum.photos/200/300?random=3",
+        "content": "Hoy he estado revisando código antiguo y me sorprende lo mucho que cambia la forma en la que pensamos soluciones con el tiempo.",
+        "replyToId": null,
+        "repostOfId": null,
+        "isVisible": true,
+        "createdAt": "2026-03-28T10:00:00Z",
+        "updatedAt": "2026-03-28T10:00:00Z"
     }
 ]

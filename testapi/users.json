@@ -118,5 +118,17 @@
         "isSuspended": true,
         "createdAt": "2024-05-01T11:45:00Z",
         "updatedAt": "2025-03-15T13:10:00Z"
+    },
+    {
+        "id": 11,
+        "displayName": "Emilio Quechen",
+        "username": "equechen",
+        "profilePic": "https://picsum.photos/200/300?random=11",
+        "bio": "Creador de contenido y blogger.",
+        "website": "https://equechen.blog",
+        "isVerified": true,
+        "isSuspended": true,
+        "createdAt": "2024-05-01T11:45:00Z",
+        "updatedAt": "2025-03-15T13:10:00Z"
     }
 ]
