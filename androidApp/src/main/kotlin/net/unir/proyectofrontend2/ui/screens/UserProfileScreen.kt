@@ -4,37 +4,26 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import net.unir.proyectofrontend2.R
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.data.model.User
 import net.unir.proyectofrontend2.presentation.viewmodel.UserProfileViewModel
@@ -48,7 +37,6 @@ import org.koin.compose.viewmodel.koinViewModel
 fun UserProfileScreen(
     id: Long,
     navigateToPostDetails: (id: Long) -> Unit,
-    navigateBack: () -> Unit,
 ) {
     val viewModel: UserProfileViewModel = koinViewModel()
     val user by viewModel.user.collectAsStateWithLifecycle()
@@ -68,7 +56,6 @@ fun UserProfileScreen(
                 repostsMap = repostsMap,
                 repliesCountMap = repliesCountMap,
                 onPostClick = navigateToPostDetails,
-                onBackClick = navigateBack,
             )
         } else {
             EmptyScreenContent(modifier = Modifier.fillMaxSize())
@@ -85,61 +72,42 @@ private fun UserProfile(
     repliesCountMap: Map<Long, Int>,
     modifier: Modifier = Modifier,
     onPostClick: (id: Long) -> Unit,
-    onBackClick: () -> Unit,
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("${user.displayName} (@${user.username})") },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.back)
-                        )
-                    }
-                }
-            )
-        },
-        modifier = modifier.windowInsetsPadding(WindowInsets.systemBars),
-    ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(16.dp),
-        ) {
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
+    ) {
+        item {
+            UserProfileHeader(user = user)
+        }
+        if (posts.isNotEmpty()) {
             item {
-                UserProfileHeader(user = user)
+                Text(
+                    "Posts",
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                )
+                Spacer(modifier = Modifier.height(24.dp))
             }
-            if (posts.isNotEmpty()) {
-                item {
-                    Text(
-                        "Posts",
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold,
-                    )
-                    Spacer(modifier = Modifier.height(24.dp))
-                }
-                items(posts, key = { it.id }) { post ->
-                    PostFrame(
-                        post = post,
-                        repost = repostsMap[post.id],
-                        repliesCount = repliesCountMap[post.id] ?: 0,
-                        onClick = { onPostClick(post.id) },
-                        onUserClick = {},
-                        onReplyToClick = onPostClick,
-                    )
-                    HorizontalDivider(
-                        modifier = Modifier.padding(vertical = 24.dp),
-                        thickness = 0.5.dp,
-                        color = MaterialTheme.colorScheme.outlineVariant
-                    )
-                }
-            } else {
-                item {
-                    EmptyScreenContent(modifier = Modifier.fillMaxSize())
-                }
+            items(posts, key = { it.id }) { post ->
+                PostFrame(
+                    post = post,
+                    repost = repostsMap[post.id],
+                    repliesCount = repliesCountMap[post.id] ?: 0,
+                    onClick = { onPostClick(post.id) },
+                    onUserClick = {},
+                    onReplyToClick = onPostClick,
+                )
+                HorizontalDivider(
+                    modifier = Modifier.padding(vertical = 24.dp),
+                    thickness = 0.5.dp,
+                    color = MaterialTheme.colorScheme.outlineVariant
+                )
+            }
+        } else {
+            item {
+                EmptyScreenContent(modifier = Modifier.fillMaxSize())
             }
         }
     }
