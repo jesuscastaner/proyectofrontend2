@@ -23,29 +23,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import net.unir.proyectofrontend2.data.model.Manifestation
+import net.unir.proyectofrontend2.data.model.Expression
 import net.unir.proyectofrontend2.data.model.PaticipantAgent
-import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationsFeedViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.ExpressionsFeedViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun ManifestationsFeedScreen(
-    navigateToManifestationDetails: (id: Long) -> Unit,
+fun ExpressionsFeedScreen(
+    navigateToExpressionDetails: (id: Long) -> Unit,
     navigateToAgentDetails: (id: Long) -> Unit,
 ) {
-    val viewModel: ManifestationsFeedViewModel = koinViewModel()
-    val manifestations by viewModel.manifestations.collectAsStateWithLifecycle()
-    val languagesMap by viewModel.languagesMap.collectAsStateWithLifecycle()
+    val viewModel: ExpressionsFeedViewModel = koinViewModel()
+    val expressions by viewModel.expressions.collectAsStateWithLifecycle()
     val authorsMap by viewModel.authorsMap.collectAsStateWithLifecycle()
 
-    AnimatedContent(manifestations.isNotEmpty()) { manifestationsAvailable ->
-        if (manifestationsAvailable) {
-            ManifestationsFeed(
-                manifestations = manifestations,
-                languagesMap = languagesMap,
+    AnimatedContent(expressions.isNotEmpty()) { expressionsAvailable ->
+        if (expressionsAvailable) {
+            ExpressionsFeed(
+                expressions = expressions,
                 authorsMap = authorsMap,
-                onManifestationClick = navigateToManifestationDetails,
+                onExpressionClick = navigateToExpressionDetails,
                 onAgentClick = navigateToAgentDetails,
             )
         } else {
@@ -55,12 +53,11 @@ fun ManifestationsFeedScreen(
 }
 
 @Composable
-private fun ManifestationsFeed(
-    manifestations: List<Manifestation>,
+private fun ExpressionsFeed(
+    expressions: List<Expression>,
     modifier: Modifier = Modifier,
-    languagesMap: Map<Long, String?> = emptyMap(),
     authorsMap: Map<Long, List<PaticipantAgent>> = emptyMap(),
-    onManifestationClick: (id: Long) -> Unit,
+    onExpressionClick: (id: Long) -> Unit,
     onAgentClick: (id: Long) -> Unit,
 ) {
     LazyVerticalGrid(
@@ -69,12 +66,11 @@ private fun ManifestationsFeed(
             .fillMaxSize()
             .padding(horizontal = 16.dp),
     ) {
-        items(manifestations, key = { it.id }) { manifestation ->
-            ManifestationCard(
-                manifestation = manifestation,
-                language = languagesMap[manifestation.id],
-                authors = authorsMap[manifestation.id] ?: emptyList(),
-                onClick = onManifestationClick,
+        items(expressions, key = { it.id }) { expression ->
+            ExpressionCard(
+                expression = expression,
+                authors = authorsMap[expression.id] ?: emptyList(),
+                onClick = onExpressionClick,
                 onAgentClick = onAgentClick,
             )
         }
@@ -82,37 +78,29 @@ private fun ManifestationsFeed(
 }
 
 @Composable
-private fun ManifestationCard(
-    manifestation: Manifestation,
-    language: String?,
+private fun ExpressionCard(
+    expression: Expression,
     authors: List<PaticipantAgent>,
     onClick: (id: Long) -> Unit,
     onAgentClick: (id: Long) -> Unit,
 ) {
-    val editors = manifestation.agents.filter {
-        it.role.equals("editor", ignoreCase = true)
+    val translators = expression.agents.filter {
+        it.role.equals("translator", ignoreCase = true)
     }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(4.dp)
-            .clickable { onClick(manifestation.id) }) {
+            .clickable { onClick(expression.id) }) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
-            AsyncImage(
-                model = manifestation.coverImage,
-                contentDescription = "${manifestation.title} cover image",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f),
-            )
             Spacer(modifier = Modifier.height(6.dp))
             Text(
-                manifestation.title,
+                expression.title,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold
             )
@@ -125,24 +113,25 @@ private fun ManifestationCard(
                     )
                 }
             }
-            if (editors.isNotEmpty()) {
-                editors.forEach {
+            expression.language?.let {
+                Text(
+                    expression.language.toString(),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+            if (translators.isNotEmpty()) {
+                translators.forEach {
                     Text(
                         it.name,
-                        style = MaterialTheme.typography.bodySmall,
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
                         modifier = Modifier.clickable { onAgentClick(it.id) }
                     )
                 }
             }
-            manifestation.publicationYear?.let {
+            expression.publicationYear?.let {
                 Text(
                     it.toString(),
-                    style = MaterialTheme.typography.bodySmall
-                )
-            }
-            language?.let {
-                Text(
-                    language,
                     style = MaterialTheme.typography.bodySmall
                 )
             }

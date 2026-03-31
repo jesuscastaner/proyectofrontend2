@@ -27,6 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
+import net.unir.proyectofrontend2.ui.screens.ExpressionsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.ManifestationDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.ManifestationsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.PostDetailsScreen
@@ -43,12 +44,13 @@ fun NavigationBars(
 ) {
     val navController = rememberNavController()
 
-    val startDestination = PostsFeedDestination
     val bottomBarTabs = listOf(
-        startDestination,
+        PostsFeedDestination,
         ManifestationsFeedDestination,
+        ExpressionsFeedDestination,
         WorksFeedDestination,
     )
+    val startDestination = bottomBarTabs[1]
     var selectedBottomBarTab by rememberSaveable {
         mutableIntStateOf(bottomBarTabs.indexOf(startDestination))
     }
@@ -84,7 +86,7 @@ fun NavigationBars(
                     },
                     text = {
                         Text(
-                            "Posts",
+                            "P",
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -98,7 +100,7 @@ fun NavigationBars(
                     },
                     text = {
                         Text(
-                            "Manifestations",
+                            "M",
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -107,12 +109,26 @@ fun NavigationBars(
                 Tab(
                     selected = selectedBottomBarTab == 2,
                     onClick = {
-                        navController.navigate(WorksFeedDestination)
+                        navController.navigate(ExpressionsFeedDestination)
                         selectedBottomBarTab = 2
                     },
                     text = {
                         Text(
-                            "Works",
+                            "E",
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                )
+                Tab(
+                    selected = selectedBottomBarTab == 3,
+                    onClick = {
+                        navController.navigate(WorksFeedDestination)
+                        selectedBottomBarTab = 3
+                    },
+                    text = {
+                        Text(
+                            "W",
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -139,10 +155,8 @@ fun NavigationBars(
                     },
                 )
             }
-
             composable<PostDetailsDestination> { backStackEntry ->
                 val args = backStackEntry.toRoute<PostDetailsDestination>()
-
                 PostDetailsScreen(
                     id = args.id,
                     navigateToPostDetails = { id ->
@@ -153,10 +167,8 @@ fun NavigationBars(
                     },
                 )
             }
-
             composable<UserProfileDestination> { backStackEntry ->
                 val args = backStackEntry.toRoute<UserProfileDestination>()
-
                 UserProfileScreen(
                     id = args.id,
                     navigateToPostDetails = { postId ->
@@ -164,7 +176,6 @@ fun NavigationBars(
                     },
                 )
             }
-
             composable<ManifestationsFeedDestination> {
                 ManifestationsFeedScreen(
                     navigateToManifestationDetails = { id ->
@@ -173,10 +184,8 @@ fun NavigationBars(
                     navigateToAgentDetails = {},
                 )
             }
-
             composable<ManifestationDetailsDestination> { backStackEntry ->
                 val args = backStackEntry.toRoute<ManifestationDetailsDestination>()
-
                 ManifestationDetailsScreen(
                     id = args.id,
                     navigateToAgentDetails = { id ->
@@ -186,7 +195,14 @@ fun NavigationBars(
                     navigateToWorkDetails = {},
                 )
             }
-
+            composable<ExpressionsFeedDestination> {
+                ExpressionsFeedScreen(
+                    navigateToExpressionDetails = { id ->
+                        navController.navigate(ExpressionDetailsDestination(id))
+                    },
+                    navigateToAgentDetails = {},
+                )
+            }
             composable<WorksFeedDestination> {
                 WorksFeedScreen(
                     navigateToWorkDetails = { id ->
@@ -195,10 +211,8 @@ fun NavigationBars(
                     navigateToAgentDetails = {},
                 )
             }
-
             composable<WorkDetailsDestination> { backStackEntry ->
                 val args = backStackEntry.toRoute<ManifestationDetailsDestination>()
-
                 WorkDetailsScreen(
                     id = args.id,
                     navigateToAgentDetails = { id ->
@@ -227,6 +241,8 @@ object ManifestationsFeedDestination : Destination
 @Serializable
 data class ManifestationDetailsDestination(val id: Long) : Destination
 
+@Serializable
+object ExpressionsFeedDestination : Destination
 
 @Serializable
 data class ExpressionDetailsDestination(val id: Long) : Destination
