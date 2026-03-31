@@ -32,6 +32,8 @@ import net.unir.proyectofrontend2.ui.screens.ManifestationsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.PostDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.PostsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.UserProfileScreen
+import net.unir.proyectofrontend2.ui.screens.WorkDetailsScreen
+import net.unir.proyectofrontend2.ui.screens.WorksFeedScreen
 
 // TODO: refactorizar esta basura ilegible
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,7 +46,8 @@ fun NavigationBars(
     val startDestination = PostsFeedDestination
     val bottomBarTabs = listOf(
         startDestination,
-        ManifestationsFeedDestination
+        ManifestationsFeedDestination,
+        WorksFeedDestination,
     )
     var selectedBottomBarTab by rememberSaveable {
         mutableIntStateOf(bottomBarTabs.indexOf(startDestination))
@@ -96,6 +99,20 @@ fun NavigationBars(
                     text = {
                         Text(
                             "Manifestations",
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                )
+                Tab(
+                    selected = selectedBottomBarTab == 2,
+                    onClick = {
+                        navController.navigate(WorksFeedDestination)
+                        selectedBottomBarTab = 2
+                    },
+                    text = {
+                        Text(
+                            "Works",
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -170,7 +187,25 @@ fun NavigationBars(
                 )
             }
 
+            composable<WorksFeedDestination> {
+                WorksFeedScreen(
+                    navigateToWorkDetails = { id ->
+                        navController.navigate(WorkDetailsDestination(id))
+                    },
+                    navigateToAgentDetails = {},
+                )
+            }
 
+            composable<WorkDetailsDestination> { backStackEntry ->
+                val args = backStackEntry.toRoute<ManifestationDetailsDestination>()
+
+                WorkDetailsScreen(
+                    id = args.id,
+                    navigateToAgentDetails = { id ->
+                        navController.navigate(AgentDetailsDestination(id))
+                    },
+                )
+            }
         }
     }
 }
@@ -195,6 +230,9 @@ data class ManifestationDetailsDestination(val id: Long) : Destination
 
 @Serializable
 data class ExpressionDetailsDestination(val id: Long) : Destination
+
+@Serializable
+object WorksFeedDestination : Destination
 
 @Serializable
 data class WorkDetailsDestination(val id: Long) : Destination

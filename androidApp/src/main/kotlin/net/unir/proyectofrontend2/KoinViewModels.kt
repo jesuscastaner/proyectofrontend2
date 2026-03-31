@@ -9,6 +9,7 @@ import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.PostsFeedViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.UserProfileViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.WorkDetailsViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.WorksFeedViewModel
 import org.koin.dsl.module
 
 class KoinViewModels : Application() {
@@ -35,7 +36,9 @@ class KoinViewModels : Application() {
                     }
                     factory {
                         ManifestationsFeedViewModel(
-                            manifestationRepository = get()
+                            manifestationRepository = get(),
+                            expressionRepository = get(),
+                            workRepository = get(),
                         )
                     }
                     factory {
@@ -50,6 +53,11 @@ class KoinViewModels : Application() {
                             expressionRepository = get(),
                             workRepository = get(),
                             manifestationRepository = get(),
+                        )
+                    }
+                    factory {
+                        WorksFeedViewModel(
+                            workRepository = get(),
                         )
                     }
                     factory {

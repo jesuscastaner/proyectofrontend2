@@ -23,29 +23,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import net.unir.proyectofrontend2.data.model.Manifestation
-import net.unir.proyectofrontend2.data.model.PaticipantAgent
-import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationsFeedViewModel
+import net.unir.proyectofrontend2.data.model.Work
+import net.unir.proyectofrontend2.presentation.viewmodel.WorksFeedViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun ManifestationsFeedScreen(
-    navigateToManifestationDetails: (id: Long) -> Unit,
+fun WorksFeedScreen(
+    navigateToWorkDetails: (id: Long) -> Unit,
     navigateToAgentDetails: (id: Long) -> Unit,
 ) {
-    val viewModel: ManifestationsFeedViewModel = koinViewModel()
-    val manifestations by viewModel.manifestations.collectAsStateWithLifecycle()
-    val languagesMap by viewModel.languagesMap.collectAsStateWithLifecycle()
-    val authorsMap by viewModel.authorsMap.collectAsStateWithLifecycle()
+    val viewModel: WorksFeedViewModel = koinViewModel()
+    val works by viewModel.works.collectAsStateWithLifecycle()
 
-    AnimatedContent(manifestations.isNotEmpty() && languagesMap.isNotEmpty()) { manifestationsAvailable ->
-        if (manifestationsAvailable) {
-            ManifestationsFeed(
-                manifestations = manifestations,
-                languagesMap = languagesMap,
-                authorsMap = authorsMap,
-                onManifestationClick = navigateToManifestationDetails,
+    AnimatedContent(works.isNotEmpty()) { worksAvailable ->
+        if (worksAvailable) {
+            WorksFeed(
+                works = works,
+                onWorkClick = navigateToWorkDetails,
                 onAgentClick = navigateToAgentDetails,
             )
         } else {
@@ -55,12 +50,10 @@ fun ManifestationsFeedScreen(
 }
 
 @Composable
-private fun ManifestationsFeed(
-    manifestations: List<Manifestation>,
+private fun WorksFeed(
+    works: List<Work>,
     modifier: Modifier = Modifier,
-    languagesMap: Map<Long, String?> = emptyMap(),
-    authorsMap: Map<Long, List<PaticipantAgent>> = emptyMap(),
-    onManifestationClick: (id: Long) -> Unit,
+    onWorkClick: (id: Long) -> Unit,
     onAgentClick: (id: Long) -> Unit,
 ) {
     LazyVerticalGrid(
@@ -69,12 +62,10 @@ private fun ManifestationsFeed(
             .fillMaxSize()
             .padding(horizontal = 16.dp),
     ) {
-        items(manifestations, key = { it.id }) { manifestation ->
-            ManifestationCard(
-                manifestation = manifestation,
-                language = languagesMap[manifestation.id],
-                authors = authorsMap[manifestation.id] ?: emptyList(),
-                onClick = onManifestationClick,
+        items(works, key = { it.id }) { work ->
+            WorkCard(
+                work = work,
+                onClick = onWorkClick,
                 onAgentClick = onAgentClick,
             )
         }
@@ -82,30 +73,28 @@ private fun ManifestationsFeed(
 }
 
 @Composable
-private fun ManifestationCard(
-    manifestation: Manifestation,
-    language: String? = "N/A LANG",
-    authors: List<PaticipantAgent>,
+private fun WorkCard(
+    work: Work,
     onClick: (id: Long) -> Unit,
     onAgentClick: (id: Long) -> Unit,
 ) {
-    val editors = manifestation.agents.filter {
-        it.role.equals("editor", ignoreCase = true)
+    val authors = work.agents.filter {
+        it.role.equals("author", ignoreCase = true)
     }
-    print(authors)
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(4.dp)
-            .clickable { onClick(manifestation.id) }) {
+            .clickable { onClick(work.id) }) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
             AsyncImage(
-                model = manifestation.coverImage,
-                contentDescription = "${manifestation.title} cover image",
+                model = "https://picsum.photos/200/300?random=1",
+                contentDescription = work.title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -113,7 +102,7 @@ private fun ManifestationCard(
             )
             Spacer(modifier = Modifier.height(6.dp))
             Text(
-                manifestation.title,
+                work.title,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold
             )
@@ -126,24 +115,9 @@ private fun ManifestationCard(
                     )
                 }
             }
-            if (editors.isNotEmpty()) {
-                editors.forEach {
-                    Text(
-                        text = it.name,
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.clickable { onAgentClick(it.id) }
-                    )
-                }
-            }
-            manifestation.publicationYear?.let {
+            work.publicationYear?.let {
                 Text(
                     it.toString(),
-                    style = MaterialTheme.typography.bodySmall
-                )
-            }
-            language?.let {
-                Text(
-                    language,
                     style = MaterialTheme.typography.bodySmall
                 )
             }

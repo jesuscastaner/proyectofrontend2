@@ -23,44 +23,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import net.unir.proyectofrontend2.data.model.Expression
-import net.unir.proyectofrontend2.data.model.Manifestation
-import net.unir.proyectofrontend2.data.model.PaticipantAgent
 import net.unir.proyectofrontend2.data.model.Work
-import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationDetailsViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.WorkDetailsViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun ManifestationDetailsScreen(
+fun WorkDetailsScreen(
     id: Long,
-    navigateToExpressionDetails: (id: Long) -> Unit,
-    navigateToWorkDetails: (id: Long) -> Unit,
     navigateToAgentDetails: (id: Long) -> Unit,
 ) {
-    val viewModel: ManifestationDetailsViewModel = koinViewModel()
-    val manifestation by viewModel.manifestation.collectAsStateWithLifecycle()
-    val expression by viewModel.expression.collectAsStateWithLifecycle()
+    val viewModel: WorkDetailsViewModel = koinViewModel()
     val work by viewModel.work.collectAsStateWithLifecycle()
-    val agents by viewModel.agents.collectAsStateWithLifecycle()
 
     LaunchedEffect(id) {
         viewModel.setId(id)
     }
 
-    AnimatedContent(
-        manifestation != null &&
-            expression != null &&
-            work != null
-    ) { manifestationAvailable ->
+    AnimatedContent(work != null) { manifestationAvailable ->
         if (manifestationAvailable) {
-            ManifestationDetails(
-                manifestation = manifestation!!,
-                expression = expression!!,
+            WorkDetails(
                 work = work!!,
-                agents = agents,
-                onExpressionClick = navigateToExpressionDetails,
-                onWorkClick = navigateToWorkDetails,
                 onAgentClick = navigateToAgentDetails,
             )
         } else {
@@ -71,25 +54,13 @@ fun ManifestationDetailsScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ManifestationDetails(
-    manifestation: Manifestation,
-    expression: Expression,
+private fun WorkDetails(
     work: Work,
     modifier: Modifier = Modifier,
-    agents: List<PaticipantAgent> = emptyList(),
-    onExpressionClick: (id: Long) -> Unit = {},
-    onWorkClick: (id: Long) -> Unit = {},
     onAgentClick: (id: Long) -> Unit = {},
 ) {
-    val authors = agents.filter {
+    val (authors, otherAgents) = work.agents.partition {
         it.role.equals("author", ignoreCase = true)
-    }
-    val editors = agents.filter {
-        it.role.equals("editor", ignoreCase = true)
-    }
-    val otherAgents = agents.filterNot {
-        it.role.equals("author", ignoreCase = true) ||
-            it.role.equals("editor", ignoreCase = true)
     }
 
     LazyColumn(
@@ -99,8 +70,8 @@ private fun ManifestationDetails(
     ) {
         item {
             AsyncImage(
-                model = manifestation.coverImage,
-                contentDescription = "${manifestation.title} cover image",
+                model = "https://picsum.photos/200/300?random=1",
+                contentDescription = work.title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -108,7 +79,7 @@ private fun ManifestationDetails(
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                manifestation.title,
+                work.title,
                 style = MaterialTheme.typography.headlineMedium,
             )
             if (authors.isNotEmpty()) {
@@ -127,30 +98,10 @@ private fun ManifestationDetails(
                     fontStyle = FontStyle.Italic
                 )
             }
-            if (editors.isNotEmpty()) {
-                Text(
-                    text = "Edition:",
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Medium
-                )
-                editors.forEach {
-                    Text(
-                        text = it.name,
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.clickable { onAgentClick(it.id) }
-                    )
-                }
-            }
-            manifestation.publicationYear?.let {
+            work.publicationYear?.let {
                 Text(
                     "Published: $it",
                     style = MaterialTheme.typography.bodyMedium
-                )
-            }
-            manifestation.isbn?.let {
-                Text(
-                    "ISBN: $it",
-                    style = MaterialTheme.typography.bodySmall
                 )
             }
             otherAgents.forEach {
@@ -164,18 +115,6 @@ private fun ManifestationDetails(
                 modifier = Modifier.padding(vertical = 16.dp),
                 thickness = 0.5.dp,
                 color = MaterialTheme.colorScheme.outlineVariant
-            )
-            Text(
-                "Expression : ${expression.title}",
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { onExpressionClick(expression.id) },
-            )
-            Text(
-                "Work : ${work.title}",
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { onWorkClick(work.id) },
             )
         }
     }

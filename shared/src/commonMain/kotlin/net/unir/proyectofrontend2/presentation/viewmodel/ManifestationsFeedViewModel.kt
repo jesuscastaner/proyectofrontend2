@@ -5,13 +5,21 @@ import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.stateIn
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import net.unir.proyectofrontend2.data.model.Expression
 import net.unir.proyectofrontend2.data.model.Manifestation
 import net.unir.proyectofrontend2.data.model.PaticipantAgent
+import net.unir.proyectofrontend2.data.model.Post
+import net.unir.proyectofrontend2.data.model.Work
+import net.unir.proyectofrontend2.data.repository.ExpressionRepository
 import net.unir.proyectofrontend2.data.repository.ManifestationRepository
+import net.unir.proyectofrontend2.data.repository.WorkRepository
 
 class ManifestationsFeedViewModel(
-    private val manifestationRepository: ManifestationRepository
+    private val manifestationRepository: ManifestationRepository,
+    private val expressionRepository: ExpressionRepository,
+    private val workRepository: WorkRepository,
 ) : ViewModel() {
     @NativeCoroutinesState
     val manifestations: StateFlow<List<Manifestation>> =
@@ -22,14 +30,61 @@ class ManifestationsFeedViewModel(
                 emptyList()
             )
 
+    val expressions: StateFlow<List<Expression>> =
+        expressionRepository.getExpressions()
+            .stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(5000),
+                emptyList()
+            )
+
+    val works: StateFlow<List<Work>> =
+        workRepository.getWorks()
+            .stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(5000),
+                emptyList()
+            )
+
     @NativeCoroutinesState
-    val agentsMap: StateFlow<Map<Long, List<PaticipantAgent>>> = manifestations.map {
-        it.associate { manifestation ->
-            manifestation.id to manifestation.agents
-        }
-    }.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(5000),
-        emptyMap()
-    )
+    val languagesMap: StateFlow<Map<Long, String?>> =
+        combine(
+            manifestations,
+            expressions,
+        ) { manifestations, expressions ->
+            val expressionsMap = expressions.associateBy { it.id }
+            manifestations.associate { manifestation ->
+                val language = expressionsMap[manifestation.expressionId]?.language
+                manifestation.id to language
+            }
+        }.stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            emptyMap()
+        )
+
+    @NativeCoroutinesState
+    val authorsMap: StateFlow<Map<Long, List<PaticipantAgent>>> =
+        combine(
+            manifestations,
+            expressionRepository.getExpressions(),
+            workRepository.getWorks()
+        ) { manifestations, expressions, works ->
+            val expressionsMap = expressions.associateBy { it.id }
+            val worksMap = works.associateBy { it.id }
+            manifestations.associate { manifestation ->
+                val expression = expressionsMap[manifestation.expressionId]
+                val work = expression?.let { worksMap[it.workId] }
+                manifestation.id to (
+                    work?.agents?.filter {
+                        it.role.equals("author", ignoreCase = true)
+                    }
+                        ?: emptyList()
+                    )
+            }
+        }.stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            emptyMap()
+        )
 }
