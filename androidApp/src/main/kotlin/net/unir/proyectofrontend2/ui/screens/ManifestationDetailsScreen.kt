@@ -1,20 +1,26 @@
 package net.unir.proyectofrontend2.ui.screens
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
@@ -29,6 +35,7 @@ import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationDetailsVie
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import net.unir.proyectofrontend2.ui.components.Heading
 import net.unir.proyectofrontend2.ui.components.LibraryResourceLink
+import net.unir.proyectofrontend2.ui.components.icons.AddToShelfIcon
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -62,6 +69,7 @@ fun ManifestationDetailsScreen(
                 onExpressionClick = navigateToExpressionDetails,
                 onWorkClick = navigateToWorkDetails,
                 onAgentClick = navigateToAgentDetails,
+                onAddToShelfClick = { /* TODO */ }
             )
         } else {
             EmptyScreenContent(modifier = Modifier.fillMaxSize())
@@ -80,6 +88,7 @@ private fun ManifestationDetails(
     onExpressionClick: (id: Long) -> Unit,
     onWorkClick: (id: Long) -> Unit,
     onAgentClick: (id: Long) -> Unit,
+    onAddToShelfClick: (id: Long) -> Unit,
 ) {
     val authors = agents.filter {
         it.role.equals("author", ignoreCase = true)
@@ -98,14 +107,35 @@ private fun ManifestationDetails(
             .padding(horizontal = 16.dp),
     ) {
         item {
-            AsyncImage(
-                model = manifestation.coverImage,
-                contentDescription = "${manifestation.title} cover image",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f),
-            )
+            Box(modifier = Modifier.fillMaxWidth()) {
+                AsyncImage(
+                    model = manifestation.coverImage,
+                    contentDescription = "${manifestation.title} cover image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f),
+                )
+                IconButton(
+                    onClick = { onAddToShelfClick(manifestation.id) },
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(8.dp)
+                        .size(36.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(
+                                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f),
+                                shape = CircleShape
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        AddToShelfIcon()
+                    }
+                }
+            }
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 manifestation.title,

@@ -1,4 +1,4 @@
-package net.unir.proyectofrontend2.ui.components
+package net.unir.proyectofrontend2.ui.components.icons
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

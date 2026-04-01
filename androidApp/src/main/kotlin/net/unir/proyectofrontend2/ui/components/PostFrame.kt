@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import net.unir.proyectofrontend2.data.model.Post
+import net.unir.proyectofrontend2.ui.components.icons.PostRepliesIcon
 
 @Composable
 fun PostFrame(

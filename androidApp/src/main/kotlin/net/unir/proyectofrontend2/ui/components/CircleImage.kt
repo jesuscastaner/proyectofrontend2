@@ -15,7 +15,7 @@ fun CircleImage(
     imageUrl: String?,
     modifier: Modifier = Modifier,
     contentDescription: String? = null,
-    onClick: () -> Unit,
+    onClick: () -> Unit = {},
 ) {
     AsyncImage(
         model = imageUrl,

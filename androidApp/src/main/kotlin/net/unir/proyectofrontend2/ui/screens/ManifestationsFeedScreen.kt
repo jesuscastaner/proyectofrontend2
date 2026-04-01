@@ -61,6 +61,7 @@ private fun ManifestationsFeed(
                 authors = authorsMap[manifestation.id] ?: emptyList(),
                 onClick = onManifestationClick,
                 onAgentClick = onAgentClick,
+                onAddToShelfClick = { /* TODO */ }
             )
         }
     }

@@ -29,7 +29,7 @@ import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import net.unir.proyectofrontend2.ui.components.Heading
 import net.unir.proyectofrontend2.ui.components.PostFrame
 import net.unir.proyectofrontend2.ui.components.PostHeader
-import net.unir.proyectofrontend2.ui.components.PostRepliesIcon
+import net.unir.proyectofrontend2.ui.components.icons.PostRepliesIcon
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

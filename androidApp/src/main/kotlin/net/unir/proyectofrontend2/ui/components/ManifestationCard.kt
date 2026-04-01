@@ -1,23 +1,30 @@
 package net.unir.proyectofrontend2.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import net.unir.proyectofrontend2.data.model.Manifestation
 import net.unir.proyectofrontend2.data.model.PaticipantAgent
+import net.unir.proyectofrontend2.ui.components.icons.AddToShelfIcon
 import kotlin.collections.forEach
 
 @Composable
@@ -26,6 +33,7 @@ fun ManifestationCard(
     authors: List<PaticipantAgent> = emptyList(),
     onClick: (id: Long) -> Unit,
     onAgentClick: (id: Long) -> Unit,
+    onAddToShelfClick: (id: Long) -> Unit,
 ) {
     val editors = manifestation.agents.filter {
         it.role.equals("editor", ignoreCase = true)
@@ -42,14 +50,35 @@ fun ManifestationCard(
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
-            AsyncImage(
-                model = manifestation.coverImage,
-                contentDescription = "${manifestation.title} cover image",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f),
-            )
+            Box(modifier = Modifier.fillMaxWidth()) {
+                AsyncImage(
+                    model = manifestation.coverImage,
+                    contentDescription = "${manifestation.title} cover image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f),
+                )
+                IconButton(
+                    onClick = { onAddToShelfClick(manifestation.id) },
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(8.dp)
+                        .size(28.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(
+                                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f),
+                                shape = CircleShape
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        AddToShelfIcon()
+                    }
+                }
+            }
             Spacer(modifier = Modifier.height(6.dp))
             Text(
                 manifestation.title,

@@ -12,11 +12,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -32,7 +35,8 @@ import net.unir.proyectofrontend2.ui.components.CircleImage
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import net.unir.proyectofrontend2.ui.components.Heading
 import net.unir.proyectofrontend2.ui.components.PostFrame
-import net.unir.proyectofrontend2.ui.components.VerifiedUserIcon
+import net.unir.proyectofrontend2.ui.components.icons.AgentIcon
+import net.unir.proyectofrontend2.ui.components.icons.VerifiedUserIcon
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -81,7 +85,7 @@ private fun UserProfile(
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp)
     ) {
         item {
             UserProfileHeader(
@@ -131,7 +135,6 @@ private fun UserProfileHeader(
             imageUrl = user.profilePic,
             modifier = Modifier.size(90.dp),
             contentDescription = "Profile picture",
-            onClick = {}
         )
         Spacer(modifier = modifier.height(8.dp))
         Row(
@@ -145,33 +148,48 @@ private fun UserProfileHeader(
             )
             if (user.isVerified) {
                 Spacer(modifier = Modifier.width(6.dp))
-                VerifiedUserIcon(modifier = Modifier.size(24.dp))
+                VerifiedUserIcon(modifier = Modifier.size(26.dp))
             }
         }
+        Spacer(modifier = Modifier.width(8.dp))
         Text(
             "@${user.username}",
             style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.Bold,
         )
-        Text(
-            user.website,
-            style = MaterialTheme.typography.bodySmall,
-        )
-        Spacer(modifier = Modifier.height(12.dp))
-        Text(
-            user.bio,
-            style = MaterialTheme.typography.bodyMedium,
-        )
+        user.website?.let {
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                it,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        user.bio?.let {
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(
+                it,
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
         user.agentId?.let {
             Spacer(modifier = Modifier.height(16.dp))
-            TextButton(
+            OutlinedButton(
                 onClick = { onUserAgentClick(it) }
             ) {
-                Text("Agent profile")
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    AgentIcon()
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        "Agent profile",
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
             }
         }
         HorizontalDivider(
-            modifier = Modifier.padding(vertical = 24.dp),
-            thickness = 2.dp,
+            modifier = Modifier.padding(vertical = 32.dp),
+            thickness = 1.dp,
             color = MaterialTheme.colorScheme.outline
         )
     }
