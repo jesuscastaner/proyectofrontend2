@@ -23,28 +23,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import net.unir.proyectofrontend2.data.model.Work
-import net.unir.proyectofrontend2.presentation.viewmodel.WorkDetailsViewModel
+import net.unir.proyectofrontend2.data.model.Agent
+import net.unir.proyectofrontend2.presentation.viewmodel.AgentDetailsViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
+import net.unir.proyectofrontend2.ui.components.FormattedLifeSpan
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun WorkDetailsScreen(
+fun AgentDetailsScreen(
     id: Long,
-    navigateToAgentDetails: (id: Long) -> Unit,
 ) {
-    val viewModel: WorkDetailsViewModel = koinViewModel()
-    val work by viewModel.work.collectAsStateWithLifecycle()
+    val viewModel: AgentDetailsViewModel = koinViewModel()
+    val agent by viewModel.agent.collectAsStateWithLifecycle()
 
     LaunchedEffect(id) {
         viewModel.setId(id)
     }
 
-    AnimatedContent(work != null) { workAvailable ->
-        if (workAvailable) {
-            WorkDetails(
-                work = work!!,
-                onAgentClick = navigateToAgentDetails,
+    AnimatedContent(agent != null) { agentAvailable ->
+        if (agentAvailable) {
+            AgentDetails(
+                agent = agent!!,
             )
         } else {
             EmptyScreenContent(modifier = Modifier.fillMaxSize())
@@ -54,15 +53,10 @@ fun WorkDetailsScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun WorkDetails(
-    work: Work,
+private fun AgentDetails(
+    agent: Agent,
     modifier: Modifier = Modifier,
-    onAgentClick: (id: Long) -> Unit = {},
 ) {
-    val (authors, otherAgents) = work.agents.partition {
-        it.role.equals("author", ignoreCase = true)
-    }
-
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -70,8 +64,8 @@ private fun WorkDetails(
     ) {
         item {
             AsyncImage(
-                model = "https://picsum.photos/200/300?random=1",
-                contentDescription = work.title,
+                model = agent.profilePic,
+                contentDescription = "${agent.name} profile picture",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -79,38 +73,13 @@ private fun WorkDetails(
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                work.title,
+                agent.name,
                 style = MaterialTheme.typography.headlineMedium,
             )
-            if (authors.isNotEmpty()) {
-                authors.forEach {
-                    Text(
-                        text = it.name,
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Medium,
-                        modifier = Modifier.clickable { onAgentClick(it.id) }
-                    )
-                }
-            } else {
-                Text(
-                    text = "Unknown author",
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontStyle = FontStyle.Italic
-                )
-            }
-            work.publicationYear?.let {
-                Text(
-                    "Published: $it",
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
-            otherAgents.forEach {
-                Text(
-                    text = "${it.name} (${it.role})",
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.clickable { onAgentClick(it.id) }
-                )
-            }
+            FormattedLifeSpan(
+                birthYear = agent.birthYear,
+                deathYear = agent.deathYear,
+            )
             HorizontalDivider(
                 modifier = Modifier.padding(vertical = 16.dp),
                 thickness = 0.5.dp,

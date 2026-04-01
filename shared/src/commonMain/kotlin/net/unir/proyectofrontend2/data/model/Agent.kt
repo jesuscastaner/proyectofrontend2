@@ -8,4 +8,5 @@ data class Agent(
     val name: String,
     val birthYear: Short?,
     val deathYear: Short?,
+    val profilePic: String?,
 )

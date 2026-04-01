@@ -9,4 +9,5 @@ fun AgentResponse.toAgent(): Agent =
         name = name,
         birthYear = birthYear,
         deathYear = deathYear,
+        profilePic = profilePic,
     )

@@ -49,12 +49,13 @@
     },
     {
         "id": 5,
-        "displayName": "Diana Prince",
-        "username": "dprince",
-        "profilePic": "https://picsum.photos/200/300?random=5",
-        "bio": "Historiadora y diplomática con experiencia en relaciones internacionales, cultura y resolución de conflictos.",
+        "agentId": 1,
+        "displayName": "El Manco de Lepanto",
+        "username": "mcervantes",
+        "profilePic": "https://ibb.co/wZYNYwXG",
+        "bio": "Novelista, poeta, dramaturgo y soldado español.",
         "website": "https://themyscira.org",
-        "isVerified": false,
+        "isVerified": true,
         "isSuspended": false,
         "createdAt": "2023-12-20T07:15:00Z",
         "updatedAt": "2025-01-05T09:00:00Z"
@@ -119,16 +120,4 @@
         "createdAt": "2024-05-01T11:45:00Z",
         "updatedAt": "2025-03-15T13:10:00Z"
     },
-    {
-        "id": 11,
-        "displayName": "Emilio Quechen",
-        "username": "equechen",
-        "profilePic": "https://picsum.photos/200/300?random=11",
-        "bio": "Creador de contenido y blogger.",
-        "website": "https://equechen.blog",
-        "isVerified": true,
-        "isSuspended": true,
-        "createdAt": "2024-05-01T11:45:00Z",
-        "updatedAt": "2025-03-15T13:10:00Z"
-    }
 ]

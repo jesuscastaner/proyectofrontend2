@@ -2,6 +2,8 @@ package net.unir.proyectofrontend2
 
 import android.app.Application
 import net.unir.proyectofrontend2.di.initKoin
+import net.unir.proyectofrontend2.presentation.viewmodel.AgentDetailsViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.AgentsFeedViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.ExpressionDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.ExpressionsFeedViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationDetailsViewModel
@@ -71,6 +73,16 @@ class KoinViewModels : Application() {
                         WorkDetailsViewModel(
                             expressionRepository = get(),
                             workRepository = get(),
+                        )
+                    }
+                    factory {
+                        AgentsFeedViewModel(
+                            agentRepository = get(),
+                        )
+                    }
+                    factory {
+                        AgentDetailsViewModel(
+                            agentRepository = get(),
                         )
                     }
                 }

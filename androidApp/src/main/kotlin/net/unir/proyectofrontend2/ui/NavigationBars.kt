@@ -27,6 +27,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
+import net.unir.proyectofrontend2.ui.screens.AgentDetailsScreen
+import net.unir.proyectofrontend2.ui.screens.AgentsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.ExpressionsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.ManifestationDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.ManifestationsFeedScreen
@@ -49,6 +51,7 @@ fun NavigationBars(
         ManifestationsFeedDestination,
         ExpressionsFeedDestination,
         WorksFeedDestination,
+        AgentsFeedDestination,
     )
     val startDestination = bottomBarTabs[1]
     var selectedBottomBarTab by rememberSaveable {
@@ -134,6 +137,20 @@ fun NavigationBars(
                         )
                     }
                 )
+                Tab(
+                    selected = selectedBottomBarTab == 4,
+                    onClick = {
+                        navController.navigate(AgentsFeedDestination)
+                        selectedBottomBarTab = 4
+                    },
+                    text = {
+                        Text(
+                            "A",
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                )
             }
         },
         modifier = modifier.windowInsetsPadding(WindowInsets.systemBars)
@@ -212,12 +229,25 @@ fun NavigationBars(
                 )
             }
             composable<WorkDetailsDestination> { backStackEntry ->
-                val args = backStackEntry.toRoute<ManifestationDetailsDestination>()
+                val args = backStackEntry.toRoute<WorkDetailsDestination>()
                 WorkDetailsScreen(
                     id = args.id,
                     navigateToAgentDetails = { id ->
                         navController.navigate(AgentDetailsDestination(id))
                     },
+                )
+            }
+            composable<AgentsFeedDestination> {
+                AgentsFeedScreen(
+                    navigateToAgentDetails = { id ->
+                        navController.navigate(AgentDetailsDestination(id))
+                    },
+                )
+            }
+            composable<AgentDetailsDestination> { backStackEntry ->
+                val args = backStackEntry.toRoute<AgentDetailsDestination>()
+                AgentDetailsScreen(
+                    id = args.id,
                 )
             }
         }
@@ -252,6 +282,9 @@ object WorksFeedDestination : Destination
 
 @Serializable
 data class WorkDetailsDestination(val id: Long) : Destination
+
+@Serializable
+object AgentsFeedDestination : Destination
 
 @Serializable
 data class AgentDetailsDestination(val id: Long) : Destination
