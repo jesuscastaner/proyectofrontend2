@@ -201,7 +201,9 @@ fun NavigationBars(
                     navigateToManifestationDetails = { id ->
                         navController.navigate(ManifestationDetailsDestination(id))
                     },
-                    navigateToAgentDetails = {},
+                    navigateToAgentDetails = { id ->
+                        navController.navigate(AgentDetailsDestination(id))
+                    },
                 )
             }
             composable<ManifestationDetailsDestination> { backStackEntry ->
@@ -211,8 +213,12 @@ fun NavigationBars(
                     navigateToAgentDetails = { id ->
                         navController.navigate(AgentDetailsDestination(id))
                     },
-                    navigateToExpressionDetails = {},
-                    navigateToWorkDetails = {},
+                    navigateToExpressionDetails = { id ->
+                        navController.navigate(ExpressionDetailsDestination(id))
+                    },
+                    navigateToWorkDetails = { id ->
+                        navController.navigate(WorkDetailsDestination(id))
+                    },
                 )
             }
             composable<ExpressionsFeedDestination> {
@@ -220,7 +226,9 @@ fun NavigationBars(
                     navigateToExpressionDetails = { id ->
                         navController.navigate(ExpressionDetailsDestination(id))
                     },
-                    navigateToAgentDetails = {},
+                    navigateToAgentDetails = { id ->
+                        navController.navigate(AgentDetailsDestination(id))
+                    },
                 )
             }
             composable<WorksFeedDestination> {
@@ -228,7 +236,9 @@ fun NavigationBars(
                     navigateToWorkDetails = { id ->
                         navController.navigate(WorkDetailsDestination(id))
                     },
-                    navigateToAgentDetails = {},
+                    navigateToAgentDetails = { id ->
+                        navController.navigate(AgentDetailsDestination(id))
+                    },
                 )
             }
             composable<WorkDetailsDestination> { backStackEntry ->
