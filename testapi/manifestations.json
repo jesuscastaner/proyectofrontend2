@@ -127,7 +127,7 @@
     {
         "id": 9,
         "expressionId": 12,
-        "title": "Madame Bovary",
+        "title": "L'Aleph",
         "publicationYear": 2001,
         "isbn": "978-2-07-036822-8",
         "coverImage": "https://picsum.photos/200/300?random=108",
@@ -392,7 +392,7 @@
     {
         "id": 26,
         "expressionId": 12,
-        "title": "Madame Bovary",
+        "title": "L'Aleph",
         "publicationYear": 2005,
         "isbn": "978-84-264-1235-0",
         "coverImage": "https://picsum.photos/200/300?random=125",
@@ -751,7 +751,7 @@
     {
         "id": 50,
         "expressionId": 12,
-        "title": "Madame Bovary",
+        "title": "L'Aleph",
         "publicationYear": 2012,
         "isbn": "978-84-08-12345-6",
         "coverImage": "https://picsum.photos/200/300?random=149",
@@ -759,6 +759,11 @@
             {
                 "id": 55,
                 "name": "Biblioteca Oro",
+                "role": "editor"
+            },
+            {
+                "id": 7,
+                "name": "Jorge Luis Borges",
                 "role": "editor"
             }
         ]

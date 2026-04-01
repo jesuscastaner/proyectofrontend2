@@ -7,4 +7,5 @@ interface ManifestationStorage {
     suspend fun saveManifestations(newManifestations: List<Manifestation>)
     fun getManifestations(): Flow<List<Manifestation>>
     fun getManifestationById(id: Long): Flow<Manifestation?>
+    fun getManifestationsByAgentId(id: Long): Flow<List<Manifestation>>
 }

@@ -120,8 +120,8 @@
     {
         "id": 12,
         "workId": 7,
-        "title": "Madame Bovary",
-        "publicationYear": 1857,
+        "title": "L'Aleph",
+        "publicationYear": 1957,
         "language": "FRA",
         "agents": []
     },
@@ -268,6 +268,11 @@
                 "id": 24,
                 "name": "Luis Astrana Marín",
                 "role": "translator"
+            },
+            {
+                "id": 1,
+                "name": "Miguel de Cervantes",
+                "role": "translator"
             }
         ]
     },
@@ -281,6 +286,11 @@
             {
                 "id": 25,
                 "name": "Emilio Crespo",
+                "role": "translator"
+            },
+            {
+                "id": 1,
+                "name": "Miguel de Cervantes",
                 "role": "translator"
             }
         ]

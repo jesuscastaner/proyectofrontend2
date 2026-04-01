@@ -35,4 +35,7 @@ class ExpressionRepository(
                 expression.workId == workId
             }
         }
+
+    fun getExpressionsByAgentId(id: Long): Flow<List<Expression>> =
+        expressionStorage.getExpressionsByAgentId(id)
 }

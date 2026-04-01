@@ -73,12 +73,12 @@
     },
     {
         "id": 7,
-        "title": "Madame Bovary",
-        "publicationYear": 1857,
+        "title": "El Aleph",
+        "publicationYear": 1949,
         "agents": [
             {
                 "id": 7,
-                "name": "Gustave Flaubert",
+                "name": "Jorge Luis Borges",
                 "role": "author"
             }
         ]

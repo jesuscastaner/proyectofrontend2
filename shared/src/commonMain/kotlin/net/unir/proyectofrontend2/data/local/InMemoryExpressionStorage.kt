@@ -19,4 +19,13 @@ class InMemoryExpressionStorage : ExpressionStorage {
             expression.id == id
         }
     }
+
+    override fun getExpressionsByAgentId(id: Long): Flow<List<Expression>> =
+        storedExpressions.map {
+            it.filter { expression ->
+                expression.agents.any { agent ->
+                    agent.id == id
+                }
+            }
+        }
 }

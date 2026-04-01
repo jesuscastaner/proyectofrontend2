@@ -7,4 +7,5 @@ interface ExpressionStorage {
     suspend fun saveExpressions(newExpressions: List<Expression>)
     fun getExpressions(): Flow<List<Expression>>
     fun getExpressionById(id: Long): Flow<Expression?>
+    fun getExpressionsByAgentId(id: Long): Flow<List<Expression>>
 }

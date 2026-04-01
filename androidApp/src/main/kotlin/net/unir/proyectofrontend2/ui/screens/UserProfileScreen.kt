@@ -16,6 +16,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -36,6 +37,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun UserProfileScreen(
     id: Long,
+    navigateToAgentDetails: (id: Long) -> Unit,
     navigateToPostDetails: (id: Long) -> Unit,
 ) {
     val viewModel: UserProfileViewModel = koinViewModel()
@@ -55,6 +57,7 @@ fun UserProfileScreen(
                 posts = posts,
                 repostsMap = repostsMap,
                 repliesCountMap = repliesCountMap,
+                onUserAgentClick = navigateToAgentDetails,
                 onPostClick = navigateToPostDetails,
             )
         } else {
@@ -71,6 +74,7 @@ private fun UserProfile(
     repostsMap: Map<Long, Post?>,
     repliesCountMap: Map<Long, Int>,
     modifier: Modifier = Modifier,
+    onUserAgentClick: (id: Long) -> Unit,
     onPostClick: (id: Long) -> Unit,
 ) {
     LazyColumn(
@@ -79,7 +83,10 @@ private fun UserProfile(
             .padding(horizontal = 16.dp),
     ) {
         item {
-            UserProfileHeader(user = user)
+            UserProfileHeader(
+                user = user,
+                onUserAgentClick = onUserAgentClick,
+            )
         }
         if (posts.isNotEmpty()) {
             item {
@@ -116,7 +123,8 @@ private fun UserProfile(
 @Composable
 private fun UserProfileHeader(
     user: User,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onUserAgentClick: (id: Long) -> Unit,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -156,6 +164,14 @@ private fun UserProfileHeader(
             user.bio,
             style = MaterialTheme.typography.bodyMedium,
         )
+        user.agentId?.let {
+            Spacer(modifier = Modifier.height(16.dp))
+            TextButton(
+                onClick = { onUserAgentClick(it) }
+            ) {
+                Text("Agent profile")
+            }
+        }
         HorizontalDivider(
             modifier = Modifier.padding(vertical = 24.dp),
             thickness = 2.dp,

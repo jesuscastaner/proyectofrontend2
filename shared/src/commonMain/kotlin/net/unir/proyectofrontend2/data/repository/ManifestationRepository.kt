@@ -36,4 +36,7 @@ class ManifestationRepository(
                 manifestation.expressionId == expressionId
             }
         }
+
+    fun getManifestationsByAgentId(id: Long): Flow<List<Manifestation>> =
+        manifestationStorage.getManifestationsByAgentId(id)
 }

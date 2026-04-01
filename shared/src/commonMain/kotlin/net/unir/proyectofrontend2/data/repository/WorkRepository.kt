@@ -27,4 +27,6 @@ class WorkRepository(
     fun getWorks(): Flow<List<Work>> = workStorage.getWorks()
 
     fun getWorkById(id: Long): Flow<Work?> = workStorage.getWorkById(id)
+
+    fun getWorksByAgentId(id: Long): Flow<List<Work>> = workStorage.getWorksByAgentId(id)
 }

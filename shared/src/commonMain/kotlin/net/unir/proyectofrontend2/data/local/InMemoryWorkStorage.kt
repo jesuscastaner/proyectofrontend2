@@ -19,4 +19,12 @@ class InMemoryWorkStorage : WorkStorage {
             work.id == id
         }
     }
+
+    override fun getWorksByAgentId(id: Long): Flow<List<Work>> = storedWorks.map {
+        it.filter { work ->
+            work.agents.any {
+                agent -> agent.id == id
+            }
+        }
+    }
 }

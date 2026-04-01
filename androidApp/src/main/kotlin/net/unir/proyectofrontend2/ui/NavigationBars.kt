@@ -179,8 +179,8 @@ fun NavigationBars(
                     navigateToPostDetails = { id ->
                         navController.navigate(PostDetailsDestination(id))
                     },
-                    navigateToUserProfile = { userId ->
-                        navController.navigate(UserProfileDestination(userId))
+                    navigateToUserProfile = { id ->
+                        navController.navigate(UserProfileDestination(id))
                     },
                 )
             }
@@ -188,8 +188,11 @@ fun NavigationBars(
                 val args = backStackEntry.toRoute<UserProfileDestination>()
                 UserProfileScreen(
                     id = args.id,
-                    navigateToPostDetails = { postId ->
-                        navController.navigate(PostDetailsDestination(postId))
+                    navigateToAgentDetails = { id ->
+                        navController.navigate(AgentDetailsDestination(id))
+                    },
+                    navigateToPostDetails = { id ->
+                        navController.navigate(PostDetailsDestination(id))
                     },
                 )
             }

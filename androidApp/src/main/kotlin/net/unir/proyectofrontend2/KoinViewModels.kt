@@ -83,6 +83,9 @@ class KoinViewModels : Application() {
                     factory {
                         AgentDetailsViewModel(
                             agentRepository = get(),
+                            workRepository = get(),
+                            expressionRepository = get(),
+                            manifestationRepository = get(),
                         )
                     }
                 }
