@@ -11,384 +11,384 @@
         "name": "Franz Kafka",
         "birthYear": 1883,
         "deathYear": 1924,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=2"
     },
     {
         "id": 3,
         "name": "George Orwell",
         "birthYear": 1903,
         "deathYear": 1950,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=3"
     },
     {
         "id": 4,
         "name": "Jane Austen",
         "birthYear": 1775,
         "deathYear": 1817,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=4"
     },
     {
         "id": 5,
         "name": "Herman Melville",
         "birthYear": 1819,
         "deathYear": 1891,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=5"
     },
     {
         "id": 6,
         "name": "Fiódor Dostoyevski",
         "birthYear": 1821,
         "deathYear": 1881,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=6"
     },
     {
         "id": 7,
         "name": "Gustave Flaubert",
         "birthYear": 1821,
         "deathYear": 1880,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=7"
     },
     {
         "id": 8,
         "name": "Homero",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=8"
     },
     {
         "id": 9,
         "name": "William Shakespeare",
         "birthYear": 1564,
         "deathYear": 1616,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=9"
     },
     {
         "id": 10,
         "name": "F. Scott Fitzgerald",
         "birthYear": 1896,
         "deathYear": 1940,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=10"
     },
     {
         "id": 11,
         "name": "Marcel Proust",
         "birthYear": 1871,
         "deathYear": 1922,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=11"
     },
     {
         "id": 12,
         "name": "James Joyce",
         "birthYear": 1882,
         "deathYear": 1941,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=12"
     },
     {
         "id": 13,
         "name": "Dante Alighieri",
         "birthYear": 1265,
         "deathYear": 1321,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=13"
     },
     {
         "id": 14,
         "name": "Edith Grossman",
         "birthYear": 1936,
         "deathYear": 2023,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=14"
     },
     {
         "id": 15,
         "name": "Willa Muir",
         "birthYear": 1884,
         "deathYear": 1970,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=15"
     },
     {
         "id": 16,
         "name": "Rafael Vázquez Zamora",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=16"
     },
     {
         "id": 17,
         "name": "José Luis López Muñoz",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=17"
     },
     {
         "id": 18,
         "name": "Constance Garnett",
         "birthYear": 1861,
         "deathYear": 1946,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=18"
     },
     {
         "id": 19,
         "name": "Robert Fagles",
         "birthYear": 1933,
         "deathYear": 2008,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=19"
     },
     {
         "id": 20,
         "name": "Ángel Crespo",
         "birthYear": 1926,
         "deathYear": 1995,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=20"
     },
     {
         "id": 21,
         "name": "José María Valverde",
         "birthYear": 1926,
         "deathYear": 1996,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=21"
     },
     {
         "id": 22,
         "name": "Carlos Manzano",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=22"
     },
     {
         "id": 23,
         "name": "Justo Navarro",
         "birthYear": 1953,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=23"
     },
     {
         "id": 24,
         "name": "Luis Astrana Marín",
         "birthYear": 1893,
         "deathYear": 1963,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=24"
     },
     {
         "id": 25,
         "name": "Emilio Crespo",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=25"
     },
     {
         "id": 26,
         "name": "Jorge Luis Borges",
         "birthYear": 1899,
         "deathYear": 1986,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=26"
     },
     {
         "id": 27,
         "name": "Cátedra",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=27"
     },
     {
         "id": 28,
         "name": "Penguin Books",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=28"
     },
     {
         "id": 29,
         "name": "Vintage",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=29"
     },
     {
         "id": 30,
         "name": "Debolsillo",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=30"
     },
     {
         "id": 31,
         "name": "Oxford University Press",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=31"
     },
     {
         "id": 32,
         "name": "Alianza Editorial",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=32"
     },
     {
         "id": 33,
         "name": "Rockwell Kent",
         "birthYear": 1882,
         "deathYear": 1971,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=33"
     },
     {
         "id": 34,
         "name": "Sterling Publishing",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=34"
     },
     {
         "id": 35,
         "name": "Gallimard",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=35"
     },
     {
         "id": 36,
         "name": "Bloomsbury",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=36"
     },
     {
         "id": 37,
         "name": "Scribner",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=37"
     },
     {
         "id": 38,
         "name": "Gustave Doré",
         "birthYear": 1832,
         "deathYear": 1883,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=38"
     },
     {
         "id": 39,
         "name": "Alma Editorial",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=39"
     },
     {
         "id": 40,
         "name": "Espasa-Calpe",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=40"
     },
     {
         "id": 41,
         "name": "Seix Barral",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=41"
     },
     {
         "id": 42,
         "name": "Reclam Verlag",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=42"
     },
     {
         "id": 43,
         "name": "Planeta",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=43"
     },
     {
         "id": 44,
         "name": "Molino",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=44"
     },
     {
         "id": 45,
         "name": "Lumen",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=45"
     },
     {
         "id": 46,
         "name": "Dover Publications",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=46"
     },
     {
         "id": 47,
         "name": "Mondadori",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=47"
     },
     {
         "id": 48,
         "name": "AST",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=48"
     },
     {
         "id": 49,
         "name": "Taschen",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=49"
     },
     {
         "id": 50,
         "name": "Akal",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=50"
     },
     {
         "id": 51,
         "name": "Alfaguara",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=51"
     },
     {
         "id": 52,
         "name": "Austral",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=52"
     },
     {
         "id": 53,
         "name": "Anagrama",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=53"
     },
     {
         "id": 54,
         "name": "Minotauro",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=54"
     },
     {
         "id": 55,
         "name": "Biblioteca Oro",
         "birthYear": null,
         "deathYear": null,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=55"
     },
     {
         "id": 56,
         "name": "Philip K. Dick",
         "birthYear": 1928,
         "deathYear": 1982,
-        "profilePic": "https://i.pravatar.cc/300?random"
+        "profilePic": "https://i.pravatar.cc/300?img=56"
     }
 ]

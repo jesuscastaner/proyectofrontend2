@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "agentId": null,
         "displayName": "John Doe",
         "username": "jdoe",
         "profilePic": "https://i.pravatar.cc/300?random",
@@ -13,6 +14,7 @@
     },
     {
         "id": 2,
+        "agentId": null,
         "displayName": "Alice Smith",
         "username": "asmith",
         "profilePic": "https://i.pravatar.cc/300?random",
@@ -25,6 +27,7 @@
     },
     {
         "id": 3,
+        "agentId": null,
         "displayName": "Bruce Wayne",
         "username": "bwayne",
         "profilePic": "https://i.pravatar.cc/300?random",
@@ -37,6 +40,7 @@
     },
     {
         "id": 4,
+        "agentId": null,
         "displayName": "Clark Kent",
         "username": "ckent",
         "profilePic": "https://i.pravatar.cc/300?random",
@@ -62,6 +66,7 @@
     },
     {
         "id": 6,
+        "agentId": null,
         "displayName": "Peter Parker",
         "username": "pparker",
         "profilePic": "https://i.pravatar.cc/300?random",
@@ -74,6 +79,7 @@
     },
     {
         "id": 7,
+        "agentId": null,
         "displayName": "Tony Stark",
         "username": "tstark",
         "profilePic": "https://i.pravatar.cc/300?random",
@@ -86,6 +92,7 @@
     },
     {
         "id": 8,
+        "agentId": null,
         "displayName": "Natasha Romanoff",
         "username": "nsromanoff",
         "profilePic": "https://i.pravatar.cc/300?random",
@@ -98,6 +105,7 @@
     },
     {
         "id": 9,
+        "agentId": null,
         "displayName": "Steve Rogers",
         "username": "srogers",
         "profilePic": "https://i.pravatar.cc/300?random",
@@ -110,6 +118,7 @@
     },
     {
         "id": 10,
+        "agentId": null,
         "displayName": "Brian Williams",
         "username": "bwilliams",
         "profilePic": "https://i.pravatar.cc/300?random",
