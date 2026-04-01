@@ -30,6 +30,7 @@ import net.unir.proyectofrontend2.data.model.User
 import net.unir.proyectofrontend2.presentation.viewmodel.UserProfileViewModel
 import net.unir.proyectofrontend2.ui.components.CircleImage
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
+import net.unir.proyectofrontend2.ui.components.Heading
 import net.unir.proyectofrontend2.ui.components.PostFrame
 import net.unir.proyectofrontend2.ui.components.VerifiedUserIcon
 import org.koin.compose.viewmodel.koinViewModel
@@ -90,11 +91,7 @@ private fun UserProfile(
         }
         if (posts.isNotEmpty()) {
             item {
-                Text(
-                    "Posts",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                )
+                Heading("Posts")
                 Spacer(modifier = Modifier.height(24.dp))
             }
             items(posts, key = { it.id }) { post ->

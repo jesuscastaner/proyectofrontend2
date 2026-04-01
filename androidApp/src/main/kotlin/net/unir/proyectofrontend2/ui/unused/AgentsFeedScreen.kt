@@ -1,4 +1,4 @@
-package net.unir.proyectofrontend2.ui.screens
+package net.unir.proyectofrontend2.ui.unused
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.clickable

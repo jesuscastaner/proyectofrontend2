@@ -4,7 +4,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 import net.unir.proyectofrontend2.data.model.Manifestation
-import net.unir.proyectofrontend2.data.model.Work
 
 class InMemoryManifestationStorage : ManifestationStorage {
     private val storedManifestations = MutableStateFlow(emptyList<Manifestation>())

@@ -2,12 +2,11 @@ package net.unir.proyectofrontend2.ui.screens
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -16,32 +15,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil3.compose.AsyncImage
 import net.unir.proyectofrontend2.data.model.Expression
 import net.unir.proyectofrontend2.data.model.Manifestation
 import net.unir.proyectofrontend2.data.model.PaticipantAgent
 import net.unir.proyectofrontend2.data.model.Work
-import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationDetailsViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.ExpressionDetailsViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import net.unir.proyectofrontend2.ui.components.Heading
 import net.unir.proyectofrontend2.ui.components.LibraryResourceLink
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun ManifestationDetailsScreen(
+fun ExpressionDetailsScreen(
     id: Long,
-    navigateToExpressionDetails: (id: Long) -> Unit,
     navigateToWorkDetails: (id: Long) -> Unit,
+    navigateToManifestationDetails: (id: Long) -> Unit,
     navigateToAgentDetails: (id: Long) -> Unit,
 ) {
-    val viewModel: ManifestationDetailsViewModel = koinViewModel()
-    val manifestation by viewModel.manifestation.collectAsStateWithLifecycle()
+    val viewModel: ExpressionDetailsViewModel = koinViewModel()
     val expression by viewModel.expression.collectAsStateWithLifecycle()
     val work by viewModel.work.collectAsStateWithLifecycle()
+    val manifestations by viewModel.manifestations.collectAsStateWithLifecycle()
     val agents by viewModel.agents.collectAsStateWithLifecycle()
 
     LaunchedEffect(id) {
@@ -49,18 +46,17 @@ fun ManifestationDetailsScreen(
     }
 
     AnimatedContent(
-        manifestation != null &&
-            expression != null &&
+        expression != null &&
             work != null
-    ) { manifestationAvailable ->
-        if (manifestationAvailable) {
-            ManifestationDetails(
-                manifestation = manifestation!!,
+    ) { expressionAvailable ->
+        if (expressionAvailable) {
+            ExpressionDetails(
                 expression = expression!!,
                 work = work!!,
+                manifestations = manifestations,
                 agents = agents,
-                onExpressionClick = navigateToExpressionDetails,
                 onWorkClick = navigateToWorkDetails,
+                onManifestationClick = navigateToManifestationDetails,
                 onAgentClick = navigateToAgentDetails,
             )
         } else {
@@ -71,25 +67,21 @@ fun ManifestationDetailsScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ManifestationDetails(
-    manifestation: Manifestation,
+private fun ExpressionDetails(
     expression: Expression,
     work: Work,
+    manifestations: List<Manifestation>,
     modifier: Modifier = Modifier,
     agents: List<PaticipantAgent> = emptyList(),
-    onExpressionClick: (id: Long) -> Unit,
     onWorkClick: (id: Long) -> Unit,
+    onManifestationClick: (id: Long) -> Unit,
     onAgentClick: (id: Long) -> Unit,
 ) {
     val authors = agents.filter {
         it.role.equals("author", ignoreCase = true)
     }
-    val editors = agents.filter {
-        it.role.equals("editor", ignoreCase = true)
-    }
     val otherAgents = agents.filterNot {
-        it.role.equals("author", ignoreCase = true) ||
-            it.role.equals("editor", ignoreCase = true)
+        it.role.equals("author", ignoreCase = true)
     }
 
     LazyColumn(
@@ -98,17 +90,8 @@ private fun ManifestationDetails(
             .padding(horizontal = 16.dp),
     ) {
         item {
-            AsyncImage(
-                model = manifestation.coverImage,
-                contentDescription = "${manifestation.title} cover image",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f),
-            )
-            Spacer(modifier = Modifier.height(16.dp))
             Text(
-                manifestation.title,
+                expression.title,
                 style = MaterialTheme.typography.headlineLarge,
             )
             if (authors.isNotEmpty()) {
@@ -128,23 +111,19 @@ private fun ManifestationDetails(
                     fontStyle = FontStyle.Italic
                 )
             }
-            manifestation.publicationYear?.let {
+            expression.language?.let {
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    "Language: $it",
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
+            expression.publicationYear?.let {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     "Published: $it",
                     style = MaterialTheme.typography.bodyLarge
                 )
-            }
-            if (editors.isNotEmpty()) {
-                editors.forEach {
-                    Spacer(modifier = Modifier.height(8.dp))
-                    LibraryResourceLink(
-                        title = it.name,
-                        role = it.role,
-                        style = MaterialTheme.typography.bodyLarge,
-                        onClick = { onAgentClick(it.id) },
-                    )
-                }
             }
             otherAgents.forEach {
                 Spacer(modifier = Modifier.height(8.dp))
@@ -153,13 +132,6 @@ private fun ManifestationDetails(
                     role = it.role,
                     style = MaterialTheme.typography.bodyLarge,
                     onClick = { onAgentClick(it.id) },
-                )
-            }
-            manifestation.isbn?.let {
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    "ISBN: $it",
-                    style = MaterialTheme.typography.bodyMedium
                 )
             }
             HorizontalDivider(
@@ -174,15 +146,22 @@ private fun ManifestationDetails(
                 publicationYear = work.publicationYear,
                 onClick = { onWorkClick(work.id) },
             )
-            Spacer(modifier = Modifier.height(16.dp))
-            Heading("Expression")
-            Spacer(modifier = Modifier.height(16.dp))
-            LibraryResourceLink(
-                title = expression.title,
-                publicationYear = expression.publicationYear,
-                language = expression.language,
-                onClick = { onExpressionClick(work.id) },
-            )
+        }
+        if (manifestations.isNotEmpty()) {
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+                Heading("Manifestations of this expression")
+            }
+            items(manifestations, key = { it.id }) { manifestation ->
+                Spacer(modifier = Modifier.height(16.dp))
+                LibraryResourceLink(
+                    title = manifestation.title,
+                    publicationYear = manifestation.publicationYear,
+                    onClick = { onManifestationClick(manifestation.id) }
+                )
+            }
+        }
+        item {
             HorizontalDivider(
                 modifier = Modifier.padding(vertical = 32.dp),
                 thickness = 0.5.dp,

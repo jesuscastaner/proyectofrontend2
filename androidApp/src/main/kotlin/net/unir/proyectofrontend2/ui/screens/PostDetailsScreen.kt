@@ -21,12 +21,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
+import net.unir.proyectofrontend2.ui.components.Heading
 import net.unir.proyectofrontend2.ui.components.PostFrame
 import net.unir.proyectofrontend2.ui.components.PostHeader
 import net.unir.proyectofrontend2.ui.components.PostRepliesIcon
@@ -127,11 +127,7 @@ private fun PostDetails(
         }
         if (replies.isNotEmpty()) {
             item {
-                Text(
-                    "Replies",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                )
+                Heading("Replies")
                 Spacer(modifier = Modifier.height(24.dp))
             }
             items(replies, key = { it.id }) { reply ->

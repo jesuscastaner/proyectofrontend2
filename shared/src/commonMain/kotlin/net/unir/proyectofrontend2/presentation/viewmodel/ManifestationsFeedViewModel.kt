@@ -27,22 +27,6 @@ class ManifestationsFeedViewModel(
             )
 
     @NativeCoroutinesState
-    val languagesMap: StateFlow<Map<Long, String?>> =
-        combine(
-            manifestations,
-            expressionRepository.getExpressions(),
-        ) { manifestations, expressions ->
-            val expressionsMap = expressions.associateBy { it.id }
-            manifestations.associate { manifestation ->
-                manifestation.id to expressionsMap[manifestation.expressionId]?.language
-            }
-        }.stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000),
-            emptyMap()
-        )
-
-    @NativeCoroutinesState
     val authorsMap: StateFlow<Map<Long, List<PaticipantAgent>>> =
         combine(
             manifestations,

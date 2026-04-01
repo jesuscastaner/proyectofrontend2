@@ -28,17 +28,17 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
 import net.unir.proyectofrontend2.ui.screens.AgentDetailsScreen
-import net.unir.proyectofrontend2.ui.screens.AgentsFeedScreen
-import net.unir.proyectofrontend2.ui.screens.ExpressionsFeedScreen
+import net.unir.proyectofrontend2.ui.unused.AgentsFeedScreen
+import net.unir.proyectofrontend2.ui.screens.ExpressionDetailsScreen
+import net.unir.proyectofrontend2.ui.unused.ExpressionsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.ManifestationDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.ManifestationsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.PostDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.PostsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.UserProfileScreen
 import net.unir.proyectofrontend2.ui.screens.WorkDetailsScreen
-import net.unir.proyectofrontend2.ui.screens.WorksFeedScreen
+import net.unir.proyectofrontend2.ui.unused.WorksFeedScreen
 
-// TODO: refactorizar esta basura ilegible
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationBars(
@@ -49,11 +49,11 @@ fun NavigationBars(
     val bottomBarTabs = listOf(
         PostsFeedDestination,
         ManifestationsFeedDestination,
-        ExpressionsFeedDestination,
-        WorksFeedDestination,
-        AgentsFeedDestination,
+//        ExpressionsFeedDestination,
+//        WorksFeedDestination,
+//        AgentsFeedDestination,
     )
-    val startDestination = bottomBarTabs[1]
+    val startDestination = bottomBarTabs[0]
     var selectedBottomBarTab by rememberSaveable {
         mutableIntStateOf(bottomBarTabs.indexOf(startDestination))
     }
@@ -84,7 +84,7 @@ fun NavigationBars(
                 Tab(
                     selected = selectedBottomBarTab == 0,
                     onClick = {
-                        navController.navigate(PostsFeedDestination)
+                        navController.navigate(bottomBarTabs[0])
                         selectedBottomBarTab = 0
                     },
                     text = {
@@ -98,7 +98,7 @@ fun NavigationBars(
                 Tab(
                     selected = selectedBottomBarTab == 1,
                     onClick = {
-                        navController.navigate(ManifestationsFeedDestination)
+                        navController.navigate(bottomBarTabs[1])
                         selectedBottomBarTab = 1
                     },
                     text = {
@@ -109,48 +109,48 @@ fun NavigationBars(
                         )
                     }
                 )
-                Tab(
-                    selected = selectedBottomBarTab == 2,
-                    onClick = {
-                        navController.navigate(ExpressionsFeedDestination)
-                        selectedBottomBarTab = 2
-                    },
-                    text = {
-                        Text(
-                            "E",
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                )
-                Tab(
-                    selected = selectedBottomBarTab == 3,
-                    onClick = {
-                        navController.navigate(WorksFeedDestination)
-                        selectedBottomBarTab = 3
-                    },
-                    text = {
-                        Text(
-                            "W",
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                )
-                Tab(
-                    selected = selectedBottomBarTab == 4,
-                    onClick = {
-                        navController.navigate(AgentsFeedDestination)
-                        selectedBottomBarTab = 4
-                    },
-                    text = {
-                        Text(
-                            "A",
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                )
+//                Tab(
+//                    selected = selectedBottomBarTab == 2,
+//                    onClick = {
+//                        navController.navigate(bottomBarTabs[2])
+//                        selectedBottomBarTab = 2
+//                    },
+//                    text = {
+//                        Text(
+//                            "E",
+//                            maxLines = 2,
+//                            overflow = TextOverflow.Ellipsis
+//                        )
+//                    }
+//                )
+//                Tab(
+//                    selected = selectedBottomBarTab == 3,
+//                    onClick = {
+//                        navController.navigate(bottomBarTabs[3])
+//                        selectedBottomBarTab = 3
+//                    },
+//                    text = {
+//                        Text(
+//                            "W",
+//                            maxLines = 2,
+//                            overflow = TextOverflow.Ellipsis
+//                        )
+//                    }
+//                )
+//                Tab(
+//                    selected = selectedBottomBarTab == 4,
+//                    onClick = {
+//                        navController.navigate(bottomBarTabs[4])
+//                        selectedBottomBarTab = 4
+//                    },
+//                    text = {
+//                        Text(
+//                            "A",
+//                            maxLines = 2,
+//                            overflow = TextOverflow.Ellipsis
+//                        )
+//                    }
+//                )
             }
         },
         modifier = modifier.windowInsetsPadding(WindowInsets.systemBars)
@@ -221,8 +221,45 @@ fun NavigationBars(
                     },
                 )
             }
-            composable<ExpressionsFeedDestination> {
-                ExpressionsFeedScreen(
+//            composable<ExpressionsFeedDestination> {
+//                ExpressionsFeedScreen(
+//                    navigateToExpressionDetails = { id ->
+//                        navController.navigate(ExpressionDetailsDestination(id))
+//                    },
+//                    navigateToAgentDetails = { id ->
+//                        navController.navigate(AgentDetailsDestination(id))
+//                    },
+//                )
+//            }
+            composable<ExpressionDetailsDestination> { backStackEntry ->
+                val args = backStackEntry.toRoute<ExpressionDetailsDestination>()
+                ExpressionDetailsScreen(
+                    id = args.id,
+                    navigateToAgentDetails = { id ->
+                        navController.navigate(AgentDetailsDestination(id))
+                    },
+                    navigateToWorkDetails = { id ->
+                        navController.navigate(WorkDetailsDestination(id))
+                    },
+                    navigateToManifestationDetails = { id ->
+                        navController.navigate(ManifestationDetailsDestination(id))
+                    },
+                )
+            }
+//            composable<WorksFeedDestination> {
+//                WorksFeedScreen(
+//                    navigateToWorkDetails = { id ->
+//                        navController.navigate(WorkDetailsDestination(id))
+//                    },
+//                    navigateToAgentDetails = { id ->
+//                        navController.navigate(AgentDetailsDestination(id))
+//                    },
+//                )
+//            }
+            composable<WorkDetailsDestination> { backStackEntry ->
+                val args = backStackEntry.toRoute<WorkDetailsDestination>()
+                WorkDetailsScreen(
+                    id = args.id,
                     navigateToExpressionDetails = { id ->
                         navController.navigate(ExpressionDetailsDestination(id))
                     },
@@ -231,36 +268,26 @@ fun NavigationBars(
                     },
                 )
             }
-            composable<WorksFeedDestination> {
-                WorksFeedScreen(
-                    navigateToWorkDetails = { id ->
-                        navController.navigate(WorkDetailsDestination(id))
-                    },
-                    navigateToAgentDetails = { id ->
-                        navController.navigate(AgentDetailsDestination(id))
-                    },
-                )
-            }
-            composable<WorkDetailsDestination> { backStackEntry ->
-                val args = backStackEntry.toRoute<WorkDetailsDestination>()
-                WorkDetailsScreen(
-                    id = args.id,
-                    navigateToAgentDetails = { id ->
-                        navController.navigate(AgentDetailsDestination(id))
-                    },
-                )
-            }
-            composable<AgentsFeedDestination> {
-                AgentsFeedScreen(
-                    navigateToAgentDetails = { id ->
-                        navController.navigate(AgentDetailsDestination(id))
-                    },
-                )
-            }
+//            composable<AgentsFeedDestination> {
+//                AgentsFeedScreen(
+//                    navigateToAgentDetails = { id ->
+//                        navController.navigate(AgentDetailsDestination(id))
+//                    },
+//                )
+//            }
             composable<AgentDetailsDestination> { backStackEntry ->
                 val args = backStackEntry.toRoute<AgentDetailsDestination>()
                 AgentDetailsScreen(
                     id = args.id,
+                    navigateToManifestationDetails = { id ->
+                        navController.navigate(ManifestationDetailsDestination(id))
+                    },
+                    navigateToExpressionDetails = { id ->
+                        navController.navigate(ExpressionDetailsDestination(id))
+                    },
+                    navigateToWorkDetails = { id ->
+                        navController.navigate(WorkDetailsDestination(id))
+                    },
                 )
             }
         }
@@ -284,20 +311,20 @@ object ManifestationsFeedDestination : Destination
 @Serializable
 data class ManifestationDetailsDestination(val id: Long) : Destination
 
-@Serializable
-object ExpressionsFeedDestination : Destination
+//@Serializable
+//object ExpressionsFeedDestination : Destination
 
 @Serializable
 data class ExpressionDetailsDestination(val id: Long) : Destination
 
-@Serializable
-object WorksFeedDestination : Destination
+//@Serializable
+//object WorksFeedDestination : Destination
 
 @Serializable
 data class WorkDetailsDestination(val id: Long) : Destination
 
-@Serializable
-object AgentsFeedDestination : Destination
+//@Serializable
+//object AgentsFeedDestination : Destination
 
 @Serializable
 data class AgentDetailsDestination(val id: Long) : Destination

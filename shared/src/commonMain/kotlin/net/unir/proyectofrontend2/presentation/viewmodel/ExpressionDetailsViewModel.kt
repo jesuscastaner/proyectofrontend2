@@ -53,13 +53,9 @@ class ExpressionDetailsViewModel(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
-    val agents: StateFlow<List<PaticipantAgent>> = combine(
-        expression,
-        work
-    ) { expression, work ->
-        val expressionAgents = expression?.agents ?: emptyList()
-        val workAgents = work?.agents ?: emptyList()
-        expressionAgents + workAgents
+    val manifestations: StateFlow<List<Manifestation>> = id.flatMapLatest {
+        it ?: return@flatMapLatest flowOf(emptyList())
+        manifestationRepository.getManifestationsByExpressionId(it)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
@@ -68,9 +64,13 @@ class ExpressionDetailsViewModel(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @NativeCoroutinesState
-    val manifestations: StateFlow<List<Manifestation>> = id.flatMapLatest {
-        it ?: return@flatMapLatest flowOf(emptyList())
-        manifestationRepository.getManifestationsByExpressionId(it)
+    val agents: StateFlow<List<PaticipantAgent>> = combine(
+        expression,
+        work
+    ) { expression, work ->
+        val expressionAgents = expression?.agents ?: emptyList()
+        val workAgents = work?.agents ?: emptyList()
+        expressionAgents + workAgents
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),

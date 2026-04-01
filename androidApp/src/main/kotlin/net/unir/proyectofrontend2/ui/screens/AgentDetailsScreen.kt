@@ -1,7 +1,6 @@
 package net.unir.proyectofrontend2.ui.screens
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,7 +18,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -27,16 +25,20 @@ import coil3.compose.AsyncImage
 import net.unir.proyectofrontend2.data.model.Agent
 import net.unir.proyectofrontend2.data.model.Expression
 import net.unir.proyectofrontend2.data.model.Manifestation
-import net.unir.proyectofrontend2.data.model.Post
 import net.unir.proyectofrontend2.data.model.Work
 import net.unir.proyectofrontend2.presentation.viewmodel.AgentDetailsViewModel
 import net.unir.proyectofrontend2.ui.components.EmptyScreenContent
 import net.unir.proyectofrontend2.ui.components.FormattedLifeSpan
+import net.unir.proyectofrontend2.ui.components.Heading
+import net.unir.proyectofrontend2.ui.components.LibraryResourceLink
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun AgentDetailsScreen(
     id: Long,
+    navigateToWorkDetails: (id: Long) -> Unit,
+    navigateToExpressionDetails: (id: Long) -> Unit,
+    navigateToManifestationDetails: (id: Long) -> Unit,
 ) {
     val viewModel: AgentDetailsViewModel = koinViewModel()
     val agent by viewModel.agent.collectAsStateWithLifecycle()
@@ -55,6 +57,9 @@ fun AgentDetailsScreen(
                 works = works,
                 expressions = expressions,
                 manifestations = manifestations,
+                onWorkClick = navigateToWorkDetails,
+                onExpressionClick = navigateToExpressionDetails,
+                onManifestationClick = navigateToManifestationDetails,
             )
         } else {
             EmptyScreenContent(modifier = Modifier.fillMaxSize())
@@ -70,6 +75,9 @@ private fun AgentDetails(
     expressions: List<Expression>,
     manifestations: List<Manifestation>,
     modifier: Modifier = Modifier,
+    onWorkClick: (id: Long) -> Unit,
+    onExpressionClick: (id: Long) -> Unit,
+    onManifestationClick: (id: Long) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier
@@ -90,109 +98,96 @@ private fun AgentDetails(
                 agent.name,
                 style = MaterialTheme.typography.headlineMedium,
             )
-            FormattedLifeSpan(
-                birthYear = agent.birthYear,
-                deathYear = agent.deathYear,
-            )
+            if (agent.birthYear != null || agent.deathYear != null) {
+                Spacer(modifier = Modifier.height(12.dp))
+                FormattedLifeSpan(
+                    birthYear = agent.birthYear,
+                    deathYear = agent.deathYear,
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+            }
             HorizontalDivider(
-                modifier = Modifier.padding(vertical = 16.dp),
+                modifier = Modifier.padding(vertical = 32.dp),
                 thickness = 0.5.dp,
                 color = MaterialTheme.colorScheme.outlineVariant
             )
         }
         if (works.isNotEmpty()) {
             item {
-                Text(
-                    "Works",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                )
-                Spacer(modifier = Modifier.height(16.dp))
+                Heading("Works")
             }
             items(works, key = { it.id }) { work ->
-                AgentRelatedItem(
+                val role = work.agents
+                    .firstOrNull { it.id == agent.id }
+                    ?.role
+
+                Spacer(modifier = Modifier.height(16.dp))
+                LibraryResourceLink(
                     title = work.title,
-                    subtitle = work.publicationYear?.toString()
-                )
-                HorizontalDivider(
-                    modifier = Modifier.padding(vertical = 16.dp),
-                    thickness = 0.5.dp,
-                    color = MaterialTheme.colorScheme.outlineVariant
+                    publicationYear = work.publicationYear,
+                    role = role,
+                    onClick = { onWorkClick(work.id) },
                 )
             }
+        }
+        if (
+            works.isNotEmpty() &&
+            expressions.isNotEmpty()
+        ) item {
+            Spacer(modifier = Modifier.height(16.dp))
         }
         if (expressions.isNotEmpty()) {
             item {
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    "Expressions",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                )
-                Spacer(modifier = Modifier.height(16.dp))
+                Heading("Expressions")
             }
             items(expressions, key = { it.id }) { expression ->
-                AgentRelatedItem(
+                val role = expression.agents
+                    .firstOrNull { it.id == agent.id }
+                    ?.role
+
+                Spacer(modifier = Modifier.height(16.dp))
+                LibraryResourceLink(
                     title = expression.title,
-                    subtitle = expression.publicationYear?.toString()
-                )
-                HorizontalDivider(
-                    modifier = Modifier.padding(vertical = 16.dp),
-                    thickness = 0.5.dp,
-                    color = MaterialTheme.colorScheme.outlineVariant
+                    publicationYear = expression.publicationYear,
+                    language = expression.language,
+                    role = role,
+                    onClick = { onExpressionClick(expression.id) }
                 )
             }
+        }
+        if (
+            expressions.isNotEmpty() &&
+            manifestations.isNotEmpty()
+        ) item {
+            Spacer(modifier = Modifier.height(16.dp))
         }
         if (manifestations.isNotEmpty()) {
             item {
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    "Manifestations",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                )
-                Spacer(modifier = Modifier.height(16.dp))
+                Heading("Manifestations")
             }
             items(manifestations, key = { it.id }) { manifestation ->
-                AgentRelatedItem(
+                val role = manifestation.agents
+                    .firstOrNull { it.id == agent.id }
+                    ?.role
+
+                Spacer(modifier = Modifier.height(16.dp))
+                LibraryResourceLink(
                     title = manifestation.title,
-                    subtitle = manifestation.publicationYear?.toString()
-                )
-                HorizontalDivider(
-                    modifier = Modifier.padding(vertical = 16.dp),
-                    thickness = 0.5.dp,
-                    color = MaterialTheme.colorScheme.outlineVariant
+                    publicationYear = manifestation.publicationYear,
+                    role = role,
+                    onClick = { onManifestationClick(manifestation.id) }
                 )
             }
         }
-    }
-}
-
-@Composable
-private fun AgentRelatedItem(
-    title: String,
-    subtitle: String?,
-    modifier: Modifier = Modifier,
-    onClick: (() -> Unit)? = null
-) {
-    androidx.compose.foundation.layout.Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable(enabled = onClick != null) {
-                onClick?.invoke()
-            }
-    ) {
-        Text(
-            title,
-            style = MaterialTheme.typography.bodyLarge,
-            fontWeight = FontWeight.Medium
-        )
-        if (subtitle != null) {
-            Text(
-                subtitle,
-                style = MaterialTheme.typography.bodySmall,
-                fontStyle = FontStyle.Italic,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+        if (
+            works.isNotEmpty() ||
+            expressions.isNotEmpty() ||
+            manifestations.isNotEmpty()
+        ) item {
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 32.dp),
+                thickness = 0.5.dp,
+                color = MaterialTheme.colorScheme.outlineVariant
             )
         }
     }
