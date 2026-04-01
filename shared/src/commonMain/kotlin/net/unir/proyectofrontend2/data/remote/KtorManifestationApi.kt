@@ -1,16 +1,16 @@
 package net.unir.proyectofrontend2.data.remote
 
 import io.ktor.client.HttpClient
-import net.unir.proyectofrontend2.data.model.Post
+import net.unir.proyectofrontend2.data.model.Manifestation
 
-class KtorPostApi(
+class KtorManifestationApi(
     client: HttpClient
-) : AbstractKtorApi(client), PostApi {
+) : AbstractKtorApi(client), ManifestationApi {
     companion object {
         private const val BASE_ENDPOINT =
             "https://raw.githubusercontent.com/jesuscastaner/proyectofrontend2/main/testapi"
     }
 
-    override suspend fun getPosts(): List<Post> =
-        get("${BASE_ENDPOINT}/posts.json", default = emptyList())
+    override suspend fun getManifestations(): List<Manifestation> =
+        get("${BASE_ENDPOINT}/manifestations.json", default = emptyList())
 }

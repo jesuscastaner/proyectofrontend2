@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import net.unir.proyectofrontend2.data.local.ExpressionStorage
 import net.unir.proyectofrontend2.data.model.Expression
-import net.unir.proyectofrontend2.data.remote.LibraryApi
+import net.unir.proyectofrontend2.data.remote.ExpressionApi
 
 class ExpressionRepository(
-    private val libraryApi: LibraryApi,
+    private val expressionApi: ExpressionApi,
     private val expressionStorage: ExpressionStorage,
 ) {
     private val scope = CoroutineScope(SupervisorJob())
@@ -22,7 +22,7 @@ class ExpressionRepository(
     }
 
     suspend fun refresh() {
-        expressionStorage.saveExpressions(libraryApi.getExpressions())
+        expressionStorage.saveExpressions(expressionApi.getExpressions())
     }
 
     fun getExpressions(): Flow<List<Expression>> = expressionStorage.getExpressions()

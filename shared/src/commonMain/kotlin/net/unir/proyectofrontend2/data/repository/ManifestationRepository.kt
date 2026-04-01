@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import net.unir.proyectofrontend2.data.local.ManifestationStorage
 import net.unir.proyectofrontend2.data.model.Manifestation
-import net.unir.proyectofrontend2.data.remote.LibraryApi
+import net.unir.proyectofrontend2.data.remote.ManifestationApi
 
 class ManifestationRepository(
-    private val libraryApi: LibraryApi,
+    private val manifestationApi: ManifestationApi,
     private val manifestationStorage: ManifestationStorage,
 ) {
     private val scope = CoroutineScope(SupervisorJob())
@@ -22,7 +22,7 @@ class ManifestationRepository(
     }
 
     suspend fun refresh() {
-        manifestationStorage.saveManifestations(libraryApi.getManifestations())
+        manifestationStorage.saveManifestations(manifestationApi.getManifestations())
     }
 
     fun getManifestations(): Flow<List<Manifestation>> = manifestationStorage.getManifestations()
@@ -36,11 +36,4 @@ class ManifestationRepository(
                 manifestation.expressionId == expressionId
             }
         }
-
-//    fun getManifestationsByWorkId(workId: Long): Flow<List<Manifestation>> =
-//        manifestationStorage.getManifestations().map {
-//            it.filter { manifestation ->
-//                manifestation.workId == workId
-//            }
-//        }
 }

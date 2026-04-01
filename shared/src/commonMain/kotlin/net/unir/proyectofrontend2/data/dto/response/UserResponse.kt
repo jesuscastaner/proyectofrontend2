@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UserResponse(
     val id: Long,
+    val agentId: Long,
     val displayName: String,
     val username: String,
     val profilePic: String,

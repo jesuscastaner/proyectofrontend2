@@ -17,12 +17,18 @@ import net.unir.proyectofrontend2.data.local.ManifestationStorage
 import net.unir.proyectofrontend2.data.local.PostStorage
 import net.unir.proyectofrontend2.data.local.UserStorage
 import net.unir.proyectofrontend2.data.local.WorkStorage
-import net.unir.proyectofrontend2.data.remote.KtorLibraryApi
+import net.unir.proyectofrontend2.data.remote.AgentApi
+import net.unir.proyectofrontend2.data.remote.ExpressionApi
+import net.unir.proyectofrontend2.data.remote.KtorAgentApi
+import net.unir.proyectofrontend2.data.remote.KtorExpressionApi
+import net.unir.proyectofrontend2.data.remote.KtorManifestationApi
 import net.unir.proyectofrontend2.data.remote.KtorPostApi
 import net.unir.proyectofrontend2.data.remote.KtorUserApi
-import net.unir.proyectofrontend2.data.remote.LibraryApi
+import net.unir.proyectofrontend2.data.remote.KtorWorkApi
+import net.unir.proyectofrontend2.data.remote.ManifestationApi
 import net.unir.proyectofrontend2.data.remote.PostApi
 import net.unir.proyectofrontend2.data.remote.UserApi
+import net.unir.proyectofrontend2.data.remote.WorkApi
 import net.unir.proyectofrontend2.data.repository.AgentRepository
 import net.unir.proyectofrontend2.data.repository.ExpressionRepository
 import net.unir.proyectofrontend2.data.repository.ManifestationRepository
@@ -43,49 +49,55 @@ val dataModule = module {
         }
     }
 
+
+    single<AgentApi> { KtorAgentApi(client = get()) }
+    single<ExpressionApi> { KtorExpressionApi(client = get()) }
+    single<ManifestationApi> { KtorManifestationApi(client = get()) }
     single<PostApi> { KtorPostApi(client = get()) }
+    single<UserApi> { KtorUserApi(client = get()) }
+    single<WorkApi> { KtorWorkApi(client = get()) }
+
+    single<AgentStorage> { InMemoryAgentStorage() }
+    single<ExpressionStorage> { InMemoryExpressionStorage() }
+    single<ManifestationStorage> { InMemoryManifestationStorage() }
     single<PostStorage> { InMemoryPostStorage() }
+    single<UserStorage> { InMemoryUserStorage() }
+    single<WorkStorage> { InMemoryWorkStorage() }
+
+    single {
+        AgentRepository(
+            agentApi = get(),
+            agentStorage = get(),
+        ).apply { initialize() }
+    }
+    single {
+        ExpressionRepository(
+            expressionApi = get(),
+            expressionStorage = get(),
+        ).apply { initialize() }
+    }
+    single {
+        ManifestationRepository(
+            manifestationApi = get(),
+            manifestationStorage = get(),
+        ).apply { initialize() }
+    }
     single {
         PostRepository(
             postApi = get(),
             postStorage = get(),
         ).apply { initialize() }
     }
-    single<UserApi> { KtorUserApi(client = get()) }
-    single<UserStorage> { InMemoryUserStorage() }
     single {
         UserRepository(
             userApi = get(),
             userStorage = get(),
         ).apply { initialize() }
     }
-    single<LibraryApi> { KtorLibraryApi(client = get()) }
-    single<WorkStorage> { InMemoryWorkStorage() }
     single {
         WorkRepository(
-            libraryApi = get(),
+            workApi = get(),
             workStorage = get(),
-        ).apply { initialize() }
-    }
-    single<ExpressionStorage> { InMemoryExpressionStorage() }
-    single {
-        ExpressionRepository(
-            libraryApi = get(),
-            expressionStorage = get(),
-        ).apply { initialize() }
-    }
-    single<ManifestationStorage> { InMemoryManifestationStorage() }
-    single {
-        ManifestationRepository(
-            libraryApi = get(),
-            manifestationStorage = get(),
-        ).apply { initialize() }
-    }
-    single<AgentStorage> { InMemoryAgentStorage() }
-    single {
-        AgentRepository(
-            libraryApi = get(),
-            agentStorage = get(),
         ).apply { initialize() }
     }
 }

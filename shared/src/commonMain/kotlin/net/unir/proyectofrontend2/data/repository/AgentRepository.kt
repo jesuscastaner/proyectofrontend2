@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import net.unir.proyectofrontend2.data.local.AgentStorage
 import net.unir.proyectofrontend2.data.model.Agent
-import net.unir.proyectofrontend2.data.remote.LibraryApi
+import net.unir.proyectofrontend2.data.remote.AgentApi
 
 class AgentRepository(
-    private val libraryApi: LibraryApi,
+    private val agentApi: AgentApi,
     private val agentStorage: AgentStorage,
 ) {
     private val scope = CoroutineScope(SupervisorJob())
@@ -21,7 +21,7 @@ class AgentRepository(
     }
 
     suspend fun refresh() {
-        agentStorage.saveAgents(libraryApi.getAgents())
+        agentStorage.saveAgents(agentApi.getAgents())
     }
 
     fun getAgents(): Flow<List<Agent>> = agentStorage.getAgents()

@@ -6,6 +6,7 @@ import net.unir.proyectofrontend2.data.model.User
 fun UserResponse.toUser(): User =
     User(
         id = id,
+        agentId = agentId,
         displayName = displayName,
         username = username,
         profilePic = profilePic,

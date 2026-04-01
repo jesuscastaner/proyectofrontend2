@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import net.unir.proyectofrontend2.data.local.WorkStorage
 import net.unir.proyectofrontend2.data.model.Work
-import net.unir.proyectofrontend2.data.remote.LibraryApi
+import net.unir.proyectofrontend2.data.remote.WorkApi
 
 class WorkRepository(
-    private val libraryApi: LibraryApi,
+    private val workApi: WorkApi,
     private val workStorage: WorkStorage,
 ) {
     private val scope = CoroutineScope(SupervisorJob())
@@ -21,7 +21,7 @@ class WorkRepository(
     }
 
     suspend fun refresh() {
-        workStorage.saveWorks(libraryApi.getWorks())
+        workStorage.saveWorks(workApi.getWorks())
     }
 
     fun getWorks(): Flow<List<Work>> = workStorage.getWorks()
