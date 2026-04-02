@@ -25,15 +25,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import kotlinx.serialization.Serializable
 import net.unir.proyectofrontend2.ui.components.icons.BackIcon
-import net.unir.proyectofrontend2.ui.components.icons.LogoutIcon
 import net.unir.proyectofrontend2.ui.components.icons.ManifestationIcon
 import net.unir.proyectofrontend2.ui.components.icons.OptionsIcon
 import net.unir.proyectofrontend2.ui.components.icons.PostIcon
 import net.unir.proyectofrontend2.ui.components.icons.UserIcon
 import net.unir.proyectofrontend2.ui.screens.AgentDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.ExpressionDetailsScreen
+import net.unir.proyectofrontend2.ui.screens.ManifestationCreateFormScreen
 import net.unir.proyectofrontend2.ui.screens.ManifestationDetailsScreen
 import net.unir.proyectofrontend2.ui.screens.ManifestationsFeedScreen
 import net.unir.proyectofrontend2.ui.screens.PostDetailsScreen
@@ -225,32 +224,9 @@ fun NavigationBars(
                     },
                 )
             }
+            composable<ManifestationCreateFormDestination> {
+                ManifestationCreateFormScreen(/* TODO */)
+            }
         }
     }
 }
-
-interface Destination
-
-@Serializable
-object PostsFeedDestination : Destination
-
-@Serializable
-data class PostDetailsDestination(val id: Long) : Destination
-
-@Serializable
-data class UserProfileDestination(val id: Long) : Destination
-
-@Serializable
-object ManifestationsFeedDestination : Destination
-
-@Serializable
-data class ManifestationDetailsDestination(val id: Long) : Destination
-
-@Serializable
-data class ExpressionDetailsDestination(val id: Long) : Destination
-
-@Serializable
-data class WorkDetailsDestination(val id: Long) : Destination
-
-@Serializable
-data class AgentDetailsDestination(val id: Long) : Destination

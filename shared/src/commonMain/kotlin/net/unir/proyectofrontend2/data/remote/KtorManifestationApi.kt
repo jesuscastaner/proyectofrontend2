@@ -14,10 +14,10 @@ class KtorManifestationApi(
     override suspend fun getManifestations(): List<Manifestation> =
         get(path = "${BASE_ENDPOINT}/manifestations.json", default = emptyList())
 
-    override suspend fun createManifestation(): Manifestation =
-        post(
-            path = ""/* TODO */,
-            body = Manifestation,
-            default = null
-        )
+//    override suspend fun createManifestation(): Manifestation =
+//        post(
+//            path = "",
+//            body = Manifestation,
+//            default = null
+//        )
 }
