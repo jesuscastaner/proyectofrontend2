@@ -4,4 +4,5 @@ import net.unir.proyectofrontend2.data.model.Manifestation
 
 interface ManifestationApi {
     suspend fun getManifestations(): List<Manifestation>
+    suspend fun createManifestation(): Manifestation
 }

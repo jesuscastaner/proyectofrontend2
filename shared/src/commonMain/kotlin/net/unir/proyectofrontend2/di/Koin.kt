@@ -49,7 +49,6 @@ val dataModule = module {
         }
     }
 
-
     single<AgentApi> { KtorAgentApi(client = get()) }
     single<ExpressionApi> { KtorExpressionApi(client = get()) }
     single<ManifestationApi> { KtorManifestationApi(client = get()) }

@@ -6,6 +6,7 @@ import net.unir.proyectofrontend2.presentation.viewmodel.AgentDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.AgentsFeedViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.ExpressionDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.ExpressionsFeedViewModel
+import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationCreateFormViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationDetailsViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.ManifestationsFeedViewModel
 import net.unir.proyectofrontend2.presentation.viewmodel.PostDetailsViewModel
@@ -86,6 +87,14 @@ class KoinViewModels : Application() {
                             workRepository = get(),
                             expressionRepository = get(),
                             manifestationRepository = get(),
+                        )
+                    }
+                    factory {
+                        ManifestationCreateFormViewModel(
+                            manifestationRepository = get(),
+                            expressionRepository = get(),
+                            workRepository = get(),
+                            agentRepository = get(),
                         )
                     }
                 }
