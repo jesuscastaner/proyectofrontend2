@@ -11,10 +11,14 @@ import net.unir.proyectofrontend2.data.local.InMemoryAgentStorage
 import net.unir.proyectofrontend2.data.local.InMemoryExpressionStorage
 import net.unir.proyectofrontend2.data.local.InMemoryManifestationStorage
 import net.unir.proyectofrontend2.data.local.InMemoryPostStorage
+import net.unir.proyectofrontend2.data.local.InMemoryShelfManifestationUserStorage
+import net.unir.proyectofrontend2.data.local.InMemoryShelfStorage
 import net.unir.proyectofrontend2.data.local.InMemoryUserStorage
 import net.unir.proyectofrontend2.data.local.InMemoryWorkStorage
 import net.unir.proyectofrontend2.data.local.ManifestationStorage
 import net.unir.proyectofrontend2.data.local.PostStorage
+import net.unir.proyectofrontend2.data.local.ShelfManifestationUserStorage
+import net.unir.proyectofrontend2.data.local.ShelfStorage
 import net.unir.proyectofrontend2.data.local.UserStorage
 import net.unir.proyectofrontend2.data.local.WorkStorage
 import net.unir.proyectofrontend2.data.remote.AgentApi
@@ -23,16 +27,22 @@ import net.unir.proyectofrontend2.data.remote.KtorAgentApi
 import net.unir.proyectofrontend2.data.remote.KtorExpressionApi
 import net.unir.proyectofrontend2.data.remote.KtorManifestationApi
 import net.unir.proyectofrontend2.data.remote.KtorPostApi
+import net.unir.proyectofrontend2.data.remote.KtorShelfApi
+import net.unir.proyectofrontend2.data.remote.KtorShelfManifestationUserApi
 import net.unir.proyectofrontend2.data.remote.KtorUserApi
 import net.unir.proyectofrontend2.data.remote.KtorWorkApi
 import net.unir.proyectofrontend2.data.remote.ManifestationApi
 import net.unir.proyectofrontend2.data.remote.PostApi
+import net.unir.proyectofrontend2.data.remote.ShelfApi
+import net.unir.proyectofrontend2.data.remote.ShelfManifestationUserApi
 import net.unir.proyectofrontend2.data.remote.UserApi
 import net.unir.proyectofrontend2.data.remote.WorkApi
 import net.unir.proyectofrontend2.data.repository.AgentRepository
 import net.unir.proyectofrontend2.data.repository.ExpressionRepository
 import net.unir.proyectofrontend2.data.repository.ManifestationRepository
 import net.unir.proyectofrontend2.data.repository.PostRepository
+import net.unir.proyectofrontend2.data.repository.ShelfManifestationUserRepository
+import net.unir.proyectofrontend2.data.repository.ShelfRepository
 import net.unir.proyectofrontend2.data.repository.UserRepository
 import net.unir.proyectofrontend2.data.repository.WorkRepository
 import org.koin.core.context.startKoin
@@ -56,6 +66,8 @@ val dataModule = module {
     single<PostApi> { KtorPostApi(client = get()) }
     single<UserApi> { KtorUserApi(client = get()) }
     single<WorkApi> { KtorWorkApi(client = get()) }
+    single<ShelfApi> { KtorShelfApi(client = get()) }
+    single<ShelfManifestationUserApi> { KtorShelfManifestationUserApi(client = get()) }
 
     single<AgentStorage> { InMemoryAgentStorage() }
     single<ExpressionStorage> { InMemoryExpressionStorage() }
@@ -63,6 +75,8 @@ val dataModule = module {
     single<PostStorage> { InMemoryPostStorage() }
     single<UserStorage> { InMemoryUserStorage() }
     single<WorkStorage> { InMemoryWorkStorage() }
+    single<ShelfStorage> { InMemoryShelfStorage() }
+    single<ShelfManifestationUserStorage> { InMemoryShelfManifestationUserStorage() }
 
     single {
         AgentRepository(
@@ -100,7 +114,20 @@ val dataModule = module {
             workStorage = get(),
         ).apply { initialize() }
     }
+    single {
+        ShelfRepository(
+            api = get(),
+            storage = get(),
+        )
+    }
+    single {
+        ShelfManifestationUserRepository(
+            api = get(),
+            storage = get(),
+        )
+    }
 }
+
 
 fun initKoin() = initKoin(emptyList())
 
